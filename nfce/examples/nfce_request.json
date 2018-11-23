@@ -1,0 +1,128 @@
+{
+  "cliente": {
+    "documento": "02558352482",
+    "email": "luiz.buiatte@nexaas.com",
+    "endereco": {
+      "logradouro": "Rua do Analista de Sistemas",
+      "numero": "256",
+      "complemento": "Sala 128",
+      "bairro": "Planalto",
+      "codigo_municipio": 3170206,
+      "municipio": "Uberlândia",
+      "cep": "38413162",
+      "unidade_federativa": "MG",
+      "codigo_pais": 1058,
+      "pais": "Brasil",
+      "telefone": "34987654321"
+    },
+    "nome": "Luiz Carlos Buiatte"
+  },
+  "destino_operacao": "interno",
+  "finalidade": "normal",
+  "forma_pagamento": [
+    {
+      "tipo": "cartao_credito",
+      "valor": 200.00,
+      "modalidade": "imediato",
+      "cartao": {
+        "tipo_integracao": "integrado",
+        "cnpj_operadora": "11375787000192",
+        "bandeira": "visa",
+        "numero_autorizacao": "1234567890"
+      }
+    }
+  ],
+  "indicador_presenca": "presencial",
+  "informacoes_adicionais": {
+    "informacoes_contribuinte": "Informações complementares de interesse do Contribuinte",
+    "informacoes_fisco": "Informações adicionais de interesse do Fisco",
+    "observacoes_fisco": [
+      {
+        "campo": "Nome do campo",
+        "texto": "Observação do campo"
+      }
+    ]
+  },
+  "lista_autorizacao": [
+    "77184642538",
+    "31065377000152"
+  ],
+  "natureza_operacao": "venda",
+  "produtos": [
+    {
+      "codigo_cest": "1300402",
+      "codigo_cfop": "5103",
+      "codigo_ean": "7891000315507",
+      "codigo_ean_unidade_tributavel": "7891000315507",
+      "codigo_excecao_tipi": "22",
+      "codigo_ncm": "22086000",
+      "codigo_produto": "14600",
+      "descricao": "Produto codigo 14600",
+      "informacoes_adicionais": "",
+      "numero_item_pedido": 1,
+      "numero_pedido": "5100003910",
+      "quantidade_comercial": 2.00,
+      "quantidade_tributavel": 2.00,
+      "unidade_comercial": "UN",
+      "unidade_tributavel": "UN",
+      "valor_desconto": 0.00,
+      "valor_frete": 0.00,
+      "valor_outras_despesas": 0.00,
+      "valor_seguro": 0.00,
+      "valor_total_produto": 200.00,
+      "valor_unitario_comercial": 100.00,
+      "valor_unitario_tributario": 100.00
+    }
+  ],
+  "tipo_impressao": "nfce",
+  "tipo_operacao": "entrada",
+  "transporte": {
+    "modalidade_frete": "sem_frete",
+    "endereco_entrega": {
+      "logradouro": "Rua do Analista de Sistemas",
+      "numero": "256",
+      "complemento": "Sala 128",
+      "bairro": "Planalto",
+      "codigo_municipio": 3170206,
+      "municipio": "Uberlândia",
+      "cep": "38413162",
+      "unidade_federativa": "MG"
+    },
+    "retencao_icms": {
+      "aliquota_retencao": 0,
+      "cfop": "5103",
+      "codigo_municipio": 3170206,
+      "unidade_federativa": "MG",
+      "valor_base_calculo": 0,
+      "valor_retido": 0,
+      "valor_servico": 0
+    },
+    "transportadora": {
+      "documento": "81043396000156",
+      "endereco_completo": "Rua do Economista, nº 256",
+      "inscricao_estadual": "isento",
+      "municipio": "Uberlândia",
+      "razao_social": "Silva & Silva Tranporte Ltda",
+      "unidade_federativa": "MG"
+    },
+    "valor_total_frete": 0.00,
+    "veiculo": {
+      "placa": "EEE3344",
+      "registro_nacional_transportador": "230483JKHE",
+      "unidade_federativa": "MG"
+    },
+    "volume_transportado": [
+      {
+        "especie": "Caixa",
+        "marca": "FlexBox",
+        "numeracao": "333",
+        "peso_bruto": 2.00,
+        "peso_liquido": 1.90,
+        "quantidade": 1
+      }
+    ]
+  }
+}
+
+
+
