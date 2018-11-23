@@ -1,2 +1,73 @@
 # emites-client-api-docs
-Documentação pública da API do Emites-Client
+
+Documentação pública da API do produto Emites-Client.
+
+## Introdução
+
+O Emites-Client é uma solução Nexaas para emissão de notas fiscais eletrônicas (NF-e) e notas fiscais eletrônicas do consumidor (NFC-e) desenvolvida em linguagem Java. A emissão destes documentos pode ser feita em modo online ou offline.
+
+A integração com a aplicação é realizada através do envio de mensagens para uma interface socket TCP/IP. 
+
+## Autenticação
+
+O mecanismo de autenticação está em fase de elaboração.
+
+## Protocolo
+
+Todas as mensagens trocadas pelo Emites-Client apresentam o seguinte formato texto:
+
+```
+Tamanho:Identificador:Payload
+```
+
+onde
+
+- **Tamanho**: string númerica que representa o tamanho dos dados que a sucedem, considerando também os separadores (':'). Não utiliza zeros à esquerda;
+- **Identificador**: string que identifica o tipo da mensagem;
+- **Payload**: string contendo o payload em formato JSON.
+
+Por exemplo se considerarmos a mensagem a seguir:
+
+```
+27:TESTE:{ "teste": "teste" }
+```
+
+temos:
+- 27 é o tamanho dos dados da mensagem: 1 (**":"**) + 5 (**"TESTE"**) + 1 (**":"**) + 20 (tamanho do **JSON**);
+- **"TESTE"** é o tipo da mensagem sendo enviada;
+- após o último separador temos o payload **JSON** de teste.
+
+Observações:
+- A mensagem deve utilizar _encoding_ `US-ASCII` ou `ISO-8859-1` (ou variações). Não devem ser utilizados _encodings multibyte_ tal como `UTF-8`;
+- Ao enviar uma mensagem para o Emites-Client, aguardar a resposta da mesma antes de enviar uma nova requisição;
+- O payload JSON pode ser enviado em uma única linha ou pode conter quebras de linha, desde que os tamanhos das quebras sejam considerados no tamanho total da mensagem;
+- Para indicar um valor opcional ausente no payload JSON, basta omitir o campo; alternativamente, ele pode ser serializado com valor `null`. Evitar enviar valores ausentes como strings vazias (""), pois o Emites-Client realiza validação de tamanho mínimo caso o campo não seja `null`;
+
+## Criação de NFC-e
+
+Para criar uma NFC-e (Nota Fiscal Eletrônica do Consumidor), enviar uma mensagem com o identificador `CREATE_NFCE`. O mesmo identificador será devolvido na resposta.
+
+Utilizar como referência os documentos a seguir:
+
+- Schema JSON da [requisição](https://github.com/myfreecomm/emites-client-api-docs/blob/master/nfce/schema/create_nfce_request_schema.json);
+- Schema JSON da [resposta](https://github.com/myfreecomm/emites-client-api-docs/blob/master/nfce/schema/create_nfce_response_schema.json);
+- [Exemplo de JSON de requisição](https://github.com/myfreecomm/emites-client-api-docs/blob/master/nfce/examples/nfce_request.json);
+- [Exemplo de JSON de resposta](https://github.com/myfreecomm/emites-client-api-docs/blob/master/nfce/examples/nfce_response.json);
+
+A resposta conterá os mesmos campos que foram enviados na requisição, e adicionalmente os seguintes campos exclusivos:
+- Impostos (campo `produto.tributacao`, para cada produto);
+- Número da nota (campo `numero`);
+- Série da nota (campo `serie`);
+- URL do DANFE (campo `danfe_url`);
+- URL do XML (campo `xml_url`);
+- DANFE codificado em Base64 (campo `danfe`);
+- XML codificado em Base64 (campo `xml`);
+
+## Links úteis
+
+- [JSON schema](https://json-schema.org/): Documentação do vocabulário utilizado nos _schemas_;
+- [JSON schema validator](https://www.jsonschemavalidator.net/): permite validar uma string JSON contra o respectivo _schema_;
+
+
+
+
