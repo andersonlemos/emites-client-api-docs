@@ -1,6 +1,6 @@
-# emites-client-api-docs
+# emites-client-api-docs [[English](https://github.com/myfreecomm/emites-client-api-docs/blob/master/README.en.md)]
 
-Documentação pública da API do produto Emites-Client.
+Documentação pública da API do produto Emites-Client. 
 
 ## Introdução
 
