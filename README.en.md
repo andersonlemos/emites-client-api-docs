@@ -66,5 +66,5 @@ The response will contain the same fields that were sent in the request, and add
 
 ## Useful links
 
-- [JSON schema] (https://json-schema.org/): Documentation of vocabulary used for JSON schemas;
-- [JSON schema validator] (https://www.jsonschemavalidator.net/): allows you to validate a JSON string against its schema;
+- [JSON schema](https://json-schema.org/): Documentation of vocabulary used for JSON schemas;
+- [JSON schema validator](https://www.jsonschemavalidator.net/): allows you to validate a JSON string against its schema;
