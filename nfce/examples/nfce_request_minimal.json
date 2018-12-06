@@ -1,0 +1,40 @@
+{
+  "destino_operacao": "interno",
+  "finalidade": "normal",
+  "forma_pagamento": [
+    {
+      "tipo": "cartao_credito",
+      "valor": 200.00,
+      "modalidade": "imediato",
+      "cartao": {
+        "tipo_integracao": "integrado",
+        "cnpj_operadora": "11375787000192",
+        "bandeira": "visa",
+        "numero_autorizacao": "1234567890"
+      }
+    }
+  ],
+  "indicador_presenca": "presencial",
+  "natureza_operacao": "venda",
+  "produtos": [
+    {
+      "codigo_ncm": "22086000",
+      "codigo_produto": "14600",
+      "descricao": "NOTA FISCAL EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL",
+      "origem": "nacional",
+      "quantidade_comercial": 2.00,
+      "quantidade_tributavel": 2.00,
+      "unidade_comercial": "UN",
+      "unidade_tributavel": "UN",
+      "valor_total_produto": 200.00,
+      "valor_unitario_comercial": 100.00,
+      "valor_unitario_tributario": 100.00
+    }
+  ],
+  "tipo_impressao": "nfce",
+  "tipo_operacao": "entrada",
+  "transporte": {
+    "modalidade_frete": "sem_frete"
+  }
+}
+
