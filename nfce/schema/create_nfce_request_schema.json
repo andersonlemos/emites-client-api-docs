@@ -121,6 +121,16 @@
             "34987654321"
           ],
           "pattern": "^(\\d{6,14})$"
+        },
+        "documento": {
+          "type": "string",
+          "title": "Documento Schema",
+          "description": "CPF para pessoa física ou CNPJ para pessoa jurídica",
+          "examples": [
+            "02558352482",
+            "81043396000156"
+          ],
+          "pattern": "^(\\d{11,14})$"
         }
       }
     },
