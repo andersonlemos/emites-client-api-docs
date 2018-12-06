@@ -473,7 +473,6 @@
         "type": "object",
         "title": "Items Schema",
         "required": [
-          "codigo_cfop",
           "codigo_ncm",
           "codigo_produto",
           "descricao",
