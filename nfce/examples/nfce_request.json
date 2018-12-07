@@ -16,7 +16,7 @@
       "telefone": "34987654321",
       "documento": "02558352482"
     },
-    "nome": "Luiz Carlos Buiatte"
+    "nome": "NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL"
   },
   "destino_operacao": "interno",
   "finalidade": "normal",
@@ -58,10 +58,11 @@
       "codigo_excecao_tipi": "22",
       "codigo_ncm": "22086000",
       "codigo_produto": "14600",
-      "descricao": "Produto codigo 14600",
+      "descricao": "NOTA FISCAL EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL",
       "informacoes_adicionais": "",
       "numero_item_pedido": 1,
       "numero_pedido": "5100003910",
+      "origem": "nacional",
       "quantidade_comercial": 2.00,
       "quantidade_tributavel": 2.00,
       "unidade_comercial": "UN",

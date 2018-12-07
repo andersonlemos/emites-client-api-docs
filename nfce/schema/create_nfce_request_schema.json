@@ -206,9 +206,9 @@
           "$id": "#/properties/cliente/properties/nome",
           "type": "string",
           "title": "Nome Schema",
-          "default": "",
+          "description": "Utilizar 'NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL' para emissão em homologação",
           "examples": [
-            "Luiz Carlos Buiatte"
+            "NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL"
           ],
           "minLength": 2,
           "maxLength": 60
@@ -486,6 +486,7 @@
           "codigo_ncm",
           "codigo_produto",
           "descricao",
+          "origem",
           "quantidade_comercial",
           "quantidade_tributavel",
           "unidade_comercial",
@@ -623,6 +624,24 @@
             ],
             "minLength": 0,
             "maxLength": 15
+          },
+          "origem": {
+            "$id": "#/properties/produtos/items/properties/origem",
+            "type": "string",
+            "title": "Origem Schema",
+            "description": "Origem do produto (tal como nacional, estrangeiro ou nacional com conteúdo importado)",
+            "default": "nacional",
+            "enum": [
+              "nacional",
+              "estrangeira",
+              "estrangeira_mercado_interno",
+              "nacional_conteudo_importado_40_70",
+              "nacional_processo_produtivo_basico",
+              "nacional_conteudo_importado_40",
+              "estrangeira_sem_similar",
+              "estrangeira_mercado_interno_sem_similar",
+              "nacional_conteudo_importado_70"
+            ]
           },
           "quantidade_comercial": {
             "$id": "#/properties/produtos/items/properties/quantidade_comercial",
