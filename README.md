@@ -1,12 +1,12 @@
 # emites-client-api-docs [[English](https://github.com/myfreecomm/emites-client-api-docs/blob/master/README.en.md)]
 
-Documentação pública da API do produto Emites-Client. 
+Documentação pública da API do produto Emites-Client.
 
 ## Introdução
 
 O Emites-Client é uma solução Nexaas para emissão de notas fiscais eletrônicas (NF-e) e notas fiscais eletrônicas do consumidor (NFC-e) desenvolvida em linguagem Java. A emissão destes documentos pode ser feita em modo online ou offline.
 
-A integração com a aplicação é realizada através do envio de mensagens para uma interface socket TCP/IP. 
+A integração com a aplicação é realizada através do envio de mensagens para uma interface socket TCP/IP.
 
 ## Autenticação
 
@@ -62,6 +62,33 @@ A resposta conterá os mesmos campos que foram enviados na requisição, e adici
 - URL do XML (campo `xml_url`);
 - DANFE codificado em Base64 (campo `danfe`);
 - XML codificado em Base64 (campo `xml`);
+
+
+## Cancelamento de NFC-e
+
+Para criar uma NFC-e, enviar uma mensagem com o identificador `CANCEL_NFCE`. O mesmo identificador será devolvido na resposta.
+
+O payload JSON deverá seguir o formato:
+
+```
+{ "id": 448, "motivo": "Desistencia do comprador" }
+```
+
+onde:
+
+- "id" é o identificador da NFC-e no sistema Emites (devolvido no momento em que a nota foi criada);
+- "motivo" é a descrição da razão do cancelamento (opcional; se informado deve ter tamanho entre 15 e 255 caracteres)
+
+A resposta do cancelamento terá também o identificador `CANCEL_NFCE` e o payload JSON será similar àquele devolvido durante a
+operação criação, com as seguintes diferenças:
+
+- o campo `status` terá o valor `cancelada` (em caso de sucesso) ou `cancelamento_rejeitado` (se não foi possível cancelar a nota);
+- existirá um campo adicional `cancel_xml_url` com a URL da nota cancelada (em caso de sucesso);
+
+A partir de 01/10/2018 o prazo máximo para cancelamento de uma NFC-e passa a ser de 30 minutos, de acordo com o texto
+do Ajuste SINIEF 07/2018. Após decorrido este prazo, uma tentativa de cancelamento da nota será respondida pela SEFAZ com
+um código de rejeição (501).
+
 
 ## Links úteis
 
