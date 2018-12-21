@@ -1,4 +1,4 @@
-# emites-client-api-docs
+# emites-client-api-docs [[Português-BR](https://github.com/myfreecomm/emites-client-api-docs/blob/master/README.md)]
 
 Public documentation for the Emites-Client product API.
 
@@ -7,10 +7,6 @@ Public documentation for the Emites-Client product API.
 Emites-Client is a Nexaas solution for issuing electronic invoices (NF-e) and consumer electronic invoices (NFC-e) developed in Java language. These documents can be issue in online or offline mode.
 
 Integration with the application is accomplished by sending messages to a TCP/IP socket interface.
-
-## Authentication
-
-The authentication mechanism is under development.
 
 ## Protocol
 
@@ -55,7 +51,8 @@ Use as reference the following documents:
 - [Sample JSON request](https://github.com/myfreecomm/emites-client-api-docs/blob/master/nfce/examples/nfce_request.json);
 - [Sample JSON response](https://github.com/myfreecomm/emites-client-api-docs/blob/master/nfce/examples/nfce_response.json);
 
-The response will contain the same fields that were sent in the request, and additionally the following unique fields:
+The response will contain the same fields that were sent in the request, and additionally the following exclusive fields:
+- `status` with value equal to `sucesso`;
 - Taxes (field `produto.tributacao`, for each product);
 - Note's number (field `numero`);
 - Note's serie (field `serie`);
@@ -63,6 +60,83 @@ The response will contain the same fields that were sent in the request, and add
 - XML URL (field `xml_url`);
 - Base64 encoded DANFE (field `danfe`);
 - Base64 encoded XML (field `xml`);
+- Issue response (field `resposta_emissao`, which contains the access key and protocol number);
+
+### Rejection
+
+The rejected response will contain the same fields that were sent in the request, and additionally the following exclusive fields:
+- `status` with value equal to `rejeitada`;
+- `erros` with the list of rejection reasons;
+
+The following excerpt shows an example of rejection due to validation errors:
+
+```
+{
+  "status": "rejeitada",
+  ...
+  ...
+  ...
+  "erros": {
+    "forma_pagamento": ["tamanho deve estar entre 1 e 100"],
+    "cliente.email": ["não é um endereço de e-mail válido"]
+  }
+}
+```
+
+The following excerpt shows an example of rejection raised by SEFAZ:
+
+```
+{
+  "status": "rejeitada",
+  ...
+  ...
+  ...
+  "erros": {
+    "rejeicao": ["471 - Rejeição: Informado NCM=00 indevidamente"]
+  }
+}
+```
+
+
+## NFC-e cancellation
+
+To cancel an NFC-e, send a message with the identifier `CANCEL_NFCE`. The same identifier will be returned in the response.
+
+The JSON payload should follow the format:
+
+```
+{ "chave": "53180922769530000131651110000001281355486170", "motivo": "Desistencia do comprador" }
+```
+
+where:
+
+- `chave` is the NFC-e's access key (obtained in the creation response);
+- `reason` is the description of the reason for the cancellation (optional; if informed should be between 15 and 255 characters in size)
+
+The cancellation response's JSON payload will be similar to the one returned during the
+creation operation, with the following differences [(see example)] (https://github.com/myfreecomm/emites-client-api-docs/blob/master/nfce/examples/nfce_cancel_response.json):
+
+- `status` field will have the value `cancelada`;
+- an additional `cancel_xml_url` field with the updated document's URL will be included;
+- an additional field `resposta_cancelamento` (which contains the new access key and new protocol number) will be included;
+
+### Rejection
+
+As of 10/1/2018 the maximum period to cancel a NFC-e will be 30 minutes, according to the text of the Ajuste SINIEF 07/2018. After this period elapses, an attempt to cancel the document will be answered by SEFAZ with a rejection code (501).
+
+If this scenario occurs, the response returned by the Emites-Client will contain the field `errors` informing the reason for the rejection:
+
+```
+{
+  "status": "cancelamento_rejeitado",
+  ...
+  ...
+  ...
+  "erros": {
+    "rejeicao": ["501 - Rejeicao: Prazo de Cancelamento Superior ao Previsto na Legislacao"]
+  }
+}
+```
 
 ## Useful links
 

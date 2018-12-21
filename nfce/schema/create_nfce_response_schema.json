@@ -1,5 +1,13 @@
 {
   "definitions": {
+    "chave": {
+      "type": "string",
+      "title": "Chave Schema",
+      "examples": [
+        "53181222769530000131650090000001731531212514"
+      ],
+      "pattern": "^(\\d{44})$"
+    },
     "cnpj": {
       "type": "string",
       "title": "CNPJ Schema",
@@ -143,6 +151,14 @@
         "81043396000156"
       ],
       "pattern": "^(\\d{11,14})$"
+    },
+    "protocolo": {
+      "type": "string",
+      "title": "Numero protocolo Schema",
+      "examples": [
+        "353180004176526"
+      ],
+      "pattern": "^(\\d{15})$"
     },
     "unidade_federativa": {
       "type": "string",
@@ -1061,7 +1077,10 @@
                     "description": "Código de origem da mercadoria",
                     "default": 0,
                     "examples": [
-                      0, 1, 2, 3
+                      0,
+                      1,
+                      2,
+                      3
                     ]
                   },
                   "modalidade_base": {
@@ -1070,7 +1089,10 @@
                     "title": "The Modalidade_base Schema",
                     "description": "Modalidade  de  determinação  da  base de cálculo do ICMS",
                     "enum": [
-                      "margem_valor_agregado", "pauta", "preco_tabelado", "valor_operacao"
+                      "margem_valor_agregado",
+                      "pauta",
+                      "preco_tabelado",
+                      "valor_operacao"
                     ]
                   },
                   "modalidade_base_substituicao": {
@@ -1079,7 +1101,12 @@
                     "title": "The Modalidade_base_substituicao Schema",
                     "description": "Modalidade  de  determinação  da  base de cálculo do ICMS - Substituição tributária",
                     "enum": [
-                      "preco_tabelado", "lista_negativa", "lista_positiva", "lista_neutra", "margem_valor_agregado", "pauta"
+                      "preco_tabelado",
+                      "lista_negativa",
+                      "lista_positiva",
+                      "lista_neutra",
+                      "margem_valor_agregado",
+                      "pauta"
                     ]
                   },
                   "motivo_desoneracao": {
@@ -1088,8 +1115,17 @@
                     "title": "The Motivo_desoneracao Schema",
                     "description": "Motivo da desoneração do ICMS",
                     "enum": [
-                      "taxi", "produtor_agropecuario", "frotista", "diplomata", "utilitario_zona_livre_comercio", "suframa",
-                      "venda_orgao_publico", "outros", "deficiente_condutor", "deficiente_nao_condutor", "olimpiada_rio_2016"
+                      "taxi",
+                      "produtor_agropecuario",
+                      "frotista",
+                      "diplomata",
+                      "utilitario_zona_livre_comercio",
+                      "suframa",
+                      "venda_orgao_publico",
+                      "outros",
+                      "deficiente_condutor",
+                      "deficiente_nao_condutor",
+                      "olimpiada_rio_2016"
                     ]
                   },
                   "situacao_simples_nacional": {
@@ -1973,6 +2009,16 @@
         "http://emites-ruby-sandbox.s3.amazonaws.com/nfce/xml_files/000/000/477/original/nfe.xml?1536775848"
       ]
     },
+    "cancel_xml_url": {
+      "$id": "#/properties/cancel_xml_url",
+      "type": "string",
+      "title": "Cancel_xml_url Schema",
+      "format": "url",
+      "description": "URL do XML da nota cancelada no sistema Emites",
+      "examples": [
+        "http://emites-ruby-sandbox.s3.amazonaws.com/nfce/xml_files/000/000/477/original/cancel_nfe.xml?1536775848"
+      ]
+    },
     "danfe": {
       "$id": "#/properties/danfe",
       "type": "string",
@@ -1984,6 +2030,83 @@
       "type": "string",
       "title": "The Xml Schema",
       "description": "XML da nota codificado em Base64"
+    },
+    "resposta_cancelamento": {
+      "$id": "#/properties/resposta_cancelamento",
+      "type": "object",
+      "title": "Resposta cancelamento Schema",
+      "required": [
+        "chave",
+        "numero_protocolo"
+      ],
+      "properties": {
+        "chave": {
+          "$id": "#/properties/resposta_cancelamento/properties/chave",
+          "description": "Chave de acesso da NFC-e",
+          "$ref": "#/definitions/chave"
+        },
+        "numero_protocolo": {
+          "$id": "#/properties/resposta_cancelamento/properties/numero_protocolo",
+          "description": "Número de protocolo do cancelamento",
+          "$ref": "#/definitions/protocolo"
+        }
+      }
+    },
+    "resposta_emissao": {
+      "$id": "#/properties/resposta_emissao",
+      "type": "object",
+      "title": "Resposta emissao Schema",
+      "required": [
+        "chave",
+        "codigo_verificacao",
+        "data_emissao",
+        "numero_protocolo"
+      ],
+      "properties": {
+        "chave": {
+          "$id": "#/properties/resposta_emissao/properties/chave",
+          "description": "Chave de acesso da NFC-e",
+          "$ref": "#/definitions/chave"
+        },
+        "codigo_verificacao": {
+          "$id": "#/properties/resposta_emissao/properties/codigo_verificacao",
+          "type": "string",
+          "title": "Codigo verificacao Schema",
+          "description": "Código de verificação da NFC-e",
+          "examples": [
+            "ifAR/RRacvswqGtjqc="
+          ],
+          "pattern": "^(.*)$"
+        },
+        "data_emissao": {
+          "$id": "#/properties/resposta_emissao/properties/data_emissao",
+          "type": "string",
+          "title": "Data emissao Schema",
+          "description": "Data/hora de emissão da NFC-e, UTC formato ISO8601",
+          "examples": [
+            "2018-12-14T19:32:00Z"
+          ],
+          "pattern": "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z)$"
+        },
+        "numero_protocolo": {
+          "$id": "#/properties/resposta_emissao/properties/numero_protocolo",
+          "description": "Número de protocolo da emissão",
+          "$ref": "#/definitions/protocolo"
+        }
+      }
+    },
+    "erros": {
+      "$id": "#/properties/erros",
+      "type": "object",
+      "title": "Erros schema",
+      "description": "Mapa dos erros que causaram a rejeição da emissão da nota",
+      "examples": [
+        {
+          "forma_pagamento": ["tamanho deve estar entre 1 e 100"],
+          "cliente.email": ["não é um endereço de e-mail válido"],
+          "rejeicao": ["471 - Rejeição: Informado NCM=00 indevidamente"]
+        }
+      ]
     }
   }
 }

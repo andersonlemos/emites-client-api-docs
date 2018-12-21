@@ -1,0 +1,99 @@
+{
+  "cliente": {
+    "documento": "02558352482",
+    "endereco": {
+      "bairro": "Planalto",
+      "cep": "38413162",
+      "codigo_municipio": 3170206,
+      "codigo_pais": 1058,
+      "complemento": "Sala 128",
+      "logradouro": "Rua do Analista de Sistemas",
+      "municipio": "Uberlandia",
+      "numero": "256",
+      "pais": "Brasil",
+      "unidade_federativa": "MG"
+    },
+    "nome": "NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL"
+  },
+  "destino_operacao": "interno",
+  "finalidade": "normal",
+  "forma_pagamento": [
+    {
+      "tipo": "dinheiro",
+      "valor": 200.0
+    }
+  ],
+  "indicador_presenca": "presencial",
+  "natureza_operacao": "venda",
+  "produtos": [
+    {
+      "codigo_cest": "1300402",
+      "codigo_cfop": "5103",
+      "codigo_ean": "7891000315507",
+      "codigo_ean_unidade_tributavel": "7891000315507",
+      "codigo_excecao_tipi": "22",
+      "codigo_ncm": "22086000",
+      "codigo_produto": "14600",
+      "descricao": "NOTA FISCAL EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL",
+      "numero_item_pedido": 1,
+      "numero_pedido": "5100003910",
+      "origem": "nacional",
+      "quantidade_comercial": 2.0,
+      "quantidade_tributavel": 2.0,
+      "tributacao": {
+        "cofins": {
+          "aliquota": 7.6,
+          "situacao_tributaria": "01",
+          "valor": 15.2,
+          "valor_base": 200.0
+        },
+        "icms": {
+          "aliquota": 12.0,
+          "modalidade_base": "valor_operacao",
+          "situacao_tributaria": "00",
+          "valor": 24.0,
+          "valor_base": 200.0,
+          "valor_desoneracao": 0.0
+        },
+        "pis": {
+          "aliquota": 1.65,
+          "situacao_tributaria": "01",
+          "valor": 3.3,
+          "valor_base": 200.0
+        }
+      },
+      "unidade_comercial": "UN",
+      "unidade_tributavel": "UN",
+      "valor_desconto": 0.0,
+      "valor_frete": 0.0,
+      "valor_outras_despesas": 0.0,
+      "valor_seguro": 0.0,
+      "valor_total_produto": 200.0,
+      "valor_unitario_comercial": 100.0,
+      "valor_unitario_tributario": 100.0
+    }
+  ],
+  "tipo_impressao": "nfce",
+  "tipo_operacao": "saida",
+  "transporte": {
+    "modalidade_frete": "sem_frete"
+  },
+  "id": 933,
+  "status": "cancelada",
+  "numero": 173,
+  "serie": 9,
+  "danfe_url": "http://emites-ruby-sandbox.s3.amazonaws.com/nfce/pdf_files/000/000/933/original/danfe.pdf?1544815969",
+  "cancel_xml_url": "http://emites-ruby-sandbox.s3.amazonaws.com/nfce/cancel_xml_files/000/000/933/original/cancel_nfe.xml?1544815985",
+  "resposta_cancelamento": {
+    "chave": "53181222769530000131650090000001731531212514",
+    "numero_protocolo": "353180004176526"
+  },
+  "resposta_emissao": {
+    "chave": "53181222769530000131650090000001731531212514",
+    "codigo_verificacao": "ifAR/RRacv7114sw8qG5tjq820c=",
+    "data_emissao": "2018-12-14T19:32:00Z",
+    "numero_protocolo": "353180004176525"
+  },
+  "xml": "PGVudkV2ZW50byB4bWxucz0iaHR0cDovL3d3dy5wb3J0YWxmaXNjYWwuaW5mLmJyL25mZSIgdmVyc2FvPSIxLjAwIj48aWRMb3RlPjE8L2lkTG90ZT48ZXZlbnRvIHZlcnNhbz0iMS4wMCI+PGluZkV2ZW50byBJZD0iSUQxMTAxMTE1MzE4MTIyMjc2OTUzMDAwMDEzMTY1MDA5MDAwMDAwMTczMTUzMTIxMjUxNDAxIj48Y09yZ2FvPjUzPC9jT3JnYW8+PHRwQW1iPjI8L3RwQW1iPjxDTlBKPjIyNzY5NTMwMDAwMTMxPC9DTlBKPjxjaE5GZT41MzE4MTIyMjc2OTUzMDAwMDEzMTY1MDA5MDAwMDAwMTczMTUzMTIxMjUxNDwvY2hORmU+PGRoRXZlbnRvPjIwMTgtMTItMTRUMTc6MzM6MDItMDI6MDA8L2RoRXZlbnRvPjx0cEV2ZW50bz4xMTAxMTE8L3RwRXZlbnRvPjxuU2VxRXZlbnRvPjE8L25TZXFFdmVudG8+PHZlckV2ZW50bz4xLjAwPC92ZXJFdmVudG8+PGRldEV2ZW50byB2ZXJzYW89IjEuMDAiPjxkZXNjRXZlbnRvPkNhbmNlbGFtZW50bzwvZGVzY0V2ZW50bz48blByb3Q+MzUzMTgwMDA0MTc2NTI1PC9uUHJvdD48eEp1c3Q+RGVzaXN0ZW5jaWEgZG8gY29tcHJhZG9yPC94SnVzdD48L2RldEV2ZW50bz48L2luZkV2ZW50bz48U2lnbmF0dXJlIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwLzA5L3htbGRzaWcjIj48U2lnbmVkSW5mbz48Q2Fub25pY2FsaXphdGlvbk1ldGhvZCBBbGdvcml0aG09Imh0dHA6Ly93d3cudzMub3JnL1RSLzIwMDEvUkVDLXhtbC1jMTRuLTIwMDEwMzE1Ij48L0Nhbm9uaWNhbGl6YXRpb25NZXRob2Q+PFNpZ25hdHVyZU1ldGhvZCBBbGdvcml0aG09Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvMDkveG1sZHNpZyNyc2Etc2hhMSI+PC9TaWduYXR1cmVNZXRob2Q+PFJlZmVyZW5jZSBVUkk9IiNJRDExMDExMTUzMTgxMjIyNzY5NTMwMDAwMTMxNjUwMDkwMDAwMDAxNzMxNTMxMjEyNTE0MDEiPjxUcmFuc2Zvcm1zPjxUcmFuc2Zvcm0gQWxnb3JpdGhtPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwLzA5L3htbGRzaWcjZW52ZWxvcGVkLXNpZ25hdHVyZSI+PC9UcmFuc2Zvcm0+PFRyYW5zZm9ybSBBbGdvcml0aG09Imh0dHA6Ly93d3cudzMub3JnL1RSLzIwMDEvUkVDLXhtbC1jMTRuLTIwMDEwMzE1Ij48L1RyYW5zZm9ybT48L1RyYW5zZm9ybXM+PERpZ2VzdE1ldGhvZCBBbGdvcml0aG09Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvMDkveG1sZHNpZyNzaGExIj48L0RpZ2VzdE1ldGhvZD48RGlnZXN0VmFsdWU+NnU2SjU4Rm52WEtXQkkwd3pPK2ZwVG5lOVhRPTwvRGlnZXN0VmFsdWU+PC9SZWZlcmVuY2U+PC9TaWduZWRJbmZvPjxTaWduYXR1cmVWYWx1ZT5MWXFreVB6eXZ6VFdyVnRXOWIrSloxK3V3MjlFdkFlMmxzazEwZngyQVkrZ29sN2N3blIvV2RTZ2piNjArMndOWWdoSjM3R1lDN0d0NnYva05lalp0UzlYVjVPWi9CRlFrSm1zOFU1Z0s4R0FXRmkvMjJ1Y3g3UGRCM1EzQTJvektENFFKaDJFcHlHRURHLzgzSGFqM2tkVUdVZHZ3UFV5dWxIUWFQWkFHRE9tU2Z2ODRqcU10c3F4Y0g3SVFQcDZwTVZpNlVub3hTZGV0QkpYMTVQNy94eEFuR00zcUpVRC9FUzFyWms0MTdvZ1NnNVlHZG1OazJKTGVJZ3FqbmlNUjhSQzI3YzFGQndFSGVCc2FWMmZDL0JwNmVPcnNFU3VSZmxKcStaSitkaUU4eVNPMDhHc1NkUk16TU1MY2NmVzhXS2IyTVB6bnovcHBORzdhbnZxbnc9PTwvU2lnbmF0dXJlVmFsdWU+PEtleUluZm8+PFg1MDlEYXRhPjxYNTA5Q2VydGlmaWNhdGU+TUlJSHJEQ0NCWlNnQXdJQkFnSUlFZDRZQndSWXBmQXdEUVlKS29aSWh2Y05BUUVMQlFBd2dZa3hDekFKQmdOVkJBWVRBa0pTTVJNd0VRWURWUVFLRXdwSlExQXRRbkpoYzJsc01UUXdNZ1lEVlFRTEV5dEJkWFJ2Y21sa1lXUmxJRU5sY25ScFptbGpZV1J2Y21FZ1VtRnBlaUJDY21GemFXeGxhWEpoSUhZeU1SSXdFQVlEVlFRTEV3bEJReUJUVDB4VlZFa3hHekFaQmdOVkJBTVRFa0ZESUZOUFRGVlVTU0JOZFd4MGFYQnNZVEFlRncweE9EQTNNRFF5TVRVMk5UWmFGdzB4T1RBM01EUXhPREV6TURCYU1JSFZNUXN3Q1FZRFZRUUdFd0pDVWpFVE1CRUdBMVVFQ2hNS1NVTlFMVUp5WVhOcGJERTBNRElHQTFVRUN4TXJRWFYwYjNKcFpHRmtaU0JEWlhKMGFXWnBZMkZrYjNKaElGSmhhWG9nUW5KaGMybHNaV2x5WVNCMk1qRVNNQkFHQTFVRUN4TUpRVU1nVTA5TVZWUkpNUnN3R1FZRFZRUUxFeEpCUXlCVFQweFZWRWtnVFhWc2RHbHdiR0V4R2pBWUJnTlZCQXNURVVObGNuUnBabWxqWVdSdklGQktJRUV4TVM0d0xBWURWUVFERXlWUVJGWkZUa1FnVkVWRFRrOU1UMGRKUVNCTVZFUkJPakl5TnpZNU5UTXdNREF3TVRNeE1JSUJJakFOQmdrcWhraUc5dzBCQVFFRkFBT0NBUThBTUlJQkNnS0NBUUVBMGdYOC9sRXRsUU1nUWdzdDBmTE1DNXhHdTBsZnUvR1lFaTgzSjJUa1ZpVS9aN2kvRDI3VmFhNHBxdnBkSWpWbjNPK2JnN1V0UE9JUEw0cUxMMTd2cnZJYjVXQW03MkhQOC9oVGhGRnVWNXc2NkhOaDA0R3RMQXU0OFF6alpWTjJTYVh0SVZ6V1JzMzZidkU1R1JHMThsd2o5ZXo2VGJmOFo3enp3Z3ZxZFZoL2c1Yjk1T29pVFMySGZXVnVHL1BjbEQrWGNkdm1ySWxYOVZlWFdpbGtmMDB3aXZqN2MyQmYyZlljVFZNSDk5TDJpdUNweFJXSUQvcmFNaWlvWjVWQjlySjdMcXVpUi90VENZUGF5ZUwyOEdka0FNNHBBSDRZUmpkUXU2MGZLSEMyaEpOeEVJZitQaFl5MFhEVDJsQ2xrYzV6UUV1V3ZmMnIrZ21zWjJDUTB3SURBUUFCbzRJQ3lEQ0NBc1F3VkFZSUt3WUJCUVVIQVFFRVNEQkdNRVFHQ0NzR0FRVUZCekFDaGpob2RIUndPaTh2WTJOa0xtRmpjMjlzZFhScExtTnZiUzVpY2k5c1kzSXZZV010YzI5c2RYUnBMVzExYkhScGNHeGhMWFl4TG5BM1lqQWRCZ05WSFE0RUZnUVVUTWhraVF4UEhjWGFkRFJTMUhGN01XVUlyRG93Q1FZRFZSMFRCQUl3QURBZkJnTlZIU01FR0RBV2dCUTFyakVVOWw3U2VrOVkvalNvR21lWENzU2JCekJlQmdOVkhTQUVWekJWTUZNR0JtQk1BUUlCSmpCSk1FY0dDQ3NHQVFVRkJ3SUJGanRvZEhSd2N6b3ZMMk5qWkM1aFkzTnZiSFYwYVM1amIyMHVZbkl2Wkc5amN5OWtjR010WVdNdGMyOXNkWFJwTFcxMWJIUnBjR3hoTG5Ca1pqQ0IzZ1lEVlIwZkJJSFdNSUhUTUQ2Z1BLQTZoamhvZEhSd09pOHZZMk5rTG1GamMyOXNkWFJwTG1OdmJTNWljaTlzWTNJdllXTXRjMjlzZFhScExXMTFiSFJwY0d4aExYWXhMbU55YkRBL29EMmdPNFk1YUhSMGNEb3ZMMk5qWkRJdVlXTnpiMngxZEdrdVkyOXRMbUp5TDJ4amNpOWhZeTF6YjJ4MWRHa3RiWFZzZEdsd2JHRXRkakV1WTNKc01GQ2dUcUJNaGtwb2RIUndPaTh2Y21Wd2IzTnBkRzl5YVc4dWFXTndZbkpoYzJsc0xtZHZkaTVpY2k5c1kzSXZRVU5UVDB4VlZFa3ZZV010YzI5c2RYUnBMVzExYkhScGNHeGhMWFl4TG1OeWJEQU9CZ05WSFE4QkFmOEVCQU1DQmVBd0hRWURWUjBsQkJZd0ZBWUlLd1lCQlFVSEF3SUdDQ3NHQVFVRkJ3TUVNSUd3QmdOVkhSRUVnYWd3Z2FXQkUySnlkVzV2UUhCa2RtVnVaQzVqYjIwdVluS2dJQVlGWUV3QkF3S2dGeE1WUWxKVlRrOGdWa1ZNVDFOUElFWkZVbEpGU1ZKQm9Ca0dCV0JNQVFNRG9CQVREakl5TnpZNU5UTXdNREF3TVRNeG9EZ0dCV0JNQVFNRW9DOFRMVEl6TURneE9UZzFNREEyTkRJeU1qSXhOemN3TURBd01EQXdNREF3TURBd01EQXdNREF3TURBd01EQXdNS0FYQmdWZ1RBRURCNkFPRXd3d01EQXdNREF3TURBd01EQXdEUVlKS29aSWh2Y05BUUVMQlFBRGdnSUJBRHh6TXZhalNsVVEyR3hySjlJT3pJcHpXRXZwOFRvTTcxempyWEIrZHdWczFENWNSUUE4aHZvMDF4d1o0NXM2UE1tbWpKeDhYSVJRV0IzZExWLzZtS3BOR0NjUFc3Z3VuK3gzVkxrUkxUb2ZRbVZWcnFqV1R6K1l1bXh6OTR4d1Iya0pHaDZ1M254djkyaFRpWGQrN3ZSZk1QY3NBTzBWdHZoWDd4cXRjYk91VXJmZThRbkVGUTZaYjZoTVpRUG1JUTUrV1ZjZHlPN1VnK1lHU1l5ZnZQeHJJakFCTldwam5NRklQRnBxOC9qWGVsWHNVeW9tOFNzeE50Yng5OEtzR0t3dDVmRE9vY292cUY2ako4enNqTW4vallXaWFOSFEycEtvM0VtaXRhbzZvYkJPWEZ1TnFXYzVVejhXTW0raVRNeUpuOHhvdHpyaGthNmM1WXVKMGJ4Si9wUGxLSkFPa0RUVllvVEExOTAzWC8wbnVuVDJkN0kxVjNENE1ibG8xbENXVWdqRm5UQ212UkZmaGhDOHVNd1hzYzlSSmtWbVR4KzdxT2hZekNGRUpOcUtvQW9lQklMdk5ZeW1FNTFobW1uYWFMTDRCQm5SaEdmWUhFSE5YZGs5TzUyUE05ZVdIdnlzTGVYSkxGMFdUeHQvRXlBOHFsa1kzYks3VnlWWVYza05VZE94cng1MDdWNlFJVVNhN1dzTmNqemszckE3RTV2SVFuQ0tHZmVtUmg4QVJzV0hoaW1UbjJiRDZsaFdiUEw3RmRZajh5WUUwK3RPZXc4eFBVdDVjakN6QmFkMG5lcW82STNVNTJoRXhtaFRVQ0xxWTVEbk94aFZEc21ZL2lRS01qUFdHeURNS2RMYkJsWjN6VjJ4TkQyS2VxWVVuVHFiV240aTdqamk8L1g1MDlDZXJ0aWZpY2F0ZT48L1g1MDlEYXRhPjwvS2V5SW5mbz48L1NpZ25hdHVyZT48L2V2ZW50bz48L2VudkV2ZW50bz4=",
+  "xml_url": "http://emites-ruby-sandbox.s3.amazonaws.com/nfce/xml_files/000/000/933/original/nfe.xml?1544815969"
+}
