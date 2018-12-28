@@ -7,7 +7,7 @@
       "examples": [
         "81043396000156"
       ],
-      "pattern": "^(\\d{14})$"
+      "pattern": "^([0-9]{14})$"
     },
     "endereco": {
       "type": "object",
@@ -89,7 +89,7 @@
           "examples": [
             "38413162"
           ],
-          "pattern": "^(\\d{8})$"
+          "pattern": "^([0-9]{8})$"
         },
         "unidade_federativa": {
           "$ref": "#/definitions/unidade_federativa"
@@ -120,7 +120,7 @@
           "examples": [
             "34987654321"
           ],
-          "pattern": "^(\\d{6,14})$"
+          "pattern": "^([0-9]{6,14})$"
         },
         "documento": {
           "type": "string",
@@ -130,7 +130,7 @@
             "02558352482",
             "81043396000156"
           ],
-          "pattern": "^(\\d{11,14})$"
+          "pattern": "^([0-9]{11,14})$"
         }
       }
     },
@@ -142,7 +142,7 @@
         "02558352482",
         "81043396000156"
       ],
-      "pattern": "^(\\d{11,14})$"
+      "pattern": "^([0-9]{11,14})$"
     },
     "unidade_federativa": {
       "type": "string",
@@ -453,7 +453,7 @@
         ],
         "minLength": 11,
         "maxLength": 14,
-        "pattern": "^(\\d+)$"
+        "pattern": "^([0-9]{11,14})$"
       }
     },
     "natureza_operacao": {

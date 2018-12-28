@@ -6,7 +6,7 @@
       "examples": [
         "53181222769530000131650090000001731531212514"
       ],
-      "pattern": "^(\\d{44})$"
+      "pattern": "^([0-9]{44})$"
     },
     "cnpj": {
       "type": "string",
@@ -15,7 +15,7 @@
       "examples": [
         "81043396000156"
       ],
-      "pattern": "^(\\d{14})$"
+      "pattern": "^([0-9]{14})$"
     },
     "endereco": {
       "type": "object",
@@ -97,7 +97,7 @@
           "examples": [
             "38413162"
           ],
-          "pattern": "^(\\d{8})$"
+          "pattern": "^([0-9]{8})$"
         },
         "unidade_federativa": {
           "$ref": "#/definitions/unidade_federativa"
@@ -128,7 +128,7 @@
           "examples": [
             "34987654321"
           ],
-          "pattern": "^(\\d{6,14})$"
+          "pattern": "^([0-9]{6,14})$"
         },
         "documento": {
           "type": "string",
@@ -138,7 +138,7 @@
             "02558352482",
             "81043396000156"
           ],
-          "pattern": "^(\\d{11,14})$"
+          "pattern": "^([0-9]{11,14})$"
         }
       }
     },
@@ -150,7 +150,7 @@
         "02558352482",
         "81043396000156"
       ],
-      "pattern": "^(\\d{11,14})$"
+      "pattern": "^([0-9]{11,14})$"
     },
     "protocolo": {
       "type": "string",
@@ -158,7 +158,7 @@
       "examples": [
         "353180004176526"
       ],
-      "pattern": "^(\\d{15})$"
+      "pattern": "^([0-9]{15})$"
     },
     "unidade_federativa": {
       "type": "string",
@@ -469,7 +469,7 @@
         ],
         "minLength": 11,
         "maxLength": 14,
-        "pattern": "^(\\d+)$"
+        "pattern": "^([0-9]{11,14})$"
       }
     },
     "natureza_operacao": {
@@ -2086,7 +2086,7 @@
           "examples": [
             "2018-12-14T19:32:00Z"
           ],
-          "pattern": "^(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z)$"
+          "pattern": "^([0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z)$"
         },
         "numero_protocolo": {
           "$id": "#/properties/resposta_emissao/properties/numero_protocolo",
