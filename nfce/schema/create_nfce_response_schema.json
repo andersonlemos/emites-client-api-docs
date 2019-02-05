@@ -133,24 +133,26 @@
         "documento": {
           "type": "string",
           "title": "Documento Schema",
-          "description": "CPF para pessoa física ou CNPJ para pessoa jurídica",
+          "description": "CPF para pessoa física, CNPJ para pessoa jurídica ou número do documento legal para estrangeiro (passaporte, por exemplo)",
           "examples": [
             "02558352482",
-            "81043396000156"
+            "81043396000156",
+            "CVV006104"
           ],
-          "pattern": "^([0-9]{11,14})$"
+          "pattern": "^([0-9]{11,14})|([0-9A-Z]{5,20})$"
         }
       }
     },
     "documento": {
       "type": "string",
       "title": "Documento Schema",
-      "description": "CPF para pessoa física ou CNPJ para pessoa jurídica",
+      "description": "CPF para pessoa física, CNPJ para pessoa jurídica ou número do documento legal para estrangeiro (passaporte, por exemplo)",
       "examples": [
         "02558352482",
-        "81043396000156"
+        "81043396000156",
+        "CVV006104"
       ],
-      "pattern": "^([0-9]{11,14})$"
+      "pattern": "^([0-9]{11,14})|([0-9A-Z]{5,20})$"
     },
     "protocolo": {
       "type": "string",
@@ -163,12 +165,13 @@
     "unidade_federativa": {
       "type": "string",
       "title": "Unidade_federativa Schema",
-      "description": "Sigla da Unidade Federativa brasileira",
+      "description": "Sigla da Unidade Federativa brasileira; utilizar 'EX' para endereços internacionais",
       "examples": [
         "MG",
         "DF",
         "BA",
-        "SP"
+        "SP",
+        "EX"
       ],
       "minLength": 2,
       "maxLength": 2
@@ -218,6 +221,28 @@
           "$id": "#/properties/cliente/properties/endereco",
           "$ref": "#/definitions/endereco"
         },
+        "indicador_inscricao_estadual": {
+          "$id": "#/properties/cliente/properties/indicador_inscricao_estadual",
+          "type": "string",
+          "title": "Indicar de inscrição estadual Schema",
+          "description": "Tipo de inscrição estadual do cliente",
+          "default": "nao_contribuinte",
+          "enum": [
+            "contribuinte",
+            "isento",
+            "nao_contribuinte"
+          ]
+        },
+        "inscricao_estadual": {
+          "$id": "#/properties/cliente/properties/inscricao_estadual",
+          "type": "string",
+          "title": "Inscricao Estadual Schema",
+          "description": "Inscrição Estadual do cliente (informar apenas se indicador_inscricao_estadual for igual a 'contribuinte')",
+          "examples": [
+            "16324302"
+          ],
+          "pattern": "^([0-9]{2,14})$"
+        },
         "nome": {
           "$id": "#/properties/cliente/properties/nome",
           "type": "string",
@@ -228,6 +253,18 @@
           ],
           "minLength": 2,
           "maxLength": 60
+        },
+        "tipo_pessoa": {
+          "$id": "#/properties/cliente/properties/tipo_pessoa",
+          "type": "string",
+          "title": "Tipo Pessoa Schema",
+          "description": "Classificação da pessoa",
+          "default": "pessoa_fisica",
+          "enum": [
+            "pessoa_fisica",
+            "pessoa_juridica",
+            "estrangeiro"
+          ]
         }
       }
     },

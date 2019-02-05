@@ -1,0 +1,68 @@
+{
+  "cliente": {
+    "documento": "123456",
+    "email": "luiz.buiatte@nexaas.com",
+    "nome": "NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL",
+    "tipo_pessoa": "estrangeiro",
+    "endereco": {
+      "logradouro": "Calle de Bailen",
+      "numero": "S/N",
+      "bairro": "Cortes",
+      "codigo_municipio": 9999999,
+      "municipio": "Madrid",
+      "cep": "00028071",
+      "unidade_federativa": "EX",
+      "codigo_pais": 2453,
+      "pais": "Spain"
+    }
+  },
+  "destino_operacao": "interno",
+  "finalidade": "normal",
+  "forma_pagamento": [
+    {
+      "tipo": "cartao_credito",
+      "valor": 200.00,
+      "modalidade": "imediato",
+      "cartao": {
+        "tipo_integracao": "integrado",
+        "cnpj_operadora": "11375787000192",
+        "bandeira": "visa",
+        "numero_autorizacao": "1234567890"
+      }
+    }
+  ],
+  "indicador_presenca": "presencial",
+  "natureza_operacao": "venda",
+  "produtos": [
+    {
+      "codigo_cest": "1300402",
+      "codigo_cfop": "5103",
+      "codigo_ean": "7891000315507",
+      "codigo_ean_unidade_tributavel": "7891000315507",
+      "codigo_excecao_tipi": "22",
+      "codigo_ncm": "22086000",
+      "codigo_produto": "14600",
+      "descricao": "NOTA FISCAL EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL",
+      "informacoes_adicionais": "",
+      "numero_item_pedido": 1,
+      "numero_pedido": "5100003910",
+      "quantidade_comercial": 2.00,
+      "quantidade_tributavel": 2.00,
+      "unidade_comercial": "UN",
+      "unidade_tributavel": "UN",
+      "valor_desconto": 0.00,
+      "valor_frete": 0.00,
+      "valor_outras_despesas": 0.00,
+      "valor_seguro": 0.00,
+      "valor_total_produto": 200.00,
+      "valor_unitario_comercial": 100.00,
+      "valor_unitario_tributario": 100.00,
+      "origem": "nacional"
+    }
+  ],
+  "tipo_impressao": "nfce",
+  "tipo_operacao": "saida",
+  "transporte": {
+    "modalidade_frete": "sem_frete"
+  }
+}
