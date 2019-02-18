@@ -105,12 +105,12 @@ To cancel an NFC-e, send a message with the identifier `CANCEL_NFCE`. The same i
 The JSON payload should follow the format:
 
 ```
-{ "chave": "53180922769530000131651110000001281355486170", "motivo": "Desistencia do comprador" }
+{ "chave_acesso": "53180922769530000131651110000001281355486170", "motivo": "Desistencia do comprador" }
 ```
 
 where:
 
-- `chave` is the NFC-e's access key (obtained in the creation response);
+- `chave_acesso` is the NFC-e's access key (obtained in the creation response);
 - `reason` is the description of the reason for the cancellation (optional; if informed should be between 15 and 255 characters in size)
 
 The cancellation response's JSON payload will be similar to the one returned during the

@@ -1,27 +1,27 @@
 {
-  "destino_operacao": "interno",
-  "finalidade": "normal",
+  "destino_operacao": 1,
+  "finalidade_nfe": 1,
   "forma_pagamento": [
     {
-      "tipo": "cartao_credito",
-      "valor": 200.00,
-      "modalidade": "imediato",
+      "tipo_de_pagamento": "03",
+      "valor_do_pagamento": 200.00,
+      "modalidade": 0,
       "cartao": {
-        "tipo_integracao": "integrado",
-        "cnpj_operadora": "11375787000192",
-        "bandeira": "visa",
-        "numero_autorizacao": "1234567890"
+        "tipo_integracao": 1,
+        "cnpj_credenciadora": "11375787000192",
+        "bandeira_operadora": "01",
+        "numero_autorizacao_operacao": "1234567890"
       }
     }
   ],
-  "indicador_presenca": "presencial",
+  "indicador_presenca": 1,
   "natureza_operacao": "venda",
   "produtos": [
     {
-      "codigo_ncm": "22086000",
+      "ncm": "22086000",
       "codigo_produto": "14600",
       "descricao": "NOTA FISCAL EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL",
-      "origem": "nacional",
+      "codigo_origem_produto": 0,
       "quantidade_comercial": 2.00,
       "quantidade_tributavel": 2.00,
       "unidade_comercial": "UN",
@@ -31,10 +31,10 @@
       "valor_unitario_tributario": 100.00
     }
   ],
-  "tipo_impressao": "nfce",
-  "tipo_operacao": "entrada",
+  "tipo_impressao": 4,
+  "tipo_operacao": 0,
   "transporte": {
-    "modalidade_frete": "sem_frete"
+    "codigo_modalidade": 9
   }
 }
 

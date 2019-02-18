@@ -18,9 +18,9 @@
         "numero",
         "bairro",
         "codigo_municipio",
-        "municipio",
+        "nome_municipio",
         "cep",
-        "unidade_federativa"
+        "uf"
       ],
       "properties": {
         "logradouro": {
@@ -65,14 +65,14 @@
         },
         "codigo_municipio": {
           "type": "integer",
-          "title": "Codigo_municipio Schema",
+          "title": "codigo_municipio Schema",
           "description": "Código do município de acordo com a Tabela de Municípios do IBGE; informar 9999999 para exterior",
           "examples": [
             3304557,
             9999999
           ]
         },
-        "municipio": {
+        "nome_municipio": {
           "type": "string",
           "title": "Municipio Schema",
           "default": "",
@@ -91,8 +91,8 @@
           ],
           "pattern": "^([0-9]{8})$"
         },
-        "unidade_federativa": {
-          "$ref": "#/definitions/unidade_federativa"
+        "uf": {
+          "$ref": "#/definitions/uf"
         },
         "codigo_pais": {
           "type": "integer",
@@ -103,9 +103,9 @@
             2453
           ]
         },
-        "pais": {
+        "nome_pais": {
           "type": "string",
-          "title": "Pais Schema",
+          "title": "Nome_pais Schema",
           "default": "",
           "examples": [
             "Brasil"
@@ -122,7 +122,7 @@
           ],
           "pattern": "^([0-9]{6,14})$"
         },
-        "documento": {
+        "cpf_cnpj": {
           "type": "string",
           "title": "Documento Schema",
           "description": "CPF para pessoa física, CNPJ para pessoa jurídica ou número do documento legal para estrangeiro (passaporte, por exemplo)",
@@ -135,7 +135,7 @@
         }
       }
     },
-    "documento": {
+    "cpf_cnpj": {
       "type": "string",
       "title": "Documento Schema",
       "description": "CPF para pessoa física, CNPJ para pessoa jurídica ou número do documento legal para estrangeiro (passaporte, por exemplo)",
@@ -146,7 +146,7 @@
       ],
       "pattern": "^([0-9]{11,14})|([0-9A-Z]{5,20})$"
     },
-    "unidade_federativa": {
+    "uf": {
       "type": "string",
       "title": "Unidade_federativa Schema",
       "description": "Sigla da Unidade Federativa brasileira; utilizar 'EX' para endereços internacionais",
@@ -167,7 +167,7 @@
   "title": "Root Schema",
   "required": [
     "destino_operacao",
-    "finalidade",
+    "finalidade_nfe",
     "forma_pagamento",
     "indicador_presenca",
     "natureza_operacao",
@@ -182,13 +182,13 @@
       "type": "object",
       "title": "Cliente Schema",
       "required": [
-        "documento",
+        "cpf_cnpj",
         "nome"
       ],
       "properties": {
-        "documento": {
-          "$id": "#/properties/cliente/properties/documento",
-          "$ref": "#/definitions/documento"
+        "cpf_cnpj": {
+          "$id": "#/properties/cliente/properties/cpf_cnpj",
+          "$ref": "#/definitions/cpf_cnpj"
         },
         "email": {
           "$id": "#/properties/cliente/properties/email",
@@ -207,21 +207,18 @@
         },
         "indicador_inscricao_estadual": {
           "$id": "#/properties/cliente/properties/indicador_inscricao_estadual",
-          "type": "string",
+          "type": "integer",
           "title": "Indicar de inscrição estadual Schema",
           "description": "Tipo de inscrição estadual do cliente",
-          "default": "nao_contribuinte",
-          "enum": [
-            "contribuinte",
-            "isento",
-            "nao_contribuinte"
-          ]
+          "default": 9,
+          "$comment": "1 = contribuinte, 2 = isento, 9 = nao contribuinte",
+          "enum": [ 1, 2, 9 ]
         },
         "inscricao_estadual": {
           "$id": "#/properties/cliente/properties/inscricao_estadual",
           "type": "string",
           "title": "Inscricao Estadual Schema",
-          "description": "Inscrição Estadual do cliente (informar apenas se indicador_inscricao_estadual for igual a 'contribuinte')",
+          "description": "Inscrição Estadual do cliente (informar apenas se indicador_inscricao_estadual for igual a 1)",
           "examples": [
             "16324302"
           ],
@@ -238,43 +235,37 @@
           "minLength": 2,
           "maxLength": 60
         },
-        "tipo_pessoa": {
-          "$id": "#/properties/cliente/properties/tipo_pessoa",
+        "pessoa_fisica_juridica": {
+          "$id": "#/properties/cliente/properties/pessoa_fisica_juridica",
           "type": "string",
           "title": "Tipo Pessoa Schema",
           "description": "Classificação da pessoa",
-          "default": "pessoa_fisica",
+          "default": "person",
           "enum": [
-            "pessoa_fisica",
-            "pessoa_juridica",
-            "estrangeiro"
+            "person",
+            "company",
+            "foreign"
           ]
         }
       }
     },
     "destino_operacao": {
       "$id": "#/properties/destino_operacao",
-      "type": "string",
+      "type": "integer",
       "title": "Destino_operacao Schema",
       "description": "Local de destino da operação",
-      "default": "interno",
-      "enum": [
-        "interno",
-        "interestadual",
-        "externo"
-      ]
+      "default": 1,
+      "$comment": "1 = interno, 2 = interestadual, 3 = externo",
+      "enum": [ 1, 2, 3 ]
     },
-    "finalidade": {
-      "$id": "#/properties/finalidade",
-      "type": "string",
+    "finalidade_nfe": {
+      "$id": "#/properties/finalidade_nfe",
+      "type": "integer",
       "title": "Finalidade Schema",
       "description": "Finalidade da emissão da nota fiscal",
-      "default": "normal",
-      "enum": [
-        "normal",
-        "complementar",
-        "ajuste"
-      ]
+      "default": 1,
+      "$comment": "1 = normal, 2 = complementar, 3 = ajuste, 4 = devolução",
+      "enum": [ 1, 2, 3, 4 ]
     },
     "forma_pagamento": {
       "$id": "#/properties/forma_pagamento",
@@ -287,51 +278,32 @@
         "type": "object",
         "title": "Items Schema",
         "required": [
-          "tipo",
-          "valor"
+          "tipo_de_pagamento",
+          "valor_do_pagamento"
         ],
         "properties": {
-          "tipo": {
-            "$id": "#/properties/forma_pagamento/items/properties/tipo",
+          "tipo_de_pagamento": {
+            "$id": "#/properties/forma_pagamento/items/properties/tipo_de_pagamento",
             "type": "string",
             "title": "Tipo Schema",
-            "default": "dinheiro",
-            "enum": [
-              "dinheiro",
-              "cheque",
-              "cartao_credito",
-              "cartao_debito",
-              "credito_loja",
-              "vale_alimentacao",
-              "vale_refeicao",
-              "vale_presente",
-              "vale_combustivel",
-              "duplicata",
-              "boleto",
-              "sem_pagamento",
-              "outros"
-            ]
+            "default": "01",
+            "$comment": "ver https://myfreecomm.github.io/emites-api-docs/#forma_de_pagamento-xml-pag",
+            "enum": [ "01", "02", "03", "04", "05", "10", "11", "12", "13", "14", "15", "90", "99" ]
           },
           "modalidade": {
             "$id": "#/properties/forma_pagamento/items/properties/modalidade",
-            "type": "string",
+            "type": "integer",
             "title": "modalidade Schema",
-            "default": "imediato",
-            "enum": [
-              "imediato",
-              "prazo"
-            ]
+            "default": 0,
+            "$comment": "0 = imediato, 1 = prazo",
+            "enum": [ 0, 1 ]
           },
-          "valor": {
-            "$id": "#/properties/forma_pagamento/items/properties/valor",
+          "valor_do_pagamento": {
+            "$id": "#/properties/forma_pagamento/items/properties/valor_do_pagamento",
             "type": "number",
             "title": "Valor Schema",
             "default": 0,
-            "examples": [
-              2.00,
-              3.5,
-              100
-            ]
+            "examples": [ 2.00, 3.5, 100 ]
           },
           "cartao": {
             "$id": "#/properties/forma_pagamento/items/properties/cartao",
@@ -340,44 +312,32 @@
             "description": "Informar apenas se o campo 'tipo' especificar cartão de crédito ou débito",
             "required": [
               "tipo_integracao",
-              "numero_autorizacao"
+              "numero_autorizacao_operacao"
             ],
             "properties": {
               "tipo_integracao": {
                 "$id": "#/properties/forma_pagamento/items/properties/cartao/properties/tipo_integracao",
-                "type": "string",
+                "type": "integer",
                 "title": "Tipo_integracao Schema",
                 "description": "Tipo de integração do processo de pagamento com o sistema de automação da empresa (por exemplo, TEF)",
-                "default": "integrado",
-                "enum": [
-                  "integrado",
-                  "nao_integrado"
-                ]
+                "default": 1,
+                "$comment": "1 = integrado, 2 = não integrado",
+                "enum": [ 1, 2 ]
               },
-              "cnpj_operadora": {
-                "$id": "#/properties/forma_pagamento/items/properties/cartao/properties/cnpj_operadora",
+              "cnpj_credenciadora": {
+                "$id": "#/properties/forma_pagamento/items/properties/cartao/properties/cnpj_credenciadora",
                 "description": "CNPJ da credenciadora de cartão de crédito ou débito",
                 "$ref": "#/definitions/cnpj"
               },
-              "bandeira": {
-                "$id": "#/properties/forma_pagamento/items/properties/cartao/properties/bandeira",
+              "bandeira_operadora": {
+                "$id": "#/properties/forma_pagamento/items/properties/cartao/properties/bandeira_operadora",
                 "type": "string",
-                "title": "Bandeira Schema",
-                "enum": [
-                  "visa",
-                  "mastercard",
-                  "american_express",
-                  "sorocred",
-                  "diners_club",
-                  "elo",
-                  "hipercard",
-                  "aura",
-                  "cabal",
-                  "outros"
-                ]
+                "title": "bandeira_operadora Schema",
+                "$comment": "ver https://myfreecomm.github.io/emites-api-docs/#cartao-xml-card",
+                "enum": [ "01", "02", "03", "04", "05", "06", "07", "08", "09", "99" ]
               },
-              "numero_autorizacao": {
-                "$id": "#/properties/forma_pagamento/items/properties/cartao/properties/numero_autorizacao",
+              "numero_autorizacao_operacao": {
+                "$id": "#/properties/forma_pagamento/items/properties/cartao/properties/numero_autorizacao_operacao",
                 "type": "string",
                 "title": "Numero_autorizacao Schema",
                 "description": "Identifica o número da autorização da transação da operação com cartão de crédito ou débito",
@@ -394,15 +354,12 @@
     },
     "indicador_presenca": {
       "$id": "#/properties/indicador_presenca",
-      "type": "string",
+      "type": "integer",
       "title": "Indicador_presenca Schema",
       "description": "Presença do comprador no estabelecimento comercial no momento da operação",
       "default": "presencial",
-      "enum": [
-        "nao_aplicavel",
-        "presencial",
-        "domicilio"
-      ]
+      "$comment": "0 = nao aplicavel, 1 = presencial, 2 = internet, 3 = telemarketing, 4 = domicilio, 5 = presencial externo, 9 = outros",
+      "enum": [ 0, 1, 2, 3, 4, 5, 9 ]
     },
     "informacoes_adicionais": {
       "$id": "#/properties/informacoes_adicionais",
@@ -520,10 +477,10 @@
         "type": "object",
         "title": "Items Schema",
         "required": [
-          "codigo_ncm",
+          "ncm",
           "codigo_produto",
           "descricao",
-          "origem",
+          "codigo_origem_produto",
           "quantidade_comercial",
           "quantidade_tributavel",
           "unidade_comercial",
@@ -533,8 +490,8 @@
           "valor_unitario_tributario"
         ],
         "properties": {
-          "codigo_cest": {
-            "$id": "#/properties/produtos/items/properties/codigo_cest",
+          "cest": {
+            "$id": "#/properties/produtos/items/properties/cest",
             "type": "string",
             "title": "Codigo_cest Schema",
             "description": "Código Especificador da Substituição Tributária - CEST",
@@ -544,8 +501,8 @@
             "minLength": 7,
             "maxLength": 7
           },
-          "codigo_cfop": {
-            "$id": "#/properties/produtos/items/properties/codigo_cfop",
+          "cfop": {
+            "$id": "#/properties/produtos/items/properties/cfop",
             "type": "string",
             "description": "Código Fiscal de Operações e Prestações, identifica a natureza de circulação de uma mercadoria ou a prestação de serviço de transportes",
             "title": "Codigo_cfop Schema",
@@ -569,10 +526,10 @@
             "minLength": 8,
             "maxLength": 14
           },
-          "codigo_ean_unidade_tributavel": {
+          "ean_unidade_trib": {
             "$id": "#/properties/produtos/items/properties/codigo_ean",
             "type": "string",
-            "title": "codigo_ean_unidade_tributavel Schema",
+            "title": "ean_unidade_trib Schema",
             "description": "GTIN (Global Trade Item Number) da unidade tributável, antigo código EAN ou código de barras",
             "examples": [
               "01234567",
@@ -583,8 +540,8 @@
             "minLength": 8,
             "maxLength": 14
           },
-          "codigo_excecao_tipi": {
-            "$id": "#/properties/produtos/items/properties/codigo_excecao_tipi",
+          "extipi": {
+            "$id": "#/properties/produtos/items/properties/extipi",
             "type": "string",
             "title": "Codigo_excecao_tipi Schema",
             "description": "Preencher de acordo com o código de exceção da TIPI (Tabela de Incidência do Imposto sobre Produtos Industrializados)",
@@ -594,8 +551,8 @@
             "minLength": 2,
             "maxLength": 3
           },
-          "codigo_ncm": {
-            "$id": "#/properties/produtos/items/properties/codigo_ncm",
+          "ncm": {
+            "$id": "#/properties/produtos/items/properties/ncm",
             "type": "string",
             "title": "Codigo_ncm Schema",
             "description": "Código NCM (Nomenclatura Comum do Mercosul) com 8 dígitos ou 2 dígitos ('00' se não aplicável)",
@@ -640,8 +597,8 @@
             "minLength": 0,
             "maxLength": 120
           },
-          "numero_item_pedido": {
-            "$id": "#/properties/produtos/items/properties/numero_item_pedido",
+          "num_item_pedido": {
+            "$id": "#/properties/produtos/items/properties/num_item_pedido",
             "type": "integer",
             "title": "Numero_item_pedido Schema",
             "description": "Item do pedido de compra",
@@ -651,8 +608,8 @@
               100
             ]
           },
-          "numero_pedido": {
-            "$id": "#/properties/produtos/items/properties/numero_pedido",
+          "num_pedido": {
+            "$id": "#/properties/produtos/items/properties/num_pedido",
             "type": "string",
             "title": "Numero_pedido Schema",
             "description": "Número do pedido de compra, se houver",
@@ -662,23 +619,14 @@
             "minLength": 0,
             "maxLength": 15
           },
-          "origem": {
-            "$id": "#/properties/produtos/items/properties/origem",
-            "type": "string",
+          "codigo_origem_produto": {
+            "$id": "#/properties/produtos/items/properties/codigo_origem_produto",
+            "type": "integer",
             "title": "Origem Schema",
             "description": "Origem do produto (tal como nacional, estrangeiro ou nacional com conteúdo importado)",
-            "default": "nacional",
-            "enum": [
-              "nacional",
-              "estrangeira",
-              "estrangeira_mercado_interno",
-              "nacional_conteudo_importado_40_70",
-              "nacional_processo_produtivo_basico",
-              "nacional_conteudo_importado_40",
-              "estrangeira_sem_similar",
-              "estrangeira_mercado_interno_sem_similar",
-              "nacional_conteudo_importado_70"
-            ]
+            "default": 0,
+            "$comment": "ver https://myfreecomm.github.io/emites-api-docs/#tributa-o-xml-imposto, campo 'codigo_origem_produto'",
+            "enum": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
           },
           "quantidade_comercial": {
             "$id": "#/properties/produtos/items/properties/quantidade_comercial",
@@ -748,8 +696,8 @@
               100
             ]
           },
-          "valor_outras_despesas": {
-            "$id": "#/properties/produtos/items/properties/valor_outras_despesas",
+          "outras_despesas": {
+            "$id": "#/properties/produtos/items/properties/outras_despesas",
             "type": "number",
             "title": "Valor_outras_despesas Schema",
             "default": 0,
@@ -810,52 +758,38 @@
     },
     "tipo_impressao": {
       "$id": "#/properties/tipo_impressao",
-      "type": "string",
+      "type": "integer",
       "title": "Tipo_impressao Schema",
       "description": "Formato de Impressão do DANFE",
-      "default": "nfce",
-      "enum": [
-        "nenhum",
-        "normal_retrato",
-        "normal_paisagem",
-        "simplificado",
-        "nfce",
-        "nfce_mensagem_eletronica"
-      ]
+      "default": 4,
+      "$comment": "0 = nenhum, 1 = normal retrato, 2 = normal paisagem, 3 = simplificado, 4 = nfce, 5 = nfce mensagem eletronica",
+      "enum": [ 0, 1, 2, 3, 4, 5 ]
     },
     "tipo_operacao": {
       "$id": "#/properties/tipo_operacao",
-      "type": "string",
+      "type": "integer",
       "title": "Tipo_operacao Schema",
       "description": "Tipo de operação (entrada ou saída)",
-      "default": "saida",
-      "enum": [
-        "entrada",
-        "saida"
-      ]
+      "default": 1,
+      "$comment": "0 = entrada, 1 = saída",
+      "enum": [ 0, 1 ]
     },
     "transporte": {
       "$id": "#/properties/transporte",
       "type": "object",
       "title": "Transporte Schema",
       "required": [
-        "modalidade_frete"
+        "codigo_modalidade"
       ],
       "properties": {
-        "modalidade_frete": {
-          "$id": "#/properties/transporte/properties/modalidade_frete",
-          "type": "string",
-          "title": "Modalidade_frete Schema",
+        "codigo_modalidade": {
+          "$id": "#/properties/transporte/properties/codigo_modalidade",
+          "type": "integer",
+          "title": "codigo_modalidade Schema",
           "description": "Responsável pelo frete dos produtos",
-          "default": "sem_frete",
-          "enum": [
-            "emitente",
-            "destinatario",
-            "terceiros",
-            "proprio_emitente",
-            "proprio_destinatario",
-            "sem_frete"
-          ]
+          "default": 9,
+          "$comment": "0 = emitente, 1 = destinatário, 2 = terceiros, 3 = próprio do emitente, 4 = próprio do destinatário, 9 = sem frete",
+          "enum": [ 0, 1, 2, 3, 4, 9 ]
         },
         "endereco_entrega": {
           "$id": "#/properties/transporte/properties/endereco",
@@ -870,7 +804,7 @@
             "aliquota_retencao",
             "cfop",
             "codigo_municipio",
-            "unidade_federativa",
+            "uf",
             "valor_base_calculo",
             "valor_retido",
             "valor_servico"
@@ -901,16 +835,16 @@
             "codigo_municipio": {
               "$id": "#/properties/transporte/properties/retencao_icms/properties/codigo_municipio",
               "type": "integer",
-              "title": "Codigo_municipio Schema",
+              "title": "codigo_municipio Schema",
               "description": "Código do município de acordo com a Tabela de Municípios do IBGE; informar 9999999 para exterior",
               "examples": [
                 3304557,
                 9999999
               ]
             },
-            "unidade_federativa": {
-              "$id": "#/properties/transporte/properties/retencao_icms/properties/unidade_federativa",
-              "$ref": "#/definitions/unidade_federativa"
+            "uf": {
+              "$id": "#/properties/transporte/properties/retencao_icms/properties/uf",
+              "$ref": "#/definitions/uf"
             },
             "valor_base_calculo": {
               "$id": "#/properties/transporte/properties/retencao_icms/properties/valor_base_calculo",
@@ -953,9 +887,9 @@
           "title": "Transportadora Schema",
           "required": [],
           "properties": {
-            "documento": {
-              "$id": "#/properties/transporte/properties/transportadora/properties/documento",
-              "$ref": "#/definitions/documento"
+            "cpf_cnpj": {
+              "$id": "#/properties/transporte/properties/transportadora/properties/cpf_cnpj",
+              "$ref": "#/definitions/cpf_cnpj"
             },
             "endereco_completo": {
               "$id": "#/properties/transporte/properties/transportadora/properties/endereco_completo",
@@ -981,8 +915,8 @@
               "minLength": 2,
               "maxLength": 14
             },
-            "municipio": {
-              "$id": "#/properties/transporte/properties/transportadora/properties/municipio",
+            "nome_municipio": {
+              "$id": "#/properties/transporte/properties/transportadora/properties/nome_municipio",
               "type": "string",
               "title": "Municipio Schema",
               "default": "",
@@ -1003,9 +937,9 @@
               "minLength": 2,
               "maxLength": 60
             },
-            "unidade_federativa": {
-              "$id": "#/properties/transporte/properties/retencao_icms/properties/unidade_federativa",
-              "$ref": "#/definitions/unidade_federativa"
+            "uf": {
+              "$id": "#/properties/transporte/properties/retencao_icms/properties/uf",
+              "$ref": "#/definitions/uf"
             }
           }
         },
@@ -1026,7 +960,7 @@
           "title": "Veiculo Schema",
           "required": [
             "placa",
-            "unidade_federativa"
+            "uf"
           ],
           "properties": {
             "placa": {
@@ -1039,8 +973,8 @@
               ],
               "pattern": "^([a-zA-Z]{2,4}[0-9]{3,4})$"
             },
-            "registro_nacional_transportador": {
-              "$id": "#/properties/transporte/properties/veiculo/properties/registro_nacional_transportador",
+            "rntc": {
+              "$id": "#/properties/transporte/properties/veiculo/properties/rntc",
               "type": "string",
               "title": "Registro_nacional_transportador Schema",
               "description": "Número do Registro Nacional de Transporte de Carga",
@@ -1050,9 +984,9 @@
               "minLength": 1,
               "maxLength": 20
             },
-            "unidade_federativa": {
-              "$id": "#/properties/transporte/properties/retencao_icms/properties/unidade_federativa",
-              "$ref": "#/definitions/unidade_federativa"
+            "uf": {
+              "$id": "#/properties/transporte/properties/retencao_icms/properties/uf",
+              "$ref": "#/definitions/uf"
             }
           }
         },
@@ -1090,10 +1024,10 @@
                 "minLength": 1,
                 "maxLength": 60
               },
-              "numeracao": {
-                "$id": "#/properties/transporte/properties/volume_transportado/items/properties/numeracao",
+              "numeracao_volumes": {
+                "$id": "#/properties/transporte/properties/volume_transportado/items/properties/numeracao_volumes",
                 "type": "string",
-                "title": "Numeracao Schema",
+                "title": "numeracao_volumes Schema",
                 "description": "Numeração dos volumes transportados",
                 "examples": [
                   "333"
@@ -1125,10 +1059,10 @@
                   200.099
                 ]
               },
-              "quantidade": {
-                "$id": "#/properties/transporte/properties/volume_transportado/items/properties/quantidade",
+              "quantidade_volumes": {
+                "$id": "#/properties/transporte/properties/volume_transportado/items/properties/quantidade_volumes",
                 "type": "integer",
-                "title": "Quantidade Schema",
+                "title": "quantidade_volumes Schema",
                 "default": 0,
                 "examples": []
               }

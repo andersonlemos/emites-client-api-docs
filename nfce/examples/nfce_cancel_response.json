@@ -1,6 +1,6 @@
 {
   "cliente": {
-    "documento": "02558352482",
+    "cpf_cnpj": "02558352482",
     "endereco": {
       "bairro": "Planalto",
       "cep": "38413162",
@@ -8,88 +8,88 @@
       "codigo_pais": 1058,
       "complemento": "Sala 128",
       "logradouro": "Rua do Analista de Sistemas",
-      "municipio": "Uberlandia",
+      "nome_municipio": "Uberlandia",
       "numero": "256",
-      "pais": "Brasil",
-      "unidade_federativa": "MG"
+      "nome_pais": "Brasil",
+      "uf": "MG"
     },
     "nome": "NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL"
   },
-  "destino_operacao": "interno",
-  "finalidade": "normal",
+  "destino_operacao": 1,
+  "finalidade_nfe": 1,
   "forma_pagamento": [
     {
-      "tipo": "dinheiro",
-      "valor": 200.0
+      "tipo_de_pagamento": "01",
+      "valor_do_pagamento": 200.0
     }
   ],
-  "indicador_presenca": "presencial",
+  "indicador_presenca": 1,
   "natureza_operacao": "venda",
   "produtos": [
     {
-      "codigo_cest": "1300402",
-      "codigo_cfop": "5103",
+      "cest": "1300402",
+      "cfop": "5103",
       "codigo_ean": "7891000315507",
-      "codigo_ean_unidade_tributavel": "7891000315507",
-      "codigo_excecao_tipi": "22",
-      "codigo_ncm": "22086000",
+      "ean_unidade_trib": "7891000315507",
+      "extipi": "22",
+      "ncm": "22086000",
       "codigo_produto": "14600",
       "descricao": "NOTA FISCAL EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL",
-      "numero_item_pedido": 1,
-      "numero_pedido": "5100003910",
-      "origem": "nacional",
+      "num_item_pedido": 1,
+      "num_pedido": "5100003910",
+      "codigo_origem_produto": 0,
       "quantidade_comercial": 2.0,
       "quantidade_tributavel": 2.0,
       "tributacao": {
         "cofins": {
-          "aliquota": 7.6,
+          "aliquota_cofins": 7.6,
           "situacao_tributaria": "01",
-          "valor": 15.2,
-          "valor_base": 200.0
+          "valor_cofins": 15.2,
+          "valor_base_calculo": 200.0
         },
         "icms": {
-          "aliquota": 12.0,
-          "modalidade_base": "valor_operacao",
+          "aliquota_icms": 12.0,
+          "modalidade_base_calculo": 3,
           "situacao_tributaria": "00",
-          "valor": 24.0,
-          "valor_base": 200.0,
-          "valor_desoneracao": 0.0
+          "valor_icms": 24.0,
+          "valor_base_calculo": 200.0,
+          "valor_icms_desonerado": 0.0
         },
         "pis": {
-          "aliquota": 1.65,
+          "aliquota_pis": 1.65,
           "situacao_tributaria": "01",
-          "valor": 3.3,
-          "valor_base": 200.0
+          "valor_pis": 3.3,
+          "valor_base_calculo": 200.0
         }
       },
       "unidade_comercial": "UN",
       "unidade_tributavel": "UN",
       "valor_desconto": 0.0,
       "valor_frete": 0.0,
-      "valor_outras_despesas": 0.0,
+      "outras_despesas": 0.0,
       "valor_seguro": 0.0,
       "valor_total_produto": 200.0,
       "valor_unitario_comercial": 100.0,
       "valor_unitario_tributario": 100.0
     }
   ],
-  "tipo_impressao": "nfce",
-  "tipo_operacao": "saida",
+  "tipo_impressao": 4,
+  "tipo_operacao": 1,
   "transporte": {
-    "modalidade_frete": "sem_frete"
+    "codigo_modalidade": 9
   },
   "id": 933,
   "status": "cancelada",
-  "numero": 173,
+  "nfe_numero": 173,
   "serie": 9,
   "danfe_url": "http://emites-ruby-sandbox.s3.amazonaws.com/nfce/pdf_files/000/000/933/original/danfe.pdf?1544815969",
   "cancel_xml_url": "http://emites-ruby-sandbox.s3.amazonaws.com/nfce/cancel_xml_files/000/000/933/original/cancel_nfe.xml?1544815985",
   "resposta_cancelamento": {
-    "chave": "53181222769530000131650090000001731531212514",
+    "chave_acesso": "53181222769530000131650090000001731531212514",
     "numero_protocolo": "353180004176526"
   },
   "resposta_emissao": {
-    "chave": "53181222769530000131650090000001731531212514",
+    "chave_acesso": "53181222769530000131650090000001731531212514",
     "codigo_verificacao": "ifAR/RRacv7114sw8qG5tjq820c=",
     "data_emissao": "2018-12-14T19:32:00Z",
     "numero_protocolo": "353180004176525"

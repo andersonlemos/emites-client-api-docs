@@ -104,12 +104,12 @@ Para cancelar uma NFC-e, enviar uma mensagem com o identificador `CANCEL_NFCE`. 
 O payload JSON deverá seguir o formato:
 
 ```
-{ "chave": "53180922769530000131651110000001281355486170", "motivo": "Desistencia do comprador" }
+{ "chave_acesso": "53180922769530000131651110000001281355486170", "motivo": "Desistencia do comprador" }
 ```
 
 onde:
 
-- "chave" é a chave de acesso da NFC-e (informada na resposta de requisição de criação de NFC-e);
+- "chave_acesso" é a chave de acesso da NFC-e (informada na resposta de requisição de criação de NFC-e);
 - "motivo" é a descrição da razão do cancelamento (opcional; se informado deve ter tamanho entre 15 e 255 caracteres)
 
 O payload JSON da resposta do cancelamento será similar àquele devolvido durante a
