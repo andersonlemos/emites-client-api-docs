@@ -10,13 +10,15 @@ Integration with the application is accomplished by sending messages to a TCP/IP
 
 ## Protocol
 
-All messages exchanged by the Emites-Client must follow the following text format:
+### Version 1
+
+Messages exchanged by the Emites-Client v1-protocol must follow the following text format:
 
 ```
 Size:Identifier:Payload
 ```
 
-where:
+Where:
 
 - **Size**: Numeric string representing the size of the data that follows it, also considering the separators (':'). Do not use zeros to the left;
 - **Identifier**: string that identifies the type of message;
@@ -28,14 +30,44 @@ For example if we consider the following message:
 27:TESTE:{ "teste": "teste" }
 ```
 
-then we have:
+Then we have:
 
-- 27 is the size of the message data: 1 (**":"**) + 5 (**"TESTE"**) + 1 (**":"**) + 20 (JSON length);
-- **"TESTE"** is the type of message being sent;
-- after the last separator we have the JSON test payload.
+- `27` is the size of the message data: 1 (**":"**) + 5 (**"TESTE"**) + 1 (**":"**) + 20 (JSON length);
+- `TESTE` is the type of message being sent;
+- After the last separator we have the JSON payload.
 
-Comments:
-- The message should use encoding `US-ASCII` or` ISO-8859-1` (or variations). Multibyte encodings such as `UTF-8` should not be used;
+### Version 2
+
+Messages exchanged by the Emites-Client v2-protocol must follow the following text format:
+
+```
+v2:Size:Identifier:Payload
+```
+
+Where:
+
+- `v2`: inform the protocol version;
+- **Size**: Numeric string representing the size of bytes after the `:` that
+  follows the current field (it does not uses padding zeros);
+- **Identifier**: string that identifies the type of message;
+- **Payload**: string containing the payload in JSON format.
+
+For example if we consider the following message:
+
+```
+b2:26:TESTE:{ "teste": "teste" }
+```
+
+Then we have:
+
+- `v2` informs the protocol version;
+- `26` is the size of the message data: `TESTE:{ "teste": "teste" }`;
+- `TESTE` is the type of message being sent;
+- After the last separator we have the JSON payload.
+
+### Notes
+
+- The message should use encoding `ISO-8859-1` (Latin-1);
 - When sending a message to Emites-Client, wait for the corresponding response before sending a new request;
 - The JSON payload can be sent on a single line or may contain line breaks, provided that the size of the breaks are considered in the total size of the message;
 - To indicate an optional value missing from the JSON payload, simply omit the field; alternatively, it can be serialized with `null` value. Avoid sending missing values as empty strings (""), because Emites-Client performs minimum size validation if the field is not `null`;

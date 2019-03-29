@@ -10,17 +10,21 @@ A integração com a aplicação é realizada através do envio de mensagens par
 
 ## Protocolo
 
-Todas as mensagens trocadas pelo Emites-Client apresentam o seguinte formato texto:
+### Versão 1
+
+As mensagens trocadas pelo Emites-Client usando protocolo v1 apresentam o seguinte formato texto:
 
 ```
 Tamanho:Identificador:Payload
 ```
 
-onde
+Onde:
 
-- **Tamanho**: string númerica que representa o tamanho dos dados que a sucedem, considerando também os separadores (':'). Não utiliza zeros à esquerda;
-- **Identificador**: string que identifica o tipo da mensagem;
-- **Payload**: string contendo o payload em formato JSON.
+- **Tamanho**: *string* númerica que representa o tamanho dos dados que a
+  sucedem, considerando também os separadores (':'), não utiliza zeros à
+  esquerda;
+- **Identificador**: *string* que identifica o tipo da mensagem;
+- ***Payload***: *string* contendo o *payload* em formato JSON.
 
 Por exemplo se considerarmos a mensagem a seguir:
 
@@ -28,16 +32,46 @@ Por exemplo se considerarmos a mensagem a seguir:
 27:TESTE:{ "teste": "teste" }
 ```
 
-temos:
-- 27 é o tamanho dos dados da mensagem: 1 (**":"**) + 5 (**"TESTE"**) + 1 (**":"**) + 20 (tamanho do **JSON**);
-- **"TESTE"** é o tipo da mensagem sendo enviada;
-- após o último separador temos o payload **JSON** de teste.
+Temos:
+- `27` é o tamanho dos dados da mensagem: 1 (**":"**) + 5 (**"TESTE"**) + 1
+  (**":"**) + 20 (tamanho do **JSON**);
+- `TESTE` é o tipo da mensagem sendo enviada;
+- após o último separador temos o ** *payload* JSON** de teste.
 
-Observações:
-- A mensagem deve utilizar _encoding_ `US-ASCII` ou `ISO-8859-1` (ou variações). Não devem ser utilizados _encodings multibyte_ tal como `UTF-8`;
+### Versão 2
+
+As mensagens trocadas pelo Emites-Client usando protocolo v2 apresentam o seguinte formato texto:
+
+```
+v2:Tamanho:Comando:Payload
+```
+
+Onde:
+
+- `v2`: indica a versão;
+- **Tamanho**: *string* númerica que representa a quantidade de *bytes* após `:`
+  seguinte ao campo corrente (não utiliza zeros à esquerda);
+- **Comando**: *string* que identifica o tipo da mensagem;
+- ***Payload***: *string* contendo o *payload* em formato JSON.
+
+Por exemplo se considerarmos a mensagem a seguir:
+
+```
+v2:26:TESTE:{ "teste": "teste" }
+```
+
+Temos:
+- `v2` indica a versão;
+- `26` é o tamanho dos dados da mensagem: `TESTE:{ "teste": "teste" }`;
+- `TESTE` é o comando da mensagem sendo enviada;
+- Após o último separador temos o ** *payload* JSON** de teste.
+
+### Observações
+
+- A mensagem deve utilizar _encoding_ `ISO-8859-1` (Latin-1);
 - Ao enviar uma mensagem para o Emites-Client, aguardar a resposta da mesma antes de enviar uma nova requisição;
-- O payload JSON pode ser enviado em uma única linha ou pode conter quebras de linha, desde que os tamanhos das quebras sejam considerados no tamanho total da mensagem;
-- Para indicar um valor opcional ausente no payload JSON, basta omitir o campo; alternativamente, ele pode ser serializado com valor `null`. Evitar enviar valores ausentes como strings vazias (""), pois o Emites-Client realiza validação de tamanho mínimo caso o campo não seja `null`;
+- O *payload* JSON pode ser enviado em uma única linha ou pode conter quebras de linha, desde que os tamanhos das quebras sejam considerados no tamanho total da mensagem;
+- Para indicar um valor opcional ausente no *payload* JSON, basta omitir o campo; alternativamente, ele pode ser serializado com valor `null`. Evitar enviar valores ausentes como strings vazias (""), pois o Emites-Client realiza validação de tamanho mínimo caso o campo não seja `null`;
 
 ## Criação de NFC-e
 
@@ -101,7 +135,7 @@ O trecho a seguir mostra um exemplo de rejeição ocorrida na SEFAZ:
 
 Para cancelar uma NFC-e, enviar uma mensagem com o identificador `CANCEL_NFCE`. O mesmo identificador será devolvido na resposta.
 
-O payload JSON deverá seguir o formato:
+O *payload* JSON deverá seguir o formato:
 
 ```
 { "chave_acesso": "53180922769530000131651110000001281355486170", "motivo": "Desistencia do comprador" }
@@ -112,7 +146,7 @@ onde:
 - "chave_acesso" é a chave de acesso da NFC-e (informada na resposta de requisição de criação de NFC-e);
 - "motivo" é a descrição da razão do cancelamento (opcional; se informado deve ter tamanho entre 15 e 255 caracteres)
 
-O payload JSON da resposta do cancelamento será similar àquele devolvido durante a
+O *payload* JSON da resposta do cancelamento será similar àquele devolvido durante a
 operação de criação, com as seguintes diferenças [(ver exemplo)](https://github.com/myfreecomm/emites-client-api-docs/blob/master/nfce/examples/nfce_cancel_response.json):
 
 - o campo `status` terá o valor `cancelada`;
