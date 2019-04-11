@@ -18,6 +18,9 @@
   "natureza_operacao": "venda",
   "produtos": [
     {
+      "aplicacao": "C",
+      "fabricacao": 1,
+      "exncm": 22,
       "ncm": "22086000",
       "codigo_produto": "14600",
       "descricao": "NOTA FISCAL EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL",

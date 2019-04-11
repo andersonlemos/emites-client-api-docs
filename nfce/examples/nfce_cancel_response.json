@@ -1,5 +1,6 @@
 {
   "cliente": {
+    "regime_tributario_diferenciado": "LFEM",
     "cpf_cnpj": "02558352482",
     "endereco": {
       "bairro": "Planalto",
@@ -27,6 +28,9 @@
   "natureza_operacao": "venda",
   "produtos": [
     {
+      "aplicacao": "C",
+      "fabricacao": 1,
+      "exncm": 22,
       "cest": "1300402",
       "cfop": "5103",
       "codigo_ean": "7891000315507",
