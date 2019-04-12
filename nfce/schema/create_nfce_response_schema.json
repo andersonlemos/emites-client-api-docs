@@ -199,12 +199,19 @@
       "title": "Cliente Schema",
       "required": [
         "cpf_cnpj",
-        "nome"
+        "nome",
+        "regime_tributario_diferenciado"
       ],
       "properties": {
         "cpf_cnpj": {
           "$id": "#/properties/cliente/properties/cpf_cnpj",
           "$ref": "#/definitions/cpf_cnpj"
+        },
+        "regime_tributario_diferenciado": {
+          "$id": "#/properties/cliente/properties/regime_tributario_diferenciado",
+          "type": "string",
+          "description": "Regime diferenciado tributário do destinatário",
+          "enum": [ "LFEM", "LFDES", "ISENLF" ]
         },
         "email": {
           "$id": "#/properties/cliente/properties/email",
@@ -503,7 +510,10 @@
           "unidade_tributavel",
           "valor_total_produto",
           "valor_unitario_comercial",
-          "valor_unitario_tributario"
+          "valor_unitario_tributario",
+          "aplicacao",
+          "fabricacao",
+          "exncm"
         ],
         "properties": {
           "cest": {
@@ -768,6 +778,26 @@
               3.5,
               100
             ]
+          },
+          "aplicacao": {
+            "$id": "#/properties/produtos/items/properties/aplicacao",
+            "type": "string",
+            "description": "Aplicação do Produto",
+          	"$comment": "I = Industrialização,  C = Comercialização, U = Uso e Consumo, A = Ativo Imobilizado",
+          	"enum": [ "I", "C", "U", "A" ]
+            
+          },
+          "fabricacao": {
+            "$id": "#/properties/produtos/items/properties/fabricacao",
+            "type": "number",
+            "description": "Indica onde ocorreu a fabricação do produto",
+          	"$comment": "0 = Própria,  1 = Terceiros",
+            "enum": [ 0, 1 ]
+          },
+          "exncm": {
+            "$id": "#/properties/produtos/items/properties/exncm",
+            "type": "number",
+            "description": "EX NCM"
           },
           "tributacao": {
             "$id": "#/properties/produtos/items/properties/tributacao",
@@ -1086,7 +1116,7 @@
                     "title": "The Motivo_desoneracao Schema",
                     "description": "Motivo da desoneração do ICMS",
                     "$comment": "ver https://myfreecomm.github.io/emites-api-docs/#tributa-o-xml-imposto",
-                    "enum": [ 1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ],
+                    "enum": [ 1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ]
                   },
                   "situacao_simples_nacional": {
                     "$id": "#/properties/produtos/items/properties/tributacao/properties/icms/properties/situacao_simples_nacional",
