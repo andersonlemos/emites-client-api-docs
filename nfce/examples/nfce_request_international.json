@@ -1,6 +1,5 @@
 {
   "cliente": {
-    "regime_tributario_diferenciado": "LFEM",
     "cpf_cnpj": "123456",
     "email": "luiz.buiatte@nexaas.com",
     "nome": "NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL",
@@ -36,9 +35,6 @@
   "natureza_operacao": "venda",
   "produtos": [
     {
-      "aplicacao": "C",
-      "fabricacao": 1,
-      "exncm": 22,
       "cest": "1300402",
       "cfop": "5103",
       "codigo_ean": "7891000315507",

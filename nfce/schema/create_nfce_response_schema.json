@@ -199,8 +199,7 @@
       "title": "Cliente Schema",
       "required": [
         "cpf_cnpj",
-        "nome",
-        "regime_tributario_diferenciado"
+        "nome"
       ],
       "properties": {
         "cpf_cnpj": {
@@ -510,10 +509,7 @@
           "unidade_tributavel",
           "valor_total_produto",
           "valor_unitario_comercial",
-          "valor_unitario_tributario",
-          "aplicacao",
-          "fabricacao",
-          "exncm"
+          "valor_unitario_tributario"
         ],
         "properties": {
           "cest": {
