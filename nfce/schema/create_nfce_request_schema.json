@@ -779,7 +779,7 @@
           },
           "exncm": {
             "$id": "#/properties/produtos/items/properties/exncm",
-            "type": "number",
+            "type": "string",
             "description": "EX NCM"
           }
         }
