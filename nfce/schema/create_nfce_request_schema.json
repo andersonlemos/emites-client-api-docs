@@ -496,8 +496,7 @@
           "valor_unitario_comercial",
           "valor_unitario_tributario",
           "aplicacao",
-          "fabricacao",
-          "exncm"
+          "fabricacao"
         ],
         "properties": {
           "cest": {
