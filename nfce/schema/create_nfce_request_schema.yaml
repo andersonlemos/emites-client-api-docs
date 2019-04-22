@@ -277,7 +277,7 @@ root:
         - 2 # internet
         - 3 # telemarketing
         - 4 # domicilio          (home delivery)
-        - 5 # presencial externo (out of the house)
+        - 5 # presencial externo (outside the trading house)
         - 9 # outros             (other)
     informacoes_adicionais:
       type: object
