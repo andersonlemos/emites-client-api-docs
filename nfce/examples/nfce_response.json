@@ -3,11 +3,12 @@
     "regime_tributario_diferenciado": "LFEM",
     "cpf_cnpj": "02558352482",
     "email": "luiz.buiatte@nexaas.com",
+    "nome": "NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL",
     "endereco": {
+      "bairro": "Planalto",
       "logradouro": "Rua do Analista de Sistemas",
       "numero": "256",
       "complemento": "Sala 128",
-      "bairro": "Planalto",
       "codigo_municipio": 3170206,
       "nome_municipio": "Uberlândia",
       "cep": "38413162",
@@ -15,14 +16,13 @@
       "codigo_pais": 1058,
       "nome_pais": "Brasil",
       "telefone": "34987654321"
-    },
-    "nome": "NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL"
+    }
   },
   "destino_operacao": 1,
   "finalidade_nfe": 1,
   "forma_pagamento": [
     {
-      "tipo_de_pagamento": "03" ,
+      "tipo_de_pagamento": "03",
       "valor_do_pagamento": 200.00,
       "modalidade": 0,
       "cartao": {
@@ -212,10 +212,10 @@
       {
         "especie": "Caixa",
         "marca": "FlexBox",
-        "numeracao_volumes": "333",
+        "numeracao": "333",
         "peso_bruto": 2.00,
         "peso_liquido": 1.90,
-        "quantidade_volumes": 1
+        "quantidade": 1
       }
     ]
   },

@@ -3,6 +3,7 @@
     "regime_tributario_diferenciado": "LFEM",
     "cpf_cnpj": "02558352482",
     "email": "luiz.buiatte@nexaas.com",
+    "nome": "NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL",
     "endereco": {
       "logradouro": "Rua do Analista de Sistemas",
       "numero": "256",
@@ -15,8 +16,7 @@
       "codigo_pais": 1058,
       "nome_pais": "Brasil",
       "telefone": "34987654321"
-    },
-    "nome": "NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL"
+    }
   },
   "destino_operacao": 1,
   "finalidade_nfe": 1,
@@ -128,6 +128,3 @@
     ]
   }
 }
-
-
-
