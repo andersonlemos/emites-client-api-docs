@@ -781,7 +781,7 @@
             "description": "Aplicação do Produto",
           	"$comment": "I = Industrialização,  C = Comercialização, U = Uso e Consumo, A = Ativo Imobilizado",
           	"enum": [ "I", "C", "U", "A" ]
-            
+
           },
           "fabricacao": {
             "$id": "#/properties/produtos/items/properties/fabricacao",
