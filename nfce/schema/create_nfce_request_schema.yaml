@@ -113,6 +113,23 @@ types:
 root:
   type: object
   fields:
+    contingencia:
+      type: object
+      required: true
+      description: NFC-e data for offline contingency and SAT
+      fields:
+        serie:
+          type: integer
+          description: NFC-e serie
+          required: true
+          max_value: 999
+        numero:
+          type: integer
+          description: >
+            NFC-e serial number, uses the last used number successor if not
+            supplied
+          required: false
+          max_value: 999999999
     client:
       type: object
       required: false
