@@ -94,13 +94,13 @@
       "uf": "MG"
     },
     "retencao_icms": {
-      "aliquota_retencao": 0,
+      "aliquota_retencao": 0.00,
       "cfop": "5103",
       "codigo_municipio": 3170206,
       "uf": "MG",
-      "valor_base_calculo": 0,
-      "valor_retido": 0,
-      "valor_servico": 0
+      "valor_base_calculo": 0.00,
+      "valor_retido": 0.00,
+      "valor_servico": 0.00
     },
     "transportadora": {
       "cpf_cnpj": "81043396000156",
