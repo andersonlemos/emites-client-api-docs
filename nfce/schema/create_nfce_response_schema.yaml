@@ -384,10 +384,10 @@ root:
                   type: number
                   description: amount COFINS tax substitution aliquot
                 quantidade_vendida:
-                  type: integer
+                  type: number
                   description: selled amount
                 quantidade_vendida_st:
-                  type: integer
+                  type: number
                   description: tax substitution selled amount
                 situacao_tributaria:
                   <<: *types.situacao_tributaria
