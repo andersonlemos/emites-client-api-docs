@@ -83,8 +83,8 @@
           "aliquota_st": 0.00,
           "aliquota_cofins_reais": 1.00,
           "aliquota_cofins_reais_st": 0.00,
-          "quantidade_vendida": 1,
-          "quantidade_vendida_st": 0,
+          "quantidade_vendida": 1,.00
+          "quantidade_vendida_st": 0.00,
           "situacao_tributaria": "01",
           "valor_base_calculo": 100.00,
           "valor_base_calculo_st": 0.00,
@@ -131,7 +131,7 @@
           "valor_icms_diferido": 0.00,
           "valor_icms_operacao": 0.00,
           "valor_uf_destinatario_interestadual": 0.00,
-          "valor_uf_rementente": 0.00,
+          "valor_uf_remetente": 0.00,
           "valor_uf_remetente_interestadual": 0.00
         },
         "importacao": {
@@ -151,7 +151,7 @@
           "valor_ipi": 0.00
         },
         "ipi_devolvido": {
-          "perc_mercadoria_devolvida": 0.00,
+          "perc_devolvido": 0.00,
           "valor_ipi_devolvido": 0.00
         },
         "pis": {
@@ -186,13 +186,13 @@
       "uf": "MG"
     },
     "retencao_icms": {
-      "aliquota_retencao": 0,
+      "aliquota_retencao": 0.00,
       "cfop": "5103",
       "codigo_municipio": 3170206,
       "uf": "MG",
-      "valor_base_calculo": 0,
-      "valor_retido": 0,
-      "valor_servico": 0
+      "valor_base_calculo": 0.00,
+      "valor_retido": 0.00,
+      "valor_servico": 0.00
     },
     "transportadora": {
       "cpf_cnpj": "81043396000156",
