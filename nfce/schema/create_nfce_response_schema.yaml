@@ -1,35 +1,35 @@
 types:
-  access_key: &types.access_key
+  access_key: &t_access_key
     type: string
     description: NF-e access key
-    pattern: ^[0-9]{48}
-  datetime: &types.datetime
+    pattern: /^[0-9]{48}/
+  datetime: &t_datetime
     type: string
     patter": ^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$
-  document_id: &types.document_id
+  document_id: &t_document_id
     type: string
     description: document ID (CPF, CPNJ or idEstrangeiro)
-    pattern: ^([0-9]{11,14})|([0-9A-Z]{5,20})$
-  cnpj: &types.cnpj
+    pattern: /^([0-9]{11,14})|([0-9A-Z]{5,20})$/
+  cnpj: &t_cnpj
     type: string
     description: legal person national registration
-    pattern: ^[0-9]{14}$
-  uf: &types.uf
+    pattern: /^[0-9]{14}$/
+  uf: &t_uf
     type: string
     description: federal unit, EX for international addresses
-    pattern: ^[A-Z]{2}
-  email: &types.email
+    pattern: /^[A-Z]{2}/
+  email: &t_email
     type: string
-    pattern: [^@]+@[^@]+\.[^@]+
+    pattern: /^[^@]+@[^@]+\.[^@]+$/
     max_length: 60
-  url: &types.url
+  url: &t_url
     type: string
-    pattern: ^[a-z]+://.+/.*
-  situacao_tributaria: &types.situacao_tributaria
+    pattern: /^[a-z]+://.+/.*$/
+  situacao_tributaria: &t_situacao_tributaria
     type: enum[string]
     description: see http://sped.rfb.gov.br/arquivo/show/1630
-    pattern: ^[0-9]{2}$
-  endereco: &types.endereco
+    pattern: /^[0-9]{2}$/
+  endereco: &t_endereco
     type: object
     fields:
       logradouro:
@@ -61,9 +61,9 @@ types:
       cep:
         type: string
         description: zip code
-        pattern: ^[0-9]{8}$
+        pattern: /^[0-9]{8}$/
       uf:
-        <<: *types.uf
+        <<: *t_uf
       codigo_pais:
         type: intenger
         description: country code from BACEN table
@@ -74,9 +74,9 @@ types:
       telefone:
         type: string
         description: phone number
-        pattern: ^[0-9]{6,14}$
+        pattern: /^[0-9]{6,14}$/
       cpf_cnpj:
-        <<: *types.document_id
+        <<: *t_document_id
 
 #-------------------------------------------------------------------------------
 # Start here
@@ -89,7 +89,7 @@ root:
       description: costumer schema
       fields:
         cpf_cnpj:
-          <<: *types.document_id
+          <<: *t_document_id
         regime_tributario_diferenciado:
           type: enum[string]
           description: costumer's differentiated tax regime
@@ -98,10 +98,10 @@ root:
             - LFDES
             - ISENLF
         email:
-          <<: *types.email
+          <<: *t_email
           description: costumer's email
         endereco:
-          <<: *types.endereco
+          <<: *t_endereco
           description: costumer's address
         indicador_inscricao_estadual:
           type: enum[integer]
@@ -113,7 +113,7 @@ root:
         inscricao_estadual:
           type: string
           description: costumer's state register (IE)
-          pattern: ^(ISENTO|[0-9]{2,14})$
+          pattern: /^(ISENTO|[0-9]{2,14})$/
         nome:
           type: string
           description: >
@@ -187,7 +187,7 @@ root:
                 - 1 # integrado     (integrated)
                 - 2 # nao integrado (non-integrated)
             cpnj_credenciadora:
-              <<: *types.cnpj
+              <<: *t_cnpj
               description: card acreditation authority's national registration
             bandeira_operadora:
               type: enum[string]
@@ -246,7 +246,7 @@ root:
       type: array[string]
       max_items: 10
       description: CPF/CNPJ authorized to get the XML
-      item_pattern: ^[0-9]{11,14}$
+      item_pattern: /^[0-9]{11,14}$/
     natureza_operacao:
       type: string
       description: operation type
@@ -257,19 +257,19 @@ root:
         cest:
           type: string
           description: Código Especificador da Substituição Tributária
-          pattern: ^[0-9]{7}$
+          pattern: /^[0-9]{7}$/
         cfop:
           type: string
           description: Código Fiscal de Operações e Prestações
-          pattern: ^[0-9]{4}$
+          pattern: /^[0-9]{4}$/
         codigo_ean:
           type: string
           description: product GTIN, EAN or barcode
-          pattern: ^(SEM GTIN|[0-9]{8}|[0-9]{12,14})$
+          pattern: /^(SEM GTIN|[0-9]{8}|[0-9]{12,14})$/
         ean_unidade_trib:
           type: string
           description: taxable unit GTIN, EAN or barcode
-          pattern: ^(SEM GTIN|[0-9]{8}|[0-9]{12,14})$
+          pattern: /^(SEM GTIN|[0-9]{8}|[0-9]{12,14})$/
         extipi:
           type: string
           description: >
@@ -280,7 +280,7 @@ root:
         ncm:
           type: string
           description: NCM code (Nomenclatura Comum do Mercosul)
-          pattern: ^(00|[0-9]{8})$
+          pattern: /^(00|[0-9]{8})$/
         codigo_produto:
           type: string
           description: product code
@@ -390,7 +390,7 @@ root:
                   type: integer
                   description: tax substitution selled amount
                 situacao_tributaria:
-                  <<: *types.situacao_tributaria
+                  <<: *t_situacao_tributaria
                 valor_base_calculo:
                   type: number
                   description: basis of tax calculation
@@ -485,7 +485,7 @@ root:
                     type: string
                     description: Simples Nacional operation code
                   situacao_tributaria:
-                    <<: *types.situacao_tributaria
+                    <<: *t_situacao_tributaria
                   valor_base_calculo:
                     type: number
                     description: basis of tax calculation
@@ -565,7 +565,7 @@ root:
                     type: number
                     description: percentual IPI aliquot
                   cnpj_produtor:
-                    <<: *types.cnpj
+                    <<: *t_cnpj
                     description: facturer document ID
                   codigo_enquadramento:
                     type: integer
@@ -577,7 +577,7 @@ root:
                     type: integer
                     description: legal seal amount
                   situacao_tributaria:
-                    <<: *types.situacao_tributaria
+                    <<: *t_situacao_tributaria
                   valor_base_calculo:
                     type: number
                     description: basis of tax calculation
@@ -609,7 +609,7 @@ root:
                       type: number
                       description: tax substitution PIS percentual aliquot
                     situacao_tributaria:
-                      <<: *types.situacao_tributaria
+                      <<: *t_situacao_tributaria
                     quantidade_vendida:
                       type: number
                       description: selled amount
@@ -661,7 +661,7 @@ root:
             - 4 # proprio do destinatario (by customer)
             - 9 # sem frete               (no freight)
         endereco_entrega:
-          <<: *types.endereco
+          <<: *t_endereco
           description: delivery address
         retencao_icms:
           type: object
@@ -673,12 +673,12 @@ root:
             cfop:
               type: string
               description: Código Fiscal de Operações e Prestações
-              pattern: ^[0-9]{4}$
+              pattern: /^[0-9]{4}$/
             codigo_municipal:
               type: integer
               description: city registration (IM)
             uf:
-              <<: *types.uf
+              <<: *t_uf
             valor_base_calculo:
               type: number
               description: basis of tax calculation
@@ -692,7 +692,7 @@ root:
           type: object
           fields:
             cpf_cnpj:
-              << *types.document_id
+              << *t_document_id
             endereco_completo:
               type: string
               description: shipping company address description
@@ -700,7 +700,7 @@ root:
             inscricao_estadual:
               type: string
               description: shipping company state register (IE)
-              pattern: ^(ISENTO|[0-9]{2,14})$
+              pattern: /^(ISENTO|[0-9]{2,14})$/
             nome_municipio:
               type: string
               description: shipping company base city name
@@ -711,7 +711,7 @@ root:
               min_length: 2
               max_length: 60
             uf:
-              <<: *types.uf
+              <<: *t_uf
         valor_total_frete:
           type: number
           description: freight total cost
@@ -722,13 +722,13 @@ root:
             placa:
               type: string
               description: vehicle plate
-              pattern: ^([A-Z]{2,3}[0-9]{4}|[A-Z]{3,4}[0-9]{3}|[A-Z0-9]{7}|[A-Z]{3}[0-9][A-Z][0-9]{2})$
+              pattern: /^([A-Z]{2,3}[0-9]{4}|[A-Z]{3,4}[0-9]{3}|[A-Z0-9]{7}|[A-Z]{3}[0-9][A-Z][0-9]{2})$/
             rntc:
               type: string
               description: Número do Registro Nacional de Transporte de Carga
               max_length: 20
             uf:
-              <<: *types.uf
+              <<: *t_uf
               description: shipping vehicle registration state
         volume_transportado:
           type: array[object]
@@ -777,13 +777,13 @@ root:
         - rejeitada
         - sucesso
     danfe_url:
-      type: *types.url
+      type: *t_url
       description: URL for downloading DANFE
     xml_url:
-      type: *type.url
+      type: *t_url
       description: URL for downloading XML
     cancel_xml_url:
-      type: *type.url
+      type: *t_url
       description: URL for the XML that canceled an NF_e
     danfe:
       type: string
@@ -795,7 +795,7 @@ root:
       type: object
       fields:
         chave_acesso:
-          <<: *types.access_key
+          <<: *t_access_key
         numero_protocolo:
           type: string
           description: cancellation protocol number
@@ -803,12 +803,12 @@ root:
       type: object
       fields:
         chave_acesso:
-          <<: *types.access_key
+          <<: *t_access_key
         codigo_verificacao:
           type: string
           description: NFC-e check code
         data_emissao:
-          <<: *types.datetime
+          <<: *t_datetime
           description: emission date and time
         numero_protocolo:
           type: string
