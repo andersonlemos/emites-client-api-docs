@@ -350,6 +350,11 @@ root:
         - devolucao
         - importacao
         - remessa (para fins de demonstracao)
+    codigo_natureza_operacao:
+      type: string
+      required: true
+      description: operation code
+      item_pattern: /^[0-9]{3}$/
     produtos:
       type: array[object]
       required: true
