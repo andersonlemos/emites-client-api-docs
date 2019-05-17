@@ -362,7 +362,7 @@ root:
       item_fields:
         cest:
           type: string
-          required: false
+          required: true
           description: Código Especificador da Substituição Tributária
           pattern: /^[0-9]{7}$/
           examples:
