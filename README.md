@@ -45,8 +45,8 @@ Para criar uma NFC-e (Nota Fiscal Eletrônica do Consumidor), enviar uma mensage
 
 Utilizar como referência os documentos a seguir:
 
-- Schema JSON da [requisição](https://github.com/myfreecomm/emites-client-api-docs/blob/master/nfce/schema/create_nfce_request_schema.yaml);
-- Schema JSON da [resposta](https://github.com/myfreecomm/emites-client-api-docs/blob/master/nfce/schema/create_nfce_response_schema.yaml);
+- Esquema YAML da [requisição JSON](https://github.com/myfreecomm/emites-client-api-docs/blob/master/nfce/schema/create_nfce_request_schema.yaml);
+- Esquema YAML da [resposta JSON](https://github.com/myfreecomm/emites-client-api-docs/blob/master/nfce/schema/create_nfce_response_schema.yaml);
 - [Exemplo de JSON de requisição](https://github.com/myfreecomm/emites-client-api-docs/blob/master/nfce/examples/nfce_request.json);
 - [Exemplo de JSON de resposta](https://github.com/myfreecomm/emites-client-api-docs/blob/master/nfce/examples/nfce_response.json);
 
