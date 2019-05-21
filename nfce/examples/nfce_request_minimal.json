@@ -18,6 +18,7 @@
   "natureza_operacao": "venda",
   "produtos": [
     {
+      "codigo_ean": "7891000315507",
       "ncm": "22086000",
       "codigo_produto": "14600",
       "descricao": "NOTA FISCAL EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL",
