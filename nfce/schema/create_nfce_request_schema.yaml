@@ -376,7 +376,7 @@ root:
             - "5103"
         codigo_ean:
           type: string
-          required: false
+          required: true
           description: product GTIN, EAN or barcode
           pattern: /^(SEM GTIN|[0-9]{8}|[0-9]{12,14})$/
           examples:
