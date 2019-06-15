@@ -518,6 +518,14 @@ root:
             - 2.00
             - 3.5
             - 100
+        valor_unitario_comercial:
+          type: number
+          required: true
+          description: taxable unit cost
+          examples:
+            - 2.00
+            - 3.5
+            - 100
         valor_unitario_tributario:
           type: number
           required: true
