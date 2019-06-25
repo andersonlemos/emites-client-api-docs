@@ -242,7 +242,7 @@ root:
                 - 2 # nao integrado (non-integrated)
             cpnj_credenciadora:
               <<: *t_cnpj
-              required: false
+              required: if uf == CE
               description: card acreditation authority's national registration
             bandeira_operadora:
               type: enum[string]
