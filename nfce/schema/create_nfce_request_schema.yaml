@@ -276,7 +276,7 @@ root:
                   - "123456"
             tp_moeda:
               type: string
-              required: false
+              required: if uf == CE
               description: transaction's currency code, using ISO-4217
               max_length: 3
               examples:
