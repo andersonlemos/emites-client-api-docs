@@ -242,7 +242,7 @@ root:
                 - 2 # nao integrado (non-integrated)
             cpnj_credenciadora:
               <<: *t_cnpj
-              required: false
+              required: if uf == CE
               description: card acreditation authority's national registration
             bandeira_operadora:
               type: enum[string]
@@ -267,6 +267,20 @@ root:
               max_length: 20
               examples:
                 - "1234567890"
+            merchant_id:
+              type: string
+              required: false
+              description: identification Code of the Establishment to the Acquirers
+              max_length:
+                examples:
+                  - "123456"
+            tp_moeda:
+              type: string
+              required: if uf == CE
+              description: transaction's currency code, using ISO-4217
+              max_length: 3
+              examples:
+                - "BRL"
     indicador_presenca:
       type: enum[integer]
       required: true

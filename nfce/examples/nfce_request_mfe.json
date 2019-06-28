@@ -1,0 +1,132 @@
+{
+  "cliente": {
+    "regime_tributario_diferenciado": "LFEM",
+    "cpf_cnpj": "02558352482",
+    "email": "luiz.buiatte@nexaas.com",
+    "nome": "NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL",
+    "endereco": {
+      "logradouro": "Rua do Analista de Sistemas",
+      "numero": "256",
+      "complemento": "Sala 128",
+      "bairro": "Planalto",
+      "codigo_municipio": 3170206,
+      "nome_municipio": "Uberlândia",
+      "cep": "38413162",
+      "uf": "MG",
+      "codigo_pais": 1058,
+      "nome_pais": "Brasil",
+      "telefone": "34987654321"
+    }
+  },
+  "destino_operacao": 1,
+  "finalidade_nfe": 1,
+  "forma_pagamento": [
+    {
+      "tipo_de_pagamento": "03",
+      "valor_do_pagamento": 200.00,
+      "modalidade": 0,
+      "cartao": {
+        "tipo_integracao": 1,
+        "cnpj_credenciadora": "11375787000192",
+        "bandeira_operadora": "01",
+        "numero_autorizacao_operacao": "1234567890",
+        "merchant_id": "123456",
+        "tp_moeda" : "USD"
+      }
+    }
+  ],
+  "indicador_presenca": 1,
+  "informacoes_adicionais": {
+    "informacoes_contribuinte": "Passaporte número BR012012 de pessoa física brasileira.",
+    "informacoes_fisco": "Informações adicionais de interesse do Fisco",
+    "observacoes_fisco": [
+      {
+        "campo": "Nome do campo",
+        "texto": "Observação do campo"
+      }
+    ]
+  },
+  "lista_autorizacao": [
+    "77184642538",
+    "31065377000152"
+  ],
+  "natureza_operacao": "venda",
+  "produtos": [
+    {
+      "aplicacao": "C",
+      "fabricacao": 1,
+      "exncm": "22",
+      "cest": "1300402",
+      "cfop": "5103",
+      "codigo_ean": "7891000315507",
+      "ean_unidade_trib": "7891000315507",
+      "extipi": "22",
+      "ncm": "22086000",
+      "codigo_produto": "14600",
+      "descricao": "NOTA FISCAL EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL",
+      "informacoes_adicionais": "",
+      "num_item_pedido": 1,
+      "num_pedido": "5100003910",
+      "codigo_origem_produto": 0,
+      "quantidade_comercial": 2.00,
+      "quantidade_tributavel": 2.00,
+      "unidade_comercial": "UN",
+      "unidade_tributavel": "UN",
+      "valor_desconto": 0.00,
+      "valor_frete": 0.00,
+      "outras_despesas": 0.00,
+      "valor_seguro": 0.00,
+      "valor_total_produto": 200.00,
+      "valor_unitario_comercial": 100.00,
+      "valor_unitario_tributario": 100.00
+    }
+  ],
+  "tipo_impressao": 4,
+  "tipo_operacao": 0,
+  "transporte": {
+    "codigo_modalidade": 9,
+    "endereco_entrega": {
+      "logradouro": "Rua do Analista de Sistemas",
+      "numero": "256",
+      "complemento": "Sala 128",
+      "bairro": "Planalto",
+      "codigo_municipio": 3170206,
+      "nome_municipio": "Uberlândia",
+      "cep": "38413162",
+      "uf": "MG"
+    },
+    "retencao_icms": {
+      "aliquota_retencao": 0.00,
+      "cfop": "5103",
+      "codigo_municipio": 3170206,
+      "uf": "MG",
+      "valor_base_calculo": 0.00,
+      "valor_retido": 0.00,
+      "valor_servico": 0.00
+    },
+    "transportadora": {
+      "cpf_cnpj": "81043396000156",
+      "endereco_completo": "Rua do Economista, nº 256",
+      "inscricao_estadual": "isento",
+      "nome_municipio": "Uberlândia",
+      "razao_social": "Silva & Silva Tranporte Ltda",
+      "uf": "MG"
+    },
+    "valor_total_frete": 0.00,
+    "veiculo": {
+      "placa": "EEE3344",
+      "rntc": "230483JKHE",
+      "uf": "MG"
+    },
+    "volume_transportado": [
+      {
+        "especie": "Caixa",
+        "marca": "FlexBox",
+        "numeracao": "333",
+        "peso_bruto": 2.00,
+        "peso_liquido": 1.90,
+        "quantidade": 1
+      }
+    ]
+  }
+}
