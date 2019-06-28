@@ -433,8 +433,7 @@ root:
             - "5100003910"
         codigo_origem_produto:
           type: enum[integer]
-          required: false
-          default: 0
+          required: true
           description: >
             product origin
             see https://myfreecomm.github.io/emites-api-docs/#tributa-o-xml-imposto
