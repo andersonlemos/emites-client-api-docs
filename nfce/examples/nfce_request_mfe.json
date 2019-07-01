@@ -20,7 +20,6 @@
   },
   "destino_operacao": 1,
   "finalidade_nfe": 1,
-  "indicador_consumidor_final": 1,
   "forma_pagamento": [
     {
       "tipo_de_pagamento": "03",
@@ -30,7 +29,9 @@
         "tipo_integracao": 1,
         "cnpj_credenciadora": "11375787000192",
         "bandeira_operadora": "01",
-        "numero_autorizacao_operacao": "1234567890"
+        "numero_autorizacao_operacao": "1234567890",
+        "merchant_id": "123456",
+        "tp_moeda" : "USD"
       }
     }
   ],
