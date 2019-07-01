@@ -168,6 +168,7 @@
   "required": [
     "destino_operacao",
     "finalidade_nfe",
+    "indicador_consumidor_final",
     "forma_pagamento",
     "indicador_presenca",
     "natureza_operacao",
@@ -266,6 +267,15 @@
       "default": 1,
       "$comment": "1 = normal, 2 = complementar, 3 = ajuste, 4 = devolução",
       "enum": [ 1, 2, 3, 4 ]
+    },
+    "indicador_consumidor_final": {
+      "$id": "#/properties/indicador_consumidor_final",
+      "type": "integer",
+      "title": "Indicador Consumidor Final Schema",
+      "description": "Indica operação com consumidor final",
+      "default": 1,
+      "$comment": "0 = não, 1 = consumidor final",
+      "enum": [ 0, 1 ]
     },
     "forma_pagamento": {
       "$id": "#/properties/forma_pagamento",

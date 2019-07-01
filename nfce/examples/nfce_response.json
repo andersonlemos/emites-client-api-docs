@@ -19,6 +19,7 @@
   },
   "destino_operacao": 1,
   "finalidade_nfe": 1,
+  "indicador_consumidor_final": 1,
   "forma_pagamento": [
     {
       "tipo_de_pagamento": "03" ,
