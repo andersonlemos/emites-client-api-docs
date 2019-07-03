@@ -144,6 +144,13 @@ root:
         - 2 # complementar
         - 3 # ajuste       (adjustment)
         - 4 # devolução    (refund)
+    indicador_consumidor_final:
+      type: enum[integer]
+      required: true
+      description: Indica operação com consumidor final
+      enum:
+        - 0 # Não
+        - 1 # Sim
     forma_de_pagamento:
       type: array[object]
       description: payment types
