@@ -150,7 +150,7 @@ root:
       description: Indica operação com consumidor final
       enum:
         - 0 # Não
-        - 1 # Consumidor Final
+        - 1 # Sim
     forma_de_pagamento:
       type: array[object]
       description: payment types
