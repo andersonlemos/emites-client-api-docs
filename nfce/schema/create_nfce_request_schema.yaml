@@ -574,6 +574,27 @@ root:
           type: string
           required: false
           description: NCM (Nomenclaturas Comuns do Mercosul) exception
+        modBC:
+          type: enum[integer]
+          required: false
+          default: 3
+          description: Modalidade de determinação da BC do ICMS
+          enum:
+            - 0 # Margem Valor Agregado (%)
+            - 1 # Pauta (valor)
+            - 2 # Preço Tabelado Máximo (valor)
+            - 3 # Valor da Operação
+        modBCST:
+          type: enum[integer]
+          required: false
+          default: 4
+          description: Modalidade de determinação da BC do ICMS ST
+          enum:
+            - 0 # Preço tabelado ou máximo  sugerido
+            - 1 # Lista Negativa (valor)
+            - 2 # Lista Positiva (valor)
+            - 3 # Lista Neutra (valor)
+            - 4 # Margem Valor Agregado (%)
     tipo_impressao:
       type: enum[integer]
       required: false
