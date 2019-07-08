@@ -140,6 +140,37 @@ Caso este cenário ocorra, a resposta devolvida pelo Emites-Client conterá no J
 ```
 
 
+## Criação de NF-e
+
+Para criar uma NF-e (Nota Fiscal do Consumidor), enviar uma mensagem com o identificador `CREATE_NFE`. O mesmo identificador será devolvido na resposta.
+
+Utilizar como referência a documentação do Emites Server.
+
+
+O payload JSON da resposta será similar àquele devolvido durante a criação de NFC-e.
+
+
+
+## Cancelamento de NF-e
+
+Para cancelar uma NF-e, enviar uma mensagem com o identificador `CANCEL_NFE`. O mesmo identificador será devolvido na resposta.
+
+O payload JSON deverá seguir o formato:
+
+```
+{ "chave_acesso": "53180922769530000131651110000001281355486170", "motivo": "Desistencia do comprador" }
+```
+
+onde:
+
+- "chave_acesso" é a chave de acesso da NFC-e (informada na resposta de requisição de criação de NFC-e);
+- "motivo" é a descrição da razão do cancelamento (opcional; se informado deve ter tamanho entre 15 e 255 caracteres)
+
+O payload JSON da resposta do cancelamento será similar àquele devolvido durante o cancelamento de NFC-e.
+
+
+
+
 ## Links úteis
 
 - [JSON schema](https://json-schema.org/): Documentação do vocabulário utilizado nos _schemas_;
