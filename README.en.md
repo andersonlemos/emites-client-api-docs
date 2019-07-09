@@ -171,6 +171,15 @@ The cancellation response's JSON payload will be similar to the one returned dur
 cancellation NFC-e operation.
 
 
+
+## Tax calculation
+
+To calculate the taxes for an NFC-e (Electronic Consumer Invoice), send a message with the identifier `CALCULATE`. The same identifier will be returned in response.
+
+Use as reference the documents used to create an NFCE-e by the Emites Client.
+
+
+
 ## Useful links
 
 - [JSON schema](https://json-schema.org/): Documentation of vocabulary used for JSON schemas;

@@ -170,6 +170,13 @@ O payload JSON da resposta do cancelamento será similar àquele devolvido duran
 
 
 
+## Cálculo dos impostos 
+
+Para calcular os impostos para uma NFC-e (Nota Fiscal Eletrônica do Consumidor), enviar uma mensagem com o identificador `CALCULATE`. O mesmo identificador será devolvido na resposta.
+
+Utilizar como referência os documentos usados para criação de uma NFCE-e pelo Emites Client.
+
+
 
 ## Links úteis
 
