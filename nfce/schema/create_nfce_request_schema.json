@@ -762,7 +762,25 @@
               3.5,
               100
             ]
-          }
+          },
+          "modBC": {
+            "$id": "#/properties/produtos/items/properties/modBC",
+            "type": "integer",
+            "title": "modBC Schema",
+            "description": "Modalidade de determinação da BC do ICMS",
+            "default": 3,
+            "$comment": "0 = Margem Valor Agregado (%), 1 = Pauta (valor), 2 = Preço Tabelado Máximo (valor), 3 = Valor da Operação",
+            "enum": [ 0, 1, 2, 3 ]
+          },
+          "modBCST": {
+            "$id": "#/properties/produtos/items/properties/modBCST",
+            "type": "integer",
+            "title": "modBCST Schema",
+            "description": "Modalidade de determinação da BC do ICMS ST",
+            "default": 4,
+            "$comment": "0 = Preço tabelado ou máximo  sugerido, 1 = Lista Negativa (valor), 2 = Lista Positiva (valor), 3 = Lista Neutra (valor), 4 = Margem Valor Agregado (%)",
+            "enum": [ 0, 1, 2, 3, 4 ]
+          } 
         }
       }
     },
