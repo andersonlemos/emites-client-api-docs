@@ -138,6 +138,39 @@ If this scenario occurs, the response returned by the Emites-Client will contain
 }
 ```
 
+
+## Creating a NF-e
+
+To create a NF-e, send a message with the identifier `CREATE_NFE`. The same identifier will be returned in the response.
+
+Use as reference the [Emites Server](https://myfreecomm.github.io/emites-api-docs/#emiss-o-de-nf-e) document.
+
+The response's JSON payload will be similar to the one returned during the
+creation NFC-e operation.
+
+The response will contain the same fields that were sent in the request, and additionally the following exclusive fields:
+
+
+
+## NF-e cancellation
+
+To cancel an NF-e, send a message with the identifier `CANCEL_NFE`. The same identifier will be returned in the response.
+
+The JSON payload should follow the format:
+
+```
+{ "chave_acesso": "53180922769530000131651110000001281355486170", "motivo": "Desistencia do comprador" }
+```
+
+where:
+
+- `chave_acesso` is the NFC-e's access key (obtained in the creation response);
+- `reason` is the description of the reason for the cancellation (optional; if informed should be between 15 and 255 characters in size)
+
+The cancellation response's JSON payload will be similar to the one returned during the
+cancellation NFC-e operation.
+
+
 ## Useful links
 
 - [JSON schema](https://json-schema.org/): Documentation of vocabulary used for JSON schemas;
