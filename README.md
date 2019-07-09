@@ -144,7 +144,7 @@ Caso este cenário ocorra, a resposta devolvida pelo Emites-Client conterá no J
 
 Para criar uma NF-e (Nota Fiscal do Consumidor), enviar uma mensagem com o identificador `CREATE_NFE`. O mesmo identificador será devolvido na resposta.
 
-Utilizar como referência a documentação do Emites Server.
+Utilizar como referência a documentação do [Emites Server](https://myfreecomm.github.io/emites-api-docs/#emiss-o-de-nf-e).
 
 
 O payload JSON da resposta será similar àquele devolvido durante a criação de NFC-e.

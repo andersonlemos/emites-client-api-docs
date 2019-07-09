@@ -143,7 +143,7 @@ If this scenario occurs, the response returned by the Emites-Client will contain
 
 To create a NF-e, send a message with the identifier `CREATE_NFE`. The same identifier will be returned in the response.
 
-Use as reference the Emites Server document.
+Use as reference the [Emites Server](https://myfreecomm.github.io/emites-api-docs/#emiss-o-de-nf-e) document.
 
 The response's JSON payload will be similar to the one returned during the
 creation NFC-e operation.
