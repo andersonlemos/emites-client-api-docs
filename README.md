@@ -76,7 +76,7 @@ O trecho a seguir mostra um exemplo de rejeição por causada por erros de valid
   ...
   ...
   "erros": {
-    "forma_pagamento": ["tamanho deve estar entre 1 e 100"],
+    "forma_de_pagamento": ["tamanho deve estar entre 1 e 100"],
     "cliente.email": ["não é um endereço de e-mail válido"]
   }
 }
@@ -170,7 +170,7 @@ O payload JSON da resposta do cancelamento será similar àquele devolvido duran
 
 
 
-## Cálculo dos impostos 
+## Cálculo dos impostos
 
 Para calcular os impostos para uma NFC-e (Nota Fiscal Eletrônica do Consumidor), enviar uma mensagem com o identificador `CALCULATE`. O mesmo identificador será devolvido na resposta.
 

@@ -77,7 +77,7 @@ The following excerpt shows an example of rejection due to validation errors:
   ...
   ...
   "erros": {
-    "forma_pagamento": ["tamanho deve estar entre 1 e 100"],
+    "forma_de_pagamento": ["tamanho deve estar entre 1 e 100"],
     "cliente.email": ["não é um endereço de e-mail válido"]
   }
 }

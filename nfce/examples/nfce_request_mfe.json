@@ -20,7 +20,7 @@
   },
   "destino_operacao": 1,
   "finalidade_nfe": 1,
-  "forma_pagamento": [
+  "forma_de_pagamento": [
     {
       "tipo_de_pagamento": "03",
       "valor_do_pagamento": 200.00,
