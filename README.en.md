@@ -173,14 +173,15 @@ The response will contain the same fields that were sent in the request, and add
 ### Only available for NFE
 
 fields: 
-  engine_de_calculo
-  contingencia
+  - `engine_de_calculo`
+  - `contingencia`
+
 
 objects: 
-  nfe
-  dados_gerais
-  retencao_tributos
-  cobranca
+  - `nfe`
+  - `dados_gerais`
+  - `retencao_tributos`
+  - `cobranca`
 
 * The `dados_gerais` fields in NFE are in the root of NFCE with the same name
 

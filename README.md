@@ -173,14 +173,15 @@ A resposta de nota aprovada conterá os mesmos campos que foram enviados na requ
 ### Existem apenas para NFE
 
 fields: 
-  engine_de_calculo
-  contingencia
+  - `engine_de_calculo`
+  - `contingencia`
+
 
 objects: 
-  nfe
-  dados_gerais
-  retencao_tributos
-  cobranca
+  - `nfe`
+  - `dados_gerais`
+  - `retencao_tributos`
+  - `cobranca`
 
 * Os campos de dados_gerais na nfe estão no raiz do nfce com o mesmo nome
 
