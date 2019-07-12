@@ -145,6 +145,8 @@ To create a NF-e, send a message with the identifier `CREATE_NFE`. The same iden
 
 Use as reference the following documents:
 
+- [JSON request YAML schema](https://github.com/myfreecomm/emites-client-api-docs/blob/master/nfe/schema/create_nfe_request_schema.yaml);
+- [JSON response YAML schema](https://github.com/myfreecomm/emites-client-api-docs/blob/master/nfe/schema/create_nfe_response_schema.yaml);
 - [Sample JSON request](https://github.com/myfreecomm/emites-client-api-docs/blob/master/nfe/examples/nfe_request.json);
 - [Sample JSON response](https://github.com/myfreecomm/emites-client-api-docs/blob/master/nfe/examples/nfe_response.json);
 
@@ -164,9 +166,9 @@ The response will contain the same fields that were sent in the request, and add
 
  NFE |  NFCE  
 ---|----
- unidade_tributaria                     |  unidade_tributavel    
- quantidade_tributaria                  |  quantidade_tributavel
- "tributacao": {  "icms": {  "codigo_origem_produto": 2 }}  |  codigo_origem_produto
+ `unidade_tributaria`                     |  `unidade_tributavel`    
+ `quantidade_tributaria`                  |  `quantidade_tributavel`
+ `"tributacao": {  "icms": {  "codigo_origem_produto": 2 }}`  |  `codigo_origem_produto`
 
 
 
