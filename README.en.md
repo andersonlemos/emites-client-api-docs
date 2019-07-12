@@ -160,6 +160,40 @@ The response will contain the same fields that were sent in the request, and add
 - Issue response (field `resposta_emissao`, which contains the access key and protocol number);
 
 
+### Fields with different names
+
+-----------------------------------------------------------------------
+    NFE                                |  NFCE  
+---------------------------------------|-------------------------------
+unidade_tributaria                     |  unidade_tributavel    
+                     |
+quantidade_tributaria                  |  quantidade_tributavel
+                                       |
+"tributacao": {                        |  codigo_origem_produto
+          "icms": {                    |
+            "codigo_origem_produto": 2 |
+          }                            |
+        }                              |     
+-----------------------------------------------------------------------
+
+
+
+### Only available for NFE
+
+fields: 
+  engine_de_calculo
+  contingencia
+
+objects: 
+  nfe
+  dados_gerais
+  retencao_tributos
+  cobranca
+
+* The `dados_gerais` fields in NFE are in the root of NFCE with the same name
+
+
+
 ## Note issuing fields
 
 ## dados_gerais (XML: ide)
