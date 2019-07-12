@@ -341,729 +341,533 @@ root:
                 - 4 # domicilio          (home delivery)
                 - 5 # presencial externo (outside the trading house)
                 - 9 # outros             (other)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/////////////////// AQUI É NFCE QUE DEIXEI COMO EXEMPLO MAS DEPOIS SERÁ APAGADO
-
-
-
-
-
-
-
-
-root:
-  type: object
-  fields:
-    cliente:
-      type: object
-      required: false
-      description: costumer schema
-      fields:
-        cpf_cnpj:
-          <<: *t_document_id
-          required: true
-        regime_tributario_diferenciado:
-          type: enum[string]
-          required: false
-          description: costumer's differentiated tax regime
-          enum:
-            - LFEM
-            - LFDES
-            - ISENLF
-        email:
-          <<: *t_email
-          required: false
-          description: costumer's email
-        endereco:
-          <<: *t_endereco
-          required: false
-          description: costumer's address
-        indicador_inscricao_estadual:
-          type: enum[integer]
-          description: costumer's state register type
-          enum:
-            - 1 # contribuinte
-            - 2 # isento
-            - 9 # nao contribuinte
-        inscricao_estadual:
-          type: string
-          required: if indicador_inscricao_estadual == 1
-          description: costumer's state register (IE)
-          pattern: /^(ISENTO|[0-9]{2,14})$/
-          examples:
-            - ISENTO
-            - "16324302"
-        nome:
-          type: string
-          required: true
-          description: >
-            costumer's name
-            use "NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL" for
-            homologation
-          min_length: 2
-          max_length: 60
-          examples:
-            - NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL
-        pessoa_fisica_juridica:
-          type: enum[string]
-          required: true
-          description: person type
-          enum:
-            - person # natural person (CPF)
-            - company # legal person  (CNPJ)
-            - foreign #               (idEstrangeiro)
-    destino_operacao:
-      type: enum[integer]
-      required: true
-      description: destination of operation
-      enum:
-        - 1 # interno       (internal)
-        - 2 # interestadual (interstate)
-        - 3 # externo       (international)
-    finalidade_nfe:
-      type: enum[integer]
-      required: true
-      description: emission purpose
-      enum:
-        - 1 # normal
-        - 2 # complementar
-        - 3 # ajuste       (adjustment)
-        - 4 # devolução    (refund)
-    indicador_consumidor_final:
-      type: enum[integer]
-      required: true
-      description: Indica operação com consumidor final
-      enum:
-        - 0 # Não
-        - 1 # Sim
-    forma_de_pagamento:
-      type: array[object]
-      description: payment types
-      min_items: 1
-      max_items: 100
-      item_fields:
-        tipo_de_pagamento:
-          type: enum[string]
-          required: true
-          description: >
-            see https://myfreecomm.github.io/emites-api-docs/#forma_de_pagamento-xml-pag
-          enum:
-            - "01"
-            - "02"
-            - "03"
-            - "04"
-            - "05"
-            - "10"
-            - "11"
-            - "12"
-            - "13"
-            - "14"
-            - "15"
-            - "90"
-            - "99"
-        modalidade:
-          type: enum[integer]
-          required: false
-          default: 0
-          description: payment category
-          enum:
-            - 0 # imediato (at sight)
-            - 1 # a prazo  (forward)
-        valor_do_pagamento:
-          type: number
-          required: true
-          description: payment amount
-          examples:
-            - 2.00
-            - 3.5
-            - 100
-        cartao:
-          type: object
-          required: if tipo_de_pagamento in ("03", "04")
-          fields:
-            tipo_integracao:
+            finalidade_nfe:
               type: enum[integer]
               required: true
-              description: integrated payment process type
+              description: emission purpose
               enum:
-                - 1 # integrado     (integrated)
-                - 2 # nao integrado (non-integrated)
-            cpnj_credenciadora:
-              <<: *t_cnpj
-              required: if uf == CE
-              description: card acreditation authority's national registration
-            bandeira_operadora:
-              type: enum[string]
-              required: false
-              description: >
-                see https://myfreecomm.github.io/emites-api-docs/#cartao-xml-card
-              enum:
-                - "01" # VISA
-                - "02" # MASTERCARD
-                - "03" # AMERICAN EXPRESS
-                - "04" # SOROCRED
-                - "05" # DINERS CLUB
-                - "06" # ELO
-                - "07" # HIPERCARD
-                - "08" # AURA
-                - "09" # CABAL
-                - "99" # OUTROS (other)
-            numero_autorizacao_operacao:
-              type: string
-              required: true
-              description: transation authorization ID
-              max_length: 20
-              examples:
-                - "1234567890"
-            merchant_id:
+                - 1 # normal
+                - 2 # complementar
+                - 3 # ajuste       (adjustment)
+                - 4 # devolução    (refund)
+            csc:
               type: string
               required: false
-              description: identification Code of the Establishment to the Acquirers
-              max_length:
-                examples:
-                  - "123456"
-            tp_moeda:
+              description: csc identifier
+              pattern: /^([0-9]{6})$/
+            id_token:
               type: string
-              required: if uf == CE
-              description: transaction's currency code, using ISO-4217
-              max_length: 3
-              examples:
-                - "BRL"
-    indicador_presenca:
-      type: enum[integer]
-      required: true
-      description: costumer presence in the trading house
-      enum:
-        - 0 # nao aplicavel      (not relevant)
-        - 1 # presencial         (present)
-        - 2 # internet
-        - 3 # telemarketing
-        - 4 # domicilio          (home delivery)
-        - 5 # presencial externo (outside the trading house)
-        - 9 # outros             (other)
-    informacoes_adicionais:
-      type: object
-      required: false
-      description: additional informations (infAdic)
-      fields:
-        informacoes_contribuinte:
-          type: string
-          required: false
-          description: additional informations for costumer interest
-          max_length: 2000
-          examples:
-            - Empresa optante pelo Simples Nacional
-        informacoes_fisco:
-          type: string
-          required: false
-          description: additional informations for FISCO interest
-          examples:
-            - >
-              Documento Emitido por EPP optante pelo Simples Nacional.
-              Nao gera direito a credito Fiscal de ISS e IPI
-        observacoes_fisco:
-          type: array[object]
-          required: false
-          description: notes from FISCO
-          item_fields:
-            campo:
+              required: false
+              description: token
+              max_length: 36
+            just_contingencia:
               type: string
-              required: true
-              description: field ID
-              max_length: 20
-              examples:
-                - Lei
-            texto:
-              type: string
-              required: true
-              description: field content
-              max_length: 60
-    lista_autorizacao:
-      type: array[string]
-      required: false
-      max_items: 10
-      description: CPF/CNPJ authorized to get the XML
-      item_pattern: /^[0-9]{11,14}$/
-    natureza_operacao:
-      type: string
-      required: true
-      description: operation type
-      examples:
-        - venda
-        - compra
-        - transferencia
-        - devolucao
-        - importacao
-        - remessa (para fins de demonstracao)
-    codigo_natureza_operacao:
-      type: string
-      required: true
-      description: operation code
-      item_pattern: /^[0-9]{3}$/
-    produtos:
-      type: array[object]
-      required: true
-      description: target products
-      item_fields:
-        cest:
-          type: string
-          required: false
-          description: Código Especificador da Substituição Tributária
-          pattern: /^[0-9]{7}$/
-          examples:
-            - "1300402"
-        cfop:
-          type: string
-          required: false
-          description: Código Fiscal de Operações e Prestações
-          pattern: /^[0-9]{4}$/
-          examples:
-            - "5103"
-        codigo_ean:
-          type: string
-          required: true
-          description: product GTIN, EAN or barcode
-          pattern: /^(SEM GTIN|[0-9]{8}|[0-9]{12,14})$/
-          examples:
-            - SEM GTIN
-            - "01234567"
-            - "012345678905"
-            - "7891000315507"
-            - "00012345600012"
-        ean_unidade_trib:
-          type: string
-          required: false
-          description: taxable unit GTIN, EAN or barcode
-          pattern: /^(SEM GTIN|[0-9]{8}|[0-9]{12,14})$/
-          examples:
-            - SEM GTIN
-            - "01234567"
-            - "012345678905"
-            - "7891000315507"
-            - "00012345600012"
-        extipi:
-          type: string
-          required: false
-          description: >
-            TIPI exception code
-            (Tabela de Incidência do Imposto sobre Produtos Industrializados)
-          min_length: 2
-          max_length: 3
-          examples:
-            - "22"
-        ncm:
-          type: string
-          required: true
-          description: NCM code (Nomenclatura Comum do Mercosul)
-          pattern: /^(00|[0-9]{8})$/
-          examples:
-            - "00"
-            - "22086000"
-        codigo_produto:
-          type: string
-          required: true
-          description: product code
-          max_length: 60
-        descricao:
-          type: string
-          required: true
-          description: product or service description
-          max_length: 120
-          examples:
-            - NOTA FISCAL EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL
+              required: if is offiline contingencia 
+              description: justification
+              min_length: 15
+              max_length: 256
+            data_hora_contingencia:
+              type: date
+              required: if is offiline contingencia 
+              description: date and time of contigencia (aaaa-mm-ddThh:mm:ss-03:00)
+        forma_de_pagamento:
+              type: array[object]
+              description: payment types
+              min_items: 1
+              max_items: 100
+              item_fields:
+                tipo_de_pagamento:
+                  type: enum[string]
+                  required: true
+                  description: >
+                    see https://myfreecomm.github.io/emites-api-docs/#forma_de_pagamento-xml-pag
+                  enum:
+                    - "01" Money 
+                    - "02" Check
+                    - "03" Credit Card
+                    - "04" Debit Card
+                    - "05" Store Credit
+                    - "10" Food Stamp
+                    - "11" Meal Stamp
+                    - "12" Gift Card
+                    - "13" Gas Stamp
+                    - "14" Receivable
+                    - "15" Bank Slip
+                    - "90" No Payment
+                    - "99" Other
+                valor_do_pagamento:
+                  type: number
+                  required: true
+                  description: payment amount
+                  examples:
+                    - 2.00
+                    - 3.5
+                    - 100
+                cartao:
+                  type: object
+                  required: if tipo_de_pagamento in ("03", "04")
+                  fields:
+                    tipo_de_integracao:
+                      type: enum[integer]
+                      required: true
+                      description: integrated payment process type
+                      enum:
+                        - 1 # integrado     (integrated)
+                        - 2 # nao integrado (non-integrated)
+                    cpnj_credenciadora:
+                      <<: *t_cnpj
+                      required: false
+                      description: card acreditation authority's national registration
+                    bandeira_operadora:
+                      type: enum[string]
+                      required: false
+                      description: >
+                        see https://myfreecomm.github.io/emites-api-docs/#cartao-xml-card
+                      enum:
+                        - "01" # VISA
+                        - "02" # MASTERCARD
+                        - "03" # AMERICAN EXPRESS
+                        - "04" # SOROCRED
+                        - "05" # DINERS CLUB
+                        - "06" # ELO
+                        - "07" # HIPERCARD
+                        - "08" # AURA
+                        - "09" # CABAL
+                        - "99" # OUTROS (other)
+                    numero_autorizacao_operacao:
+                      type: string
+                      required: true
+                      description: transation authorization ID
+                      max_length: 20
+                      examples:
+                        - "1234567890"
         informacoes_adicionais:
-          type: string
-          required: false
-          description: additional informations
-          max_length: 120
-          examples:
-            - Produto devolvido por defeito de fabricacao
-        num_item_pedido:
-          type: integer
-          required: false
-          description: purchase order item
-          examples:
-            - 1
-            - 10
-            - 100
-        num_pedido:
-          type: string
-          required: false
-          description: purchase order number
-          max_length: 15
-          examples:
-            - "5100003910"
-        codigo_origem_produto:
-          type: enum[integer]
-          required: true
-          description: >
-            product origin
-            see https://myfreecomm.github.io/emites-api-docs/#tributa-o-xml-imposto
-          enum:
-            - 0
-            - 1
-            - 2
-            - 3
-            - 4
-            - 5
-            - 6
-            - 7
-            - 8
-        quantidade_comercial:
-          type: number
-          required: true
-          description: product trade amount
-          examples:
-            - 2.00
-            - 3.5
-            - 100
-        quantidade_tributavel:
-          type: number
-          required: true
-          description: product taxable amount
-          examples:
-            - 2.00
-            - 3.5
-            - 100
-        unidade_comercial:
-          type: string
-          required: true
-          description: product trade unit
-          max_length: 6
-          examples:
-            - UN
-        unidade_tributavel:
-          type: string
-          required: true
-          description: product taxable unit
-          max_length: 6
-          examples:
-            - UN
-        valor_desconto:
-          type: number
-          required: false
-          description: discount amount
-          examples:
-            - 2.00
-            - 3.5
-            - 100
-        valor_frete:
-          type: number
-          required: false
-          description: freight cost
-          examples:
-            - 2.00
-            - 3.5
-            - 100
-        outras_despesas:
-          type: number
-          required: false
-          description: other expenses
-          examples:
-            - 2.00
-            - 3.5
-            - 100
-        valor_seguro:
-          type: number
-          required: false
-          description: insurance cost
-          examples:
-            - 2.00
-            - 3.5
-            - 100
-        valor_total_produto:
-          type: number
-          required: true
-          description: product total cost
-          examples:
-            - 2.00
-            - 3.5
-            - 100
-        valor_unitario_comercial:
-          type: number
-          required: true
-          description: taxable unit cost
-          examples:
-            - 2.00
-            - 3.5
-            - 100
-        valor_unitario_tributario:
-          type: number
-          required: true
-          description: taxable unit cost
-          examples:
-            - 2.00
-            - 3.5
-            - 100
-        aplicacao:
-          type: enum[string]
-          required: true
-          description: product application
-          enum:
-            - I # industrializacao  (factoring)
-            - C # comercializacao   (trading)
-            - U # uso e consumo     (use)
-            - A # ativo imobiliario (fixed asset)
-        fabricacao:
-          type: enum[integer]
-          required: true
-          description: factoring location
-          enum:
-            - 0 # propria   (inhouse)
-            - 1 # terceiros (outsourced)
-        exncm:
-          type: string
-          required: false
-          description: NCM (Nomenclaturas Comuns do Mercosul) exception
-        modBC:
-          type: enum[integer]
-          required: false
-          default: 3
-          description: Modalidade de determinação da BC do ICMS
-          enum:
-            - 0 # Margem Valor Agregado (%)
-            - 1 # Pauta (valor)
-            - 2 # Preço Tabelado Máximo (valor)
-            - 3 # Valor da Operação
-        modBCST:
-          type: enum[integer]
-          required: false
-          default: 4
-          description: Modalidade de determinação da BC do ICMS ST
-          enum:
-            - 0 # Preço tabelado ou máximo  sugerido
-            - 1 # Lista Negativa (valor)
-            - 2 # Lista Positiva (valor)
-            - 3 # Lista Neutra (valor)
-            - 4 # Margem Valor Agregado (%)
-    tipo_impressao:
-      type: enum[integer]
-      required: false
-      default: 4
-      description: DANFE printing type
-      enum:
-        - 0 # nenhum          (none)
-        - 1 # normal retrato  (portrait)
-        - 2 # normal paisagem (landscape)
-        - 3 # simplificado    (simplified)
-        - 4 # nfce
-        - 5 # nfce mensagem eletronica
-    tipo_operacao:
-      type: enum[integer]
-      required: false
-      default: 1
-      description: operation type
-      enum:
-        - 0 # entrada (incoming / purchase)
-        - 1 # saida   (outgoing / sale)
-    transporte:
-      type: object
-      required: true
-      fields:
-        codigo_modalidade:
-          type: enum[integer]
-          required: false
-          default: 9
-          description: freight responsability
-          enum:
-            - 0 # emitente                 (seller)
-            - 1 # destinatario             (customer)
-            - 2 # terceiros                (outsourced)
-            - 3 # proprio do emitente      (by seller)
-            - 4 # proprio do destinatarion (by customer)
-            - 9 # sem frete                (no freight)
-        endereco_entrega:
-          <<: *t_endereco
-          required: false
-          description: delivery address
-        retencao_icms:
           type: object
           required: false
-          description: withholding ICMS
+          description: additional informations (infAdic)
           fields:
-            aliquota_retencao:
-              type: number
-              required: true
-              description: retained aliquot
+            informacoes_contribuinte:
+              type: string
+              required: false
+              description: additional informations for costumer interest
+              max_length: 2000
               examples:
-                - 2.00
-                - 3.5
-                - 100
-            cfop:
+                - Empresa optante pelo Simples Nacional
+            informacoes_fisco:
+              type: string
+              required: false
+              description: additional informations for FISCO interest
+              examples:
+                - >
+                  Documento Emitido por EPP optante pelo Simples Nacional.
+                  Nao gera direito a credito Fiscal de ISS e IPI
+        lista_autorizacao:
+          type: array[string]
+          required: false
+          max_items: 10
+          description: CPF/CNPJ authorized to get the XML
+          item_pattern: /^[0-9]{11,14}$/
+        produtos:
+          type: array[object]
+          required: true
+          description: target products
+          item_fields:
+            codigo_produto:
               type: string
               required: true
+              description: product code
+              max_length: 60
+            codigo_ean:
+              type: string
+              required: true
+              description: product GTIN, EAN or barcode
+              pattern: /^(SEM GTIN|[0-9]{8}|[0-9]{12,14})$/
+              examples:
+                - SEM GTIN
+                - "01234567"
+                - "012345678905"
+                - "7891000315507"
+                - "00012345600012"
+            descricao:
+              type: string
+              required: true
+              description: product or service description
+              max_length: 120
+              examples:
+                - NOTA FISCAL EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL
+            ncm:
+              type: string
+              required: true
+              description: NCM code (Nomenclatura Comum do Mercosul)
+              pattern: /^(00|[0-9]{8})$/
+              examples:
+                - "00"
+                - "22086000"
+            cest:
+              type: string
+              required: false
+              description: Código Especificador da Substituição Tributária
+              pattern: /^[0-9]{7}$/
+              examples:
+                - "1300402"
+            extipi:
+              type: string
+              required: false
+              description: >
+                TIPI exception code
+                (Tabela de Incidência do Imposto sobre Produtos Industrializados)
+              min_length: 2
+              max_length: 3
+              examples:
+                - "22"
+            cfop:
+              type: string
+              required: false
               description: Código Fiscal de Operações e Prestações
               pattern: /^[0-9]{4}$/
               examples:
                 - "5103"
-            codigo_municipal:
-              type: integer
+            unidade_comercial:
+              type: string
               required: true
-              description: city registration (IM)
+              description: product trade unit
+              max_length: 6
               examples:
-                - 3304557
-            uf:
-              <<: *t_uf
-            valor_base_calculo:
+                - UN
+            quantidade_comercial:
               type: number
               required: true
-              description: basis of tax calculation
+              description: product trade amount
               examples:
                 - 2.00
                 - 3.5
                 - 100
-            valor_retido:
+            valor_unitario_comercial:
               type: number
               required: true
-              description: retained amount
+              description: taxable unit cost
               examples:
                 - 2.00
                 - 3.5
                 - 100
-            valor_servico:
+            ean_unidade_trib:
+              type: string
+              required: false
+              description: taxable unit GTIN, EAN or barcode
+              pattern: /^(SEM GTIN|[0-9]{8}|[0-9]{12,14})$/
+              examples:
+                - SEM GTIN
+                - "01234567"
+                - "012345678905"
+                - "7891000315507"
+                - "00012345600012"
+            unidade_tributaria:
+              type: string
+              required: true
+              description: product taxable unit
+              max_length: 6
+              examples:
+                - UN
+            quantidade_tributaria:
               type: number
               required: true
-              description: service cost
-        transportadora:
-          type: object
-          required: false
-          fields:
-            cpf_cnpj:
-              <<: *t_document_id
-              required: false
-            endereco_completo:
-              type: string
-              required: false
-              description: shipping company address description
-              max_length: 60
-              examples:
-                - Rua do Economista, nº 256
-            inscricao_estadual:
-              type: string
-              required: false
-              description: shipping company state register (IE)
-              pattern: /^(ISENTO|[0-9]{2,14})$/
-              examples:
-                - ISENTO
-                - "110042490114"
-            nome_municipio:
-              type: string
-              required: false
-              description: shipping company base city name
-              max_length: 60
-            razao_social:
-              type: string
-              required: false
-              description: company name
-              min_length: 2
-              max_length: 60
-            uf:
-              <<: *t_uf
-              required: false
-        valor_total_frete:
-          type: number
-          required: false
-          description: freight total cost
-          examples:
-            - 2.00
-            - 3.5
-            - 100
-        veiculo:
-          type: object
-          required: false
-          description: shipping vehicle
-          fields:
-            placa:
-              type: string
-              required: true
-              description: vehicle plate
-              pattern: /^([A-Z]{2,3}[0-9]{4}|[A-Z]{3,4}[0-9]{3}|[A-Z0-9]{7}|[A-Z]{3}[0-9][A-Z][0-9]{2})$/
-              examples:
-                - EEE3344
-                - RIO1I23
-            rntc:
-              type: string
-              required: false
-              description: Número do Registro Nacional de Transporte de Carga
-              max_length: 20
-              examples:
-                - 230483JKHE
-            uf:
-              <<: *t_uf
-              required: true
-              description: shipping vehicle registration state
-        volume_transportado:
-          type: array[object]
-          description: shipping volume
-          min_items: 0
-          max_items: 500
-          item_fields:
-            especie:
-              type: string
-              required: false
-              description: shipped volume kind description
-              max_length: 60
-              examples:
-                - caixa
-            marca:
-              type: string
-              required: false
-              description: shipped volumes brand
-              max_length: 60
-              examples:
-                - FlexBox
-            numeracao_volumes:
-              type: string
-              required: false
-              description: shipped volumes numeration
-              max_length: 60
-              examples:
-                - "333"
-            peso_bruto:
-              type: number
-              required: false
-              description: gross weight in Kg
+              description: product taxable amount
               examples:
                 - 2.00
                 - 3.5
                 - 100
-            peso_liquido:
+            valor_unitario_tributario:
               type: number
-              required: false
-              description: net weight in Kg
+              required: true
+              description: taxable unit cost
               examples:
                 - 2.00
                 - 3.5
                 - 100
-            quantidade_volumes:
+            valor_frete:
+              type: number
+              required: false
+              description: freight cost
+              examples:
+                - 2.00
+                - 3.5
+                - 100
+            valor_seguro:
+              type: number
+              required: false
+              description: insurance cost
+              examples:
+                - 2.00
+                - 3.5
+                - 100
+            valor_desconto:
+              type: number
+              required: false
+              description: discount amount
+              examples:
+                - 2.00
+                - 3.5
+                - 100
+            valor_total_produto:
+              type: number
+              required: true
+              description: product total cost
+              examples:
+                - 2.00
+                - 3.5
+                - 100
+            outras_despesas:
+              type: number
+              required: false
+              description: other expenses
+              examples:
+                - 2.00
+                - 3.5
+                - 100
+            num_pedido:
+              type: string
+              required: false
+              description: purchase order number
+              max_length: 15
+              examples:
+                - "5100003910"
+            num_item_pedido:
               type: integer
               required: false
-              default: 0
-              description: volumes amount
+              description: purchase order item
               examples:
-                - 2
+                - 1
                 - 10
                 - 100
+          num_controle_fci:
+              type: string
+              required: false
+              description: FCI order number
+              max_length: 36
+          ind_valor_total:
+              type: enum[integer]
+              required: true
+              description: informs if the value of the products make up the total value of the note
+              enum:
+                - 1 # value of the item does not make up the total value of the NF-e
+                - 2 # value of the item make up the total value of the NF-e
+          producao_escala:
+              type: enum[string]
+              required: false
+              enum:
+                - "S" # produced in relevant scale
+                - "N" # produced in scale NOT relevant
+          cnpj_fabricante_mercadoria:
+              type: 
+              <<: *t_cnpj
+              required: false
+          codigo_beneficio_fiscal:
+              type: string
+              required: false
+              description: code of fiscal benefit used by UF, applied to the item
+              max_length: 10
+          aplicacao: product application
+              type: enum[string]
+              required: false
+              enum:
+                - "I" # industrialization
+                - "C" # marketing
+                - "U" # usage and consumption
+                - "A" # property, plant and equipment
+          fabricacao:
+              type: enum[integer]
+              required: false
+              enum:
+                - 0 # own
+                - 1 # third parties
+        retencao_tributos:
+          type: object
+          description: retention taxes
+          required: false
+          fields:
+            valor_retido_pis:
+              type: number
+              required: false
+              max_length: 13
+            valor_retido_cofins:
+              type: number
+              required: false
+              max_length: 13
+            valor_retido_csll:
+              type: number
+              required: false
+              max_length: 13
+            valor_base_calculo_irrf:
+              type: number
+              required: false
+              max_length: 13
+            valor_irrf:
+              type: number
+              required: false
+              max_length: 13
+            base_calculo_retencao_previdencia:
+              type: number
+              required: false
+              max_length: 13
+            valor_retencao_previdencia:
+              type: number
+              required: false
+              max_length: 13  
+        transporte:
+          type: object
+          required: true
+          fields:
+            codigo_modalidade:
+              type: enum[integer]
+              required: true
+              description: freight responsability
+              enum:
+                - 0 # emitente                 (seller)
+                - 1 # destinatario             (customer)
+                - 2 # terceiros                (outsourced)
+                - 9 # sem frete                (no freight)
+            valor_total_frete:
+              type: number
+              required: true
+              description: freight total value 
+              max_length: 13  
+            transportadora:
+              type: object
+              required: false
+              fields:
+                razao_social:
+                  type: string
+                  required: false
+                  description: company name
+                  min_length: 2
+                  max_length: 60
+                cpf_cnpj:
+                  <<: *t_document_id
+                  required: false
+                inscricao_estadual:
+                  type: string
+                  required: false
+                  description: shipping company state register (IE)
+                  pattern: /^(ISENTO|[0-9]{2,14})$/
+                  examples:
+                    - ISENTO
+                    - "110042490114"
+                endereco_completo:
+                  type: string
+                  required: false
+                  description: shipping company address description
+                  max_length: 60
+                  examples:
+                    - Rua do Economista, nº 256
+                uf:
+                  <<: *t_uf
+                  required: false          
+                municipio:
+                  type: string
+                  required: false
+                  description: shipping company base city name
+                  max_length: 60
+            retencao_icms:
+              type: object
+              required: false
+              description: withholding ICMS
+              fields:
+                cfop:
+                  type: string
+                  required: false
+                  description: Código Fiscal de Operações e Prestações
+                  pattern: /^[0-9]{4}$/
+                  examples:
+                    - "5103"    
+                valor_base_calculo:
+                  type: number
+                  required: true
+                  description: basis of tax calculation
+                  max_length: 13
+                  examples:
+                    - 2.00
+                    - 3.5
+                    - 100      
+                aliquota_retencao:
+                  type: number
+                  required: true
+                  description: retained aliquot
+                  max_length: 3
+                  examples:
+                    - 2.00
+                    - 3.5
+                    - 100
+                valor_retido:
+                  type: number
+                  required: true
+                  description: retained amount
+                  max_length: 13
+                  examples:
+                    - 2.00
+                    - 3.5
+                    - 100      
+                uf:
+                  <<: *t_uf    
+                codigo_municipio:
+                  type: integer
+                  required: true
+                  description: city registration (IM)
+                  examples:
+                    - 3304557    
+            veiculo:
+              type: object
+              required: false
+              description: shipping vehicle
+              fields:
+                placa:
+                  type: string
+                  required: true
+                  description: vehicle plate
+                  pattern: /^([A-Z]{2,3}[0-9]{4}|[A-Z]{3,4}[0-9]{3}|[A-Z0-9]{7}|[A-Z]{3}[0-9][A-Z][0-9]{2})$/
+                  examples:
+                    - EEE3344
+                    - RIO1I23
+                uf:
+                  <<: *t_uf
+                  required: true
+                  description: shipping vehicle registration state
+                rntc:
+                  type: string
+                  required: false
+                  description: Número do Registro Nacional de Transporte de Carga
+                  max_length: 20
+                  examples:
+                    - 230483JKHE
+            volume_transportado:
+              type: object
+              required: false
+              fields:
+                quantidade_volumes:
+                  type: number
+                  required: false
+                  max_length: 15  
+                especie:
+                  type: string
+                  required: false
+                  max_length: 60
+                marca:
+                  type: string
+                  required: false
+                  max_length: 60
+                numeracao_volumes:
+                  type: string
+                  required: false
+                  max_length: 60
+                peso_liquido:
+                  type: number
+                  required: false
+                  pattern: /^[0-9]{1,12}(?:\.[0-9]{1,3})?$/
+                peso_bruto:
+                  type: number
+                  required: false
+                  pattern: /^[0-9]{1,12}(?:\.[0-9]{1,3})?$/
+            lacres:
+              type: array[string]
+              required: false
+              max_items: 10
+              max_length: 60 
