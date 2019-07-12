@@ -1,0 +1,825 @@
+types:
+  access_key: &t_access_key
+    type: string
+    description: NF-e access key
+    pattern: /^[0-9]{44}/
+  datetime: &t_datetime
+    type: string
+    patter": ^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$
+  document_id: &t_document_id
+    type: string
+    description: document ID (CPF, CPNJ or idEstrangeiro)
+    pattern: /^([0-9]{11,14})|([0-9A-Z]{5,20})$/
+  cnpj: &t_cnpj
+    type: string
+    description: legal person national registration
+    pattern: /^[0-9]{14}$/
+  uf: &t_uf
+    type: string
+    description: federal unit, EX for international addresses
+    pattern: /^[A-Z]{2}/
+  email: &t_email
+    type: string
+    pattern: /^[^@]+@[^@]+\.[^@]+$/
+    max_length: 60
+  url: &t_url
+    type: string
+    pattern: /^[a-z]+://.+/.*$/
+  situacao_tributaria: &t_situacao_tributaria
+    type: enum[string]
+    description: see http://sped.rfb.gov.br/arquivo/show/1630
+    pattern: /^[0-9]{2}$/
+  endereco: &t_endereco
+    type: object
+    fields:
+      logradouro:
+        type: string
+        description: street address
+        min_length: 2
+        max_length: 60
+      numero:
+        type: string
+        description: street number
+        min_length: 1
+        max_length: 60
+      complemento:
+        type: string
+        description: additional address data
+        max_length: 60
+      bairro:
+        type: string
+        description: district
+        max_length: 60
+      codigo_municipal:
+        type: integer
+        description: city register (IM)
+      nome_municipio:
+        type: string
+        description: city name
+        min_length: 2
+        max_length: 60
+      cep:
+        type: string
+        description: zip code
+        pattern: /^[0-9]{8}$/
+      uf:
+        <<: *t_uf
+      codigo_pais:
+        type: intenger
+        description: country code from BACEN table
+      nome_pais:
+        type: string
+        description: country name
+        max_length: 60
+      telefone:
+        type: string
+        description: phone number
+        pattern: /^[0-9]{6,14}$/
+      cpf_cnpj:
+        <<: *t_document_id
+
+#-------------------------------------------------------------------------------
+# Start here
+#
+root:
+  type: object
+  fields:
+    client:
+      type: object
+      description: costumer schema
+      fields:
+        cpf_cnpj:
+          <<: *t_document_id
+        regime_tributario_diferenciado:
+          type: enum[string]
+          description: costumer's differentiated tax regime
+          enum:
+            - LFEM
+            - LFDES
+            - ISENLF
+        email:
+          <<: *t_email
+          description: costumer's email
+        endereco:
+          <<: *t_endereco
+          description: costumer's address
+        indicador_inscricao_estadual:
+          type: enum[integer]
+          description: costumer's state register type
+          enum:
+            - 1 # contribuinte
+            - 2 # isento
+            - 9 # nao contribuinte
+        inscricao_estadual:
+          type: string
+          description: costumer's state register (IE)
+          pattern: /^(ISENTO|[0-9]{2,14})$/
+        nome:
+          type: string
+          description: >
+            costumer's name
+            use "NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL" for
+            homologation
+          min_length: 2
+          max_length: 60
+        pessoa_fisica_juridica:
+          type: enum[string]
+          description: person type
+          enum:
+            - person # natural person (CPF)
+            - company # legal person  (CNPJ)
+            - foreign #               (idEstrangeiro)
+    destino_operacao:
+      type: enum[integer]
+      description: destination of operation
+      enum:
+        - 1 # interno       (internal)
+        - 2 # interestadual (interstate)
+        - 3 # externo       (international)
+    finalidade_nfe:
+      type: enum[integer]
+      description: emission purpose
+      enum:
+        - 1 # normal
+        - 2 # complementar
+        - 3 # ajuste       (adjustment)
+        - 4 # devolução    (refund)
+    indicador_consumidor_final:
+      type: enum[integer]
+      required: true
+      description: Indica operação com consumidor final
+      enum:
+        - 0 # Não
+        - 1 # Sim
+    forma_de_pagamento:
+      type: array[object]
+      description: payment types
+      min_items: 1
+      max_items: 100
+      item_fields:
+        tipo_de_pagamento:
+          type: enum[string]
+          description: >
+            see https://myfreecomm.github.io/emites-api-docs/#forma_de_pagamento-xml-pag
+          enum:
+            - "01"
+            - "02"
+            - "03"
+            - "04"
+            - "05"
+            - "10"
+            - "11"
+            - "12"
+            - "13"
+            - "14"
+            - "15"
+            - "90"
+            - "99"
+        modalidade:
+          type: enum[integer]
+          description: payment category
+          enum:
+            - 0 # imediato (at sight)
+            - 1 # a prazo  (forward)
+        valor_do_pagamento:
+          type: number
+          description: payment amount
+        cartao:
+          type: object
+          fields:
+            tipo_integracao:
+              type: enum[integer]
+              description: integrated payment process type
+              enum:
+                - 1 # integrado     (integrated)
+                - 2 # nao integrado (non-integrated)
+            cpnj_credenciadora:
+              <<: *t_cnpj
+              description: card acreditation authority's national registration
+            bandeira_operadora:
+              type: enum[string]
+              description: >
+                see https://myfreecomm.github.io/emites-api-docs/#cartao-xml-card
+              enum:
+                - "01" # VISA
+                - "02" # MASTERCARD
+                - "03" # AMERICAN EXPRESS
+                - "04" # SOROCRED
+                - "05" # DINERS CLUB
+                - "06" # ELO
+                - "07" # HIPERCARD
+                - "08" # AURA
+                - "09" # CABAL
+                - "99" # OUTROS (other)
+            numero_autorizacao_operacao:
+              type: string
+              description: transation authorization ID
+              max_length: 20
+    indicador_presenca:
+      type: enum[integer]
+      description: costumer presence in the trading house
+      enum:
+        - 0 # nao aplicavel      (not relevant)
+        - 1 # presencial         (present)
+        - 2 # internet
+        - 3 # telemarketing
+        - 4 # domicilio          (home delivery)
+        - 5 # presencial externo (outside the trading house)
+        - 9 # outros             (other)
+    informacoes_adicionais:
+      type: object
+      description: additional informations (infAdic)
+      fields:
+        informacoes_contribuinte:
+          type: string
+          description: additional informations for costumer interest
+          max_length: 2000
+        informacoes_fisco:
+          type: string
+          description: additional informations for FISCO interest
+        observacoes_fisco:
+          type: array[object]
+          description: notes from FISCO
+          item_fields:
+            campo:
+              type: string
+              description: field ID
+              max_length: 20
+            texto:
+              type: string
+              description: field content
+              max_length: 60
+    lista_autorizacao:
+      type: array[string]
+      max_items: 10
+      description: CPF/CNPJ authorized to get the XML
+      item_pattern: /^[0-9]{11,14}$/
+    natureza_operacao:
+      type: string
+      description: operation type
+    produtos:
+      type: array[object]
+      description: target products
+      item_fields:
+        cest:
+          type: string
+          description: Código Especificador da Substituição Tributária
+          pattern: /^[0-9]{7}$/
+        cfop:
+          type: string
+          description: Código Fiscal de Operações e Prestações
+          pattern: /^[0-9]{4}$/
+        codigo_ean:
+          type: string
+          description: product GTIN, EAN or barcode
+          pattern: /^(SEM GTIN|[0-9]{8}|[0-9]{12,14})$/
+        ean_unidade_trib:
+          type: string
+          description: taxable unit GTIN, EAN or barcode
+          pattern: /^(SEM GTIN|[0-9]{8}|[0-9]{12,14})$/
+        extipi:
+          type: string
+          description: >
+            TIPI exception code
+            (Tabela de Incidência do Imposto sobre Produtos Industrializados)
+          min_length: 2
+          max_length: 3
+        ncm:
+          type: string
+          description: NCM code (Nomenclatura Comum do Mercosul)
+          pattern: /^(00|[0-9]{8})$/
+        codigo_produto:
+          type: string
+          description: product code
+          max_length: 60
+        descricao:
+          type: string
+          description: product or service description
+          max_length: 120
+        informacoes_adicionais:
+          type: string
+          description: additional informations
+          max_length: 120
+        num_item_pedido:
+          type: integer
+          description: purchase order item
+        num_pedido:
+          type: string
+          description: purchase order number
+          max_length: 15
+        codigo_origem_produto:
+          type: enum[integer]
+          description: >
+            product origin
+            see https://myfreecomm.github.io/emites-api-docs/#tributa-o-xml-imposto
+          enum:
+            - 0
+            - 1
+            - 2
+            - 3
+            - 4
+            - 5
+            - 6
+            - 7
+            - 8
+        quantidade_comercial:
+          type: number
+          description: product trade amount
+        quantidade_tributavel:
+          type: number
+          description: product taxable amount
+        unidade_comercial:
+          type: string
+          description: product trade unit
+          max_length: 6
+        unidade_tributavel:
+          type: string
+          description: product taxable unit
+          max_length: 6
+        valor_desconto:
+          type: number
+          description: discount amount
+        valor_frete:
+          type: number
+          description: freight cost
+        outras_despesas:
+          type: number
+          description: other expenses
+        valor_seguro:
+          type: number
+          description: insurance cost
+        valor_total_produto:
+          type: number
+          description: product total cost
+        valor_unitario_tributario:
+          type: number
+          description: taxable unit cost
+        aplicacao:
+          type: enum[string]
+          description: product application
+          enum:
+            - I # industrializacao  (factoring)
+            - C # comercializacao   (trading)
+            - U # uso e consumo     (use)
+            - A # ativo imobiliario (fixed asset)
+        fabricacao:
+          type: enum[integer]
+          description: factoring location
+          enum:
+            - 0 # propria   (inhouse)
+            - 1 # terceiros (outsourced)
+        exncm:
+          type: string
+          description: NCM (Nomenclaturas Comuns do Mercosul) exception
+        tributacao:
+          type: object
+          description: NFC-e taxes
+          fields:
+            cofins:
+              type: object
+              fields:
+                aliquota_cofins:
+                  type: number
+                  description: percentual COFINS aliquot
+                aliquota_cofins_st:
+                  type: number
+                  description: percentual COFINS tax substitution aliquot
+                aliquota_cofins_reais:
+                  type: number
+                  description: amount COFINS aliquot
+                aliquota_cofins_reais_st:
+                  type: number
+                  description: amount COFINS tax substitution aliquot
+                quantidade_vendida:
+                  type: number
+                  description: selled amount
+                quantidade_vendida_st:
+                  type: number
+                  description: tax substitution selled amount
+                situacao_tributaria:
+                  <<: *t_situacao_tributaria
+                valor_base_calculo:
+                  type: number
+                  description: basis of tax calculation
+                valor_base_calculo_st:
+                  type: number
+                  description: tax substitution basis of tax calculation
+                valor_cofins:
+                  type: number
+                  description: COFINS amount
+                valor_cofins_st:
+                  type: number
+                  description: tax substitution COFINS amount
+              icms:
+                type: object
+                fields:
+                  aliquota_icms:
+                    type: number
+                    description: ICMS aliquot
+                  perc_reducao_base_calculo:
+                    type: number
+                    description: percentual redution on basis of tax calculation
+                  perc_reducao_base_calculo_st:
+                    type: number
+                    description: >
+                      percentual redution on
+                      tax substitution basis of tax calculation
+                  aliquota_consumidor_final:
+                    type: number
+                    description: percentual aliquot by final costumer
+                  perc_diferimento:
+                    type: number
+                    description: deferral percentual
+                  aliquota_fcp:
+                    type: number
+                    description: >
+                      aliquot regarding to the FCP
+                      (Fund to Tackle Poverty)
+                  perc_fcp_interestadual:
+                    type: number
+                    description: aliquot regarding to FCP
+                  aliquota_fcp_st:
+                    type: number
+                    description: >
+                      tax substitution aliquot regarding to FCP in the state
+                      in the destination state
+                  aliquota_fcp_st_retido:
+                    type: number
+                    description: >
+                      tax substitution aliquot regarding to FCP in the state
+                      retained in the emission state
+                  aliquota_interestadual:
+                    type: number
+                    description: interstate aliquot
+                  aliquota_interna_interestadual:
+                    type: number
+                    description: interstate aliquot
+                  perc_mva_icms_st:
+                    type: number
+                    description: >
+                      ICMS additional amount rate (tax substitution)
+                  perc_provisorio_interestadual:
+                    type: number
+                    description: interstate provisional percentual aliquot
+                  aliquota_icms_simples_nacional:
+                    type: number
+                    description: Simples Nacional ICMS aliquot
+                  aliquota_icms_st:
+                    type: number
+                    description: tax substitution ICMS aliquot
+                  credito_icms_simples_nacional:
+                    type: number
+                    description: >
+                      ICMS credit amount under Simples Nacional terms
+                      art. 23 LC 123
+                  codigo_origem_produto:
+                    type: enum[integer]
+                    description: >
+                      see https://myfreecomm.github.io/emites-api-docs/#tributa-o-xml-imposto
+                  modalidade_base_calculo:
+                    type: enum[integer]
+                    description: >
+                      see https://myfreecomm.github.io/emites-api-docs/#tributa-o-xml-imposto
+                  modalidade_base_calculo_st:
+                    type: enum[integer]
+                    description: >
+                      see https://myfreecomm.github.io/emites-api-docs/#tributa-o-xml-imposto
+                  motivo_desoneracao:
+                    type: enum[integer]
+                    description:
+                      see https://myfreecomm.github.io/emites-api-docs/#tributa-o-xml-imposto
+                  situacao_simples_nacional:
+                    type: string
+                    description: Simples Nacional operation code
+                  situacao_tributaria:
+                    <<: *t_situacao_tributaria
+                  valor_base_calculo:
+                    type: number
+                    description: basis of tax calculation
+                  valor_base_calculo_st:
+                    type: number
+                    description: tax substitution basis of tax calculation
+                  valor_base_calculo_fcp:
+                    type: number
+                    description: basis of tax calculation (FCP)
+                  valor_base_calculo_fcp_st:
+                    type: number
+                    description: tax substitution basis of tax calculation (FCP)
+                  valor_base_calculo_fcp_st_retido:
+                    type: number
+                    description: tax substitution basis of tax calculation (FCP)
+                  valor_base_calculo_uf_dest:
+                    type: number
+                    description: basis of tax calculation in the destination state
+                  valor_fcp:
+                    type: number
+                    description: FCP (Fund to Tackle Poverty) amount
+                  valor_fcp_interestadual:
+                    type: number
+                    description: FCP amount in the destination state
+                  valor_fcp_st:
+                    type: number
+                    description: tax substitution FCP amount
+                  valor_fcp_st_retido:
+                    type: number
+                    description: tax substitution FCP retained amount
+                  valor_icms:
+                    type: number
+                    description: ICMS amount
+                  valor_icms_st:
+                    type: number
+                    description: tax substitution ICMS amount
+                  valor_icmsst_retido:
+                    type: number
+                    description: tax substitution ICMS retained amount
+                  valor_icms_desonerado:
+                    type: number
+                    description: ICMS removal amount
+                  valor_icms_diferido:
+                    type: number
+                    description: ICMS deferred amount
+                  valor_icms_operacao:
+                    type: number
+                    description: ICMS amount (disregarding deferment)
+                  valor_uf_destinatario_interestadual:
+                    type: number
+                    description: destination state ICMS amount
+                  valor_uf_remetente:
+                    type: number
+                    description: originating state ICMS amount
+                  valor_uf_remetente_interestadual:
+                    type: number
+                    description: originating state ICMS interstate amount
+              importacao:
+                type: object
+                fields:
+                  valor_base_calculo:
+                    type: number
+                    description: basis of tax calculation
+                  valor_desp_aduaneiras:
+                    type: number
+                    description: custom expense amount
+                  valor_ii:
+                    type: number
+                    description: II (import tax) amount
+                  valor_iof:
+                    type: number
+                    description: IOF amount
+              ipi:
+                type: object
+                fields:
+                  aliquota_ipi:
+                    type: number
+                    description: percentual IPI aliquot
+                  cnpj_produtor:
+                    <<: *t_cnpj
+                    description: facturer document ID
+                  codigo_enquadramento:
+                    type: integer
+                    description: IPI legal entitlement code
+                  codigo_selo_controle:
+                    type: integer
+                    description: legal seal code
+                  quantidade_selo_controle:
+                    type: integer
+                    description: legal seal amount
+                  situacao_tributaria:
+                    <<: *t_situacao_tributaria
+                  valor_base_calculo:
+                    type: number
+                    description: basis of tax calculation
+                  valor_ipi:
+                    type: number
+                    description: IPI amount
+                ipi_devolvido:
+                  type: object
+                  fields:
+                    perc_devolvido:
+                      type: number
+                      description: returned IPI percentual aliquot
+                    valor_ipi_devolvido:
+                      type: number
+                      description: returned IPI amount
+                pis:
+                  type: object
+                  fields:
+                    aliquota_pis:
+                      type: number
+                      description: PIS percentual aliquot
+                    aliquota_pis_reais:
+                      type: number
+                      description: PIS amount
+                    aliquota_pis_reais_st:
+                      type: number
+                      description: tax substitution PIS amount
+                    aliquota_st:
+                      type: number
+                      description: tax substitution PIS percentual aliquot
+                    situacao_tributaria:
+                      <<: *t_situacao_tributaria
+                    quantidade_vendida:
+                      type: number
+                      description: selled amount
+                    quantidade_vendida_st:
+                      type: number
+                      description: tax substitution selled amount
+                    valor_base_calculo:
+                      type: number
+                      description: basis of tax calculation
+                    valor_base_calculo_st:
+                      type: number
+                      description: tax substitution basis of tax calculation
+                    valor_pis:
+                      type: number
+                      description: PIS amount
+                    valor_pis_st:
+                      type: number
+                      description: tax substitution PIS amount
+                valor_aproximado_total:
+                  type: number
+                  description: estimated total tax amount
+    tipo_impressao:
+      type: enum[integer]
+      description: DANFE printing type
+      enum:
+        - 0 # nenhum          (none)
+        - 1 # normal retrato  (portrait)
+        - 2 # normal paisagem (landscape)
+        - 3 # simplificado    (simplified)
+        - 4 # nfce
+        - 5 # nfce mensagem eletronica
+    tipo_operacao:
+      type: enum[integer]
+      description: operation type
+      enum:
+        - 0 # entrada (incoming / purchase)
+        - 1 # saida   (outgoing / sale)
+    transporte:
+      type: object
+      fields:
+        codigo_modalidade:
+          type: enum[integer]
+          description: freight responsability
+          enum:
+            - 0 # emitente                (seller)
+            - 1 # destinatario            (customer)
+            - 2 # terceiros               (outsourced)
+            - 3 # proprio do emitente     (by seller)
+            - 4 # proprio do destinatario (by customer)
+            - 9 # sem frete               (no freight)
+        endereco_entrega:
+          <<: *t_endereco
+          description: delivery address
+        retencao_icms:
+          type: object
+          description: withholding ICMS
+          fields:
+            aliquota_retencao:
+              type: number
+              description: retained aliquot
+            cfop:
+              type: string
+              description: Código Fiscal de Operações e Prestações
+              pattern: /^[0-9]{4}$/
+            codigo_municipal:
+              type: integer
+              description: city registration (IM)
+            uf:
+              <<: *t_uf
+            valor_base_calculo:
+              type: number
+              description: basis of tax calculation
+            valor_retido:
+              type: number
+              description: retained amount
+            valor_servico:
+              type: number
+              description: service cost
+        transportadora:
+          type: object
+          fields:
+            cpf_cnpj:
+              << *t_document_id
+            endereco_completo:
+              type: string
+              description: shipping company address description
+              max_length: 60
+            inscricao_estadual:
+              type: string
+              description: shipping company state register (IE)
+              pattern: /^(ISENTO|[0-9]{2,14})$/
+            nome_municipio:
+              type: string
+              description: shipping company base city name
+              max_length: 60
+            razao_social:
+              type: string
+              description: company name
+              min_length: 2
+              max_length: 60
+            uf:
+              <<: *t_uf
+        valor_total_frete:
+          type: number
+          description: freight total cost
+        veiculo:
+          type: object
+          description: shipping vehicle
+          fields:
+            placa:
+              type: string
+              description: vehicle plate
+              pattern: /^([A-Z]{2,3}[0-9]{4}|[A-Z]{3,4}[0-9]{3}|[A-Z0-9]{7}|[A-Z]{3}[0-9][A-Z][0-9]{2})$/
+            rntc:
+              type: string
+              description: Número do Registro Nacional de Transporte de Carga
+              max_length: 20
+            uf:
+              <<: *t_uf
+              description: shipping vehicle registration state
+        volume_transportado:
+          type: array[object]
+          description: shipping volume
+          min_items: 0
+          max_items: 500
+          item_fields:
+            especie:
+              type: string
+              description: shipped volume kind description
+              max_length: 60
+            marca:
+              type: string
+              description: shipped volumes brand
+              max_length: 60
+            numeracao_volumes:
+              type: string
+              description: shipped volumes numeration
+              max_length: 60
+            peso_bruto:
+              type: number
+              description: gross weight in Kg
+            peso_liquido:
+              type: number
+              description: net weight in Kg
+            quantidade_volumes:
+              type: integer
+              description: volumes amount
+    id:
+      type: integer
+      description: Emites NFC-e internal ID
+    nfce_number:
+      type: integer
+      description: SEFAZ NFC-e number
+    serie:
+      type: integer
+      description: SEFAZ NFC-e serie
+    status:
+      type: enum[string]
+      description: status description
+      enum:
+        - cancelada
+        - cancelamento_rejeitado
+        - erro
+        - processando
+        - rejeitada
+        - sucesso
+    danfe_url:
+      type: *t_url
+      description: URL for downloading DANFE
+    xml_url:
+      type: *t_url
+      description: URL for downloading XML
+    cancel_xml_url:
+      type: *t_url
+      description: URL for the XML that canceled an NF_e
+    danfe:
+      type: string
+      description: DANFE Base64 representation
+    xml:
+      type: string
+      description: NFC-e XML
+    resposta_cancelamento:
+      type: object
+      fields:
+        chave_acesso:
+          <<: *t_access_key
+        numero_protocolo:
+          type: string
+          description: cancellation protocol number
+    resposta_emissao:
+      type: object
+      fields:
+        chave_acesso:
+          <<: *t_access_key
+        codigo_verificacao:
+          type: string
+          description: NFC-e check code
+        data_emissao:
+          <<: *t_datetime
+          description: emission date and time
+        numero_protocolo:
+          type: string
+          description: emission protocol number
+    erros:
+      type: array[string]
+      description: list of error messages raised through the process
