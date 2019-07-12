@@ -186,7 +186,7 @@ objects:
   - `cobranca`
 
 
-Obs.: The `dados_gerais` fields in NFE are in the root of NFCE with the same name
+Note: The `dados_gerais` fields in NFE are in the root of NFCE with the same name
 
 
 
