@@ -183,7 +183,9 @@ objects:
   - `retencao_tributos`
   - `cobranca`
 
-* The `dados_gerais` fields in NFE are in the root of NFCE with the same name
+
+Obs.: The `dados_gerais` fields in NFE are in the root of NFCE with the same name
+
 
 
 

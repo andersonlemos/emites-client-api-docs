@@ -183,7 +183,9 @@ objects:
   - `retencao_tributos`
   - `cobranca`
 
-* Os campos de dados_gerais na nfe estão no raiz do nfce com o mesmo nome
+
+Obs.: Os campos de dados_gerais na nfe estão no raiz do nfce com o mesmo nome
+
 
 
 
