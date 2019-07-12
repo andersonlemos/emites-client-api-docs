@@ -145,6 +145,9 @@ Caso este cenário ocorra, a resposta devolvida pelo Emites-Client conterá no J
 Para criar uma NF-e (Nota Fiscal do Consumidor), enviar uma mensagem com o identificador `CREATE_NFE`. O mesmo identificador será devolvido na resposta.
 
 Utilizar como referência os documentos a seguir:
+
+- Esquema YAML da [requisição JSON](https://github.com/myfreecomm/emites-client-api-docs/blob/master/nfe/schema/create_nfe_request_schema.yaml);
+- Esquema YAML da [resposta JSON](https://github.com/myfreecomm/emites-client-api-docs/blob/master/nfe/schema/create_nfe_response_schema.yaml);
 - [Exemplo de JSON de requisição](https://github.com/myfreecomm/emites-client-api-docs/blob/master/nfe/examples/nfe_request.json);
 - [Exemplo de JSON de resposta](https://github.com/myfreecomm/emites-client-api-docs/blob/master/nfe/examples/nfe_response.json);
 
@@ -165,9 +168,9 @@ A resposta de nota aprovada conterá os mesmos campos que foram enviados na requ
 
  NFE |  NFCE  
 ---|----
- unidade_tributaria                     |  unidade_tributavel    
- quantidade_tributaria                  |  quantidade_tributavel
- "tributacao": {  "icms": {  "codigo_origem_produto": 2 }}  |  codigo_origem_produto
+ `unidade_tributaria`                     |  `unidade_tributavel`    
+ `quantidade_tributaria`                  |  `quantidade_tributavel`
+ `"tributacao": {  "icms": {  "codigo_origem_produto": 2 }}`  |  `codigo_origem_produto`
                               
 
 ### Existem apenas para NFE
@@ -184,7 +187,7 @@ objects:
   - `cobranca`
 
 
-Obs.: Os campos de dados_gerais na nfe estão no raiz do nfce com o mesmo nome
+Obs.: Os campos de `dados_gerais` na nfe estão no raiz do nfce com o mesmo nome
 
 
 
