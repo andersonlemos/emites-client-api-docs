@@ -160,6 +160,39 @@ A resposta de nota aprovada conterá os mesmos campos que foram enviados na requ
 - Resposta da emissão (campo `resposta_emissao`, o qual contém a chave de acesso e o número de protocolo);
 
 
+### Campos com nomes diferentes
+
+-----------------------------------------------------------------------
+    NFE                                |  NFCE  
+---------------------------------------|-------------------------------
+unidade_tributaria                     |  unidade_tributavel    
+                     |
+quantidade_tributaria                  |  quantidade_tributavel
+                                       |
+"tributacao": {                        |  codigo_origem_produto
+          "icms": {                    |
+            "codigo_origem_produto": 2 |
+          }                            |
+        }                              |     
+---------------------------------------|-------------------------------
+
+
+### Existem apenas para NFE
+
+fields: 
+  engine_de_calculo
+  contingencia
+
+objects: 
+  nfe
+  dados_gerais
+  retencao_tributos
+  cobranca
+
+* Os campos de dados_gerais na nfe estão no raiz do nfce com o mesmo nome
+
+
+
 ## Campos da emissão da nota
 
 ## dados_gerais (XML: ide)
