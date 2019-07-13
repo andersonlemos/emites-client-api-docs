@@ -164,15 +164,6 @@ A resposta de nota aprovada conterá os mesmos campos que foram enviados na requ
 
 
 
-### Campos com nomes diferentes
-
- NFE |  NFCE  
----|----
- `unidade_tributaria`                     |  `unidade_tributavel`    
- `quantidade_tributaria`                  |  `quantidade_tributavel`
- `"tributacao": {  "icms": {  "codigo_origem_produto": 2 }}`  |  `codigo_origem_produto`
-                              
-
 ### Existem apenas para NFE
 
 fields: 

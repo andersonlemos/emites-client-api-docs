@@ -162,15 +162,6 @@ The response will contain the same fields that were sent in the request, and add
 - Issue response (field `resposta_emissao`, which contains the access key and protocol number);
 
 
-### Fields with different names
-
- NFE |  NFCE  
----|----
- `unidade_tributaria`                     |  `unidade_tributavel`    
- `quantidade_tributaria`                  |  `quantidade_tributavel`
- `"tributacao": {  "icms": {  "codigo_origem_produto": 2 }}`  |  `codigo_origem_produto`
-
-
 
 ### Only available for NFE
 
