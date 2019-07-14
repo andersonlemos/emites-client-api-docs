@@ -144,10 +144,42 @@ Caso este cenário ocorra, a resposta devolvida pelo Emites-Client conterá no J
 
 Para criar uma NF-e (Nota Fiscal do Consumidor), enviar uma mensagem com o identificador `CREATE_NFE`. O mesmo identificador será devolvido na resposta.
 
-Utilizar como referência a documentação do [Emites Server](https://myfreecomm.github.io/emites-api-docs/#emiss-o-de-nf-e).
+Utilizar como referência os documentos a seguir:
+
+- Esquema YAML da [requisição JSON](https://github.com/myfreecomm/emites-client-api-docs/blob/master/nfe/schema/create_nfe_request_schema.yaml);
+- Esquema YAML da [resposta JSON](https://github.com/myfreecomm/emites-client-api-docs/blob/master/nfe/schema/create_nfe_response_schema.yaml);
+- [Exemplo de JSON de requisição](https://github.com/myfreecomm/emites-client-api-docs/blob/master/nfe/examples/nfe_request.json);
+- [Exemplo de JSON de resposta](https://github.com/myfreecomm/emites-client-api-docs/blob/master/nfe/examples/nfe_response.json);
+
+A resposta de nota aprovada conterá os mesmos campos que foram enviados na requisição, e adicionalmente os seguintes campos exclusivos:
+- `status` com valor `sucesso`;
+- Impostos (campo `produto.tributacao`, para cada produto);
+- Número da nota (campo `numero`);
+- Série da nota (campo `serie`);
+- URL do DANFE (campo `danfe_url`);
+- URL do XML (campo `xml_url`);
+- DANFE codificado em Base64 (campo `danfe`);
+- XML codificado em Base64 (campo `xml`);
+- Resposta da emissão (campo `resposta_emissao`, o qual contém a chave de acesso e o número de protocolo);
 
 
-O payload JSON da resposta será similar àquele devolvido durante a criação de NFC-e.
+
+### Existem apenas para NFE
+
+fields: 
+  - `engine_de_calculo`
+  - `contingencia`
+
+
+objects: 
+  - `nfe`
+  - `dados_gerais`
+  - `retencao_tributos`
+  - `cobranca`
+
+
+Obs.: Os campos de `dados_gerais` na nfe estão no raiz do nfce com o mesmo nome
+
 
 
 

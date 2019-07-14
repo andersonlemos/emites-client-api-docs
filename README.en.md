@@ -143,12 +143,42 @@ If this scenario occurs, the response returned by the Emites-Client will contain
 
 To create a NF-e, send a message with the identifier `CREATE_NFE`. The same identifier will be returned in the response.
 
-Use as reference the [Emites Server](https://myfreecomm.github.io/emites-api-docs/#emiss-o-de-nf-e) document.
+Use as reference the following documents:
 
-The response's JSON payload will be similar to the one returned during the
-creation NFC-e operation.
+- [JSON request YAML schema](https://github.com/myfreecomm/emites-client-api-docs/blob/master/nfe/schema/create_nfe_request_schema.yaml);
+- [JSON response YAML schema](https://github.com/myfreecomm/emites-client-api-docs/blob/master/nfe/schema/create_nfe_response_schema.yaml);
+- [Sample JSON request](https://github.com/myfreecomm/emites-client-api-docs/blob/master/nfe/examples/nfe_request.json);
+- [Sample JSON response](https://github.com/myfreecomm/emites-client-api-docs/blob/master/nfe/examples/nfe_response.json);
 
 The response will contain the same fields that were sent in the request, and additionally the following exclusive fields:
+- `status` with value equal to `sucesso`;
+- Taxes (field `produto.tributacao`, for each product);
+- Note's number (field `numero`);
+- Note's serie (field `serie`);
+- DANFE URL (field `danfe_url`);
+- XML URL (field `xml_url`);
+- Base64 encoded DANFE (field `danfe`);
+- Base64 encoded XML (field `xml`);
+- Issue response (field `resposta_emissao`, which contains the access key and protocol number);
+
+
+
+### Only available for NFE
+
+fields: 
+  - `engine_de_calculo`
+  - `contingencia`
+
+
+objects: 
+  - `nfe`
+  - `dados_gerais`
+  - `retencao_tributos`
+  - `cobranca`
+
+
+Note: The `dados_gerais` fields in NFE are in the root of NFCE with the same name
+
 
 
 
