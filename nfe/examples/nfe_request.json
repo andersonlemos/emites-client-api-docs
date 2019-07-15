@@ -227,6 +227,19 @@
       "codigo_modalidade": 9,
       "retirada": {
         "cpf_cnpj": "27197888000150",
+        "endereco": {
+          "bairro": "MEDEIROS",
+          "cep": "13212255",
+          "codigo_municipio": "3525904",
+          "codigo_pais": "1058",
+          "complemento": "",
+          "logradouro": "AV GUILHERME PORCARI",
+          "nome_municipio": "JUNDIAI",
+          "nome_pais": "BRASIL",
+          "numero": "S N",
+          "telefone": "99999999",
+          "uf": "SP"
+        },
         "Nome": "Dufry do Brasil",
         "email": "fiscal.df.indiretos@br.dufry.com",
         "IE": ""

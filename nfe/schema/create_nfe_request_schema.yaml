@@ -728,18 +728,24 @@ root:
                 - 9 # sem frete                (no freight)
             retirada:
               type: object
-              required: true
+              required: false
               description: withdraw
               fields:
                 cpf_cnpj:
                   <<: *t_document_id 
+                  required: true
+                endereco:
+                  <<: *t_endereco
+                  required: true
+                  description: withdraw address  
                 nome:
                   type: string
-                  required: true
+                  required: false
                   description: withdraw name
                   max_length: 60 
                 email: &t_email
                   type: string
+                  required: false
                   pattern: /^[^@]+@[^@]+\.[^@]+$/
                   max_length: 60   
                 inscricao_estadual:
