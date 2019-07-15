@@ -225,6 +225,12 @@
     },
     "transporte": {
       "codigo_modalidade": 9,
+      "retirada": {
+        "cpf_cnpj": "27197888000150",
+        "Nome": "Dufry do Brasil",
+        "email": "fiscal.df.indiretos@br.dufry.com",
+        "IE": ""
+      },
       "retencao_icms": {
         "aliquota_retencao": 0,
         "cfop": "",
