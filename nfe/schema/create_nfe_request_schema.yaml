@@ -267,6 +267,10 @@ root:
           required: false
           description: general data
           fields:
+            serie:
+              type: number
+              required: true
+              description: serie number
             chave_de_acesso:
               type: string
               required: false
