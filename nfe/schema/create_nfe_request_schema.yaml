@@ -118,14 +118,14 @@ root:
       required: true
       description: nfe schema
       fields:
-        engine_de_calculo: 
+        engine_de_calculo:
           type: string
           required: false
           description: >
             Emits internal field to indicate the calculation engine to be used if enabled
           examples:
             nexaas
-        contingencia: 
+        contingencia:
           type: boolean
           required: false
         cliente:
@@ -366,13 +366,13 @@ root:
               max_length: 36
             just_contingencia:
               type: string
-              required: if is offiline contingencia 
+              required: if is offiline contingencia
               description: justification
               min_length: 15
               max_length: 256
             data_hora_contingencia:
               type: date
-              required: if is offiline contingencia 
+              required: if is offiline contingencia
               description: date and time of contigencia (aaaa-mm-ddThh:mm:ss-03:00)
         forma_de_pagamento:
               type: array[object]
@@ -386,7 +386,7 @@ root:
                   description: >
                     see https://myfreecomm.github.io/emites-api-docs/#forma_de_pagamento-xml-pag
                   enum:
-                    - "01" Money 
+                    - "01" Money
                     - "02" Check
                     - "03" Credit Card
                     - "04" Debit Card
@@ -643,6 +643,29 @@ root:
                 - 1
                 - 10
                 - 100
+            tributacao:
+              type: object
+              required: true
+              decription: taxes
+              fields:
+                icms:
+                  type: object
+                  required: true
+                  description: ICMS data
+                  fields:
+                    codigo_origem_produto:
+                      type: enum[integer]
+                      description: product source code
+                      enum:
+                        - 0 # Nacional, exceto as indicadas nos códigos 3, 4, 5 e 8;
+                        - 1 # Estrangeira - Importação direta, exceto a indicada no código 6;
+                        - 2 # Estrangeira - Adquirida no mercado interno, exceto a indicada no código 7;
+                        - 3 # Nacional, mercadoria ou bem com Conteúdo de Importação superior a 40% e inferior ou igual a 70%;
+                        - 4 # Nacional, cuja produção tenha sido feita em conformidade com os processos produtivos básicos de que tratam as legislações citadas nos Ajustes;
+                        - 5 # Nacional, mercadoria ou bem com Conteúdo de Importação inferior ou igual a 40%;
+                        - 6 # Estrangeira - Importação direta, sem similar nacional, constante em lista da CAMEX e gás natural;
+                        - 7 # Estrangeira - Adquirida no mercado interno, sem similar nacional, constante lista CAMEX e gás natural.
+                        - 8 # Nacional, mercadoria ou bem com Conteúdo de Importação superior a 70%.
           num_controle_fci:
               type: string
               required: false
@@ -662,7 +685,7 @@ root:
                 - "S" # produced in relevant scale
                 - "N" # produced in scale NOT relevant
           cnpj_fabricante_mercadoria:
-              type: 
+              type:
               <<: *t_cnpj
               required: false
           codigo_beneficio_fiscal:
@@ -716,7 +739,7 @@ root:
             valor_retencao_previdencia:
               type: number
               required: false
-              max_length: 13  
+              max_length: 13
         transporte:
           type: object
           required: true
@@ -736,22 +759,22 @@ root:
               description: withdraw
               fields:
                 cpf_cnpj:
-                  <<: *t_document_id 
+                  <<: *t_document_id
                   required: true
                 endereco:
                   <<: *t_endereco
                   required: true
-                  description: withdraw address  
+                  description: withdraw address
                 nome:
                   type: string
                   required: false
                   description: withdraw name
-                  max_length: 60 
+                  max_length: 60
                 email: &t_email
                   type: string
                   required: false
                   pattern: /^[^@]+@[^@]+\.[^@]+$/
-                  max_length: 60   
+                  max_length: 60
                 inscricao_estadual:
                   type: string
                   required: false
@@ -759,12 +782,12 @@ root:
                   pattern: /^(ISENTO|[0-9]{2,14})$/
                   examples:
                     - ISENTO
-                    - "110042490114"  
+                    - "110042490114"
             valor_total_frete:
               type: number
               required: true
-              description: freight total value 
-              max_length: 13  
+              description: freight total value
+              max_length: 13
             transportadora:
               type: object
               required: false
@@ -795,7 +818,7 @@ root:
                     - Rua do Economista, nº 256
                 uf:
                   <<: *t_uf
-                  required: false          
+                  required: false
                 municipio:
                   type: string
                   required: false
@@ -812,7 +835,7 @@ root:
                   description: Código Fiscal de Operações e Prestações
                   pattern: /^[0-9]{4}$/
                   examples:
-                    - "5103"    
+                    - "5103"
                 valor_base_calculo:
                   type: number
                   required: true
@@ -821,7 +844,7 @@ root:
                   examples:
                     - 2.00
                     - 3.5
-                    - 100      
+                    - 100
                 aliquota_retencao:
                   type: number
                   required: true
@@ -839,15 +862,15 @@ root:
                   examples:
                     - 2.00
                     - 3.5
-                    - 100      
+                    - 100
                 uf:
-                  <<: *t_uf    
+                  <<: *t_uf
                 codigo_municipio:
                   type: integer
                   required: true
                   description: city registration (IM)
                   examples:
-                    - 3304557    
+                    - 3304557
             veiculo:
               type: object
               required: false
@@ -879,7 +902,7 @@ root:
                 quantidade_volumes:
                   type: number
                   required: false
-                  max_length: 15  
+                  max_length: 15
                 especie:
                   type: string
                   required: false
@@ -904,4 +927,4 @@ root:
               type: array[string]
               required: false
               max_items: 10
-              max_length: 60 
+              max_length: 60
