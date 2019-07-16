@@ -268,9 +268,9 @@ root:
           description: general data
           fields:
             serie:
-              type: numberd
+              type: number
               required: true
-              description: serie
+              description: serie number
             chave_de_acesso:
               type: string
               required: false
