@@ -31,10 +31,6 @@
       "indicador_consumidor_final": 1,
       "tipo_operacao": 1
     },
-    "cobranca": {
-      "fatura": {},
-      "duplicatas": {}
-    },
     "forma_de_pagamento": [
       {},
       {
@@ -67,11 +63,7 @@
       }
     ],
     "transporte": {
-      "codigo_modalidade": 9,
-      "retirada": {
-        "cpf_cnpj": "17625216004809",
-        "Razao_Social": "DUFRY LOJAS FRANCAS LTDA"
-      }
+      "codigo_modalidade": 9
     }
   }
 }
