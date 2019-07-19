@@ -32,9 +32,9 @@
       "tipo_operacao": 1
     },
     "forma_de_pagamento": [
-      {},
       {
-        "tipo_de_pagamento": "01"
+        "tipo_de_pagamento": "01",
+        "valor_do_pagamento	": "100.00"
       }
     ],
     "produtos": [
