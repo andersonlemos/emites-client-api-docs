@@ -351,6 +351,9 @@ root:
         valor_total_produto:
           type: number
           description: product total cost
+        valor_unitario_comercial:
+          type: number
+          description:  commercial unit cost
         valor_unitario_tributario:
           type: number
           description: taxable unit cost
@@ -767,12 +770,15 @@ root:
     id:
       type: integer
       description: Emites NFC-e internal ID
-    nfce_number:
+    nfe_numero:
       type: integer
       description: SEFAZ NFC-e number
     serie:
       type: integer
       description: SEFAZ NFC-e serie
+    contigencia:
+      type: boolean
+      description: true if is contigencia
     status:
       type: enum[string]
       description: status description
