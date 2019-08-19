@@ -222,6 +222,7 @@
   },
   "id": 348343,
   "status": "sucesso",
+  "contigencia": false,
   "nfe_numero": 173,
   "serie": 9,
   "danfe_url": "http://emites-ruby-sandbox.s3.amazonaws.com/nfce/pdf_files/000/000/477/original/danfe.pdf?1536775848",
