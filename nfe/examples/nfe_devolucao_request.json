@@ -1,0 +1,113 @@
+{
+  "nfe": {
+    "engine_de_calculo": "taxweb",
+    "contingencia": false,
+    "tipo_impressao": "4",
+    "cliente": {
+      "cpf_cnpj": "09605642760",
+      "nome": "NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL",
+      "pessoa_fisica_juridica": "person",
+      "indicador_inscricao_estadual": 9,
+      "inscricao_estadual": "",
+      "inscricao_municipal": "",
+      "inscricao_suframa": "",
+      "endereco": {
+        "logradouro": "R DOMINGOS DE ALMEIDA",
+        "numero": 1706,
+        "complemento": "",
+        "bairro": "CENTRO",
+        "nome_municipio": "URUGUAIANA",
+        "codigo_municipio": "5300108",
+        "uf": "DF",
+        "nome_pais": "BRASIL",
+        "codigo_pais": "1058",
+        "cep": "71608900"
+      }
+    },
+    "dados_gerais": {
+      "codigo_natureza_operacao": "012",
+      "serie": 36,
+      "codigo_mun_ocorrencia": 5300108,
+      "uf": 53,
+      "destino_operacao": 1,
+      "finalidade_nfe": 4,
+      "indicador_presenca": 1,
+      "natureza_operacao": "Devolução de venda",
+      "indicador_consumidor_final": 1,
+      "tipo_operacao": 0
+    },
+    "cobranca": {
+      "fatura": {
+        "numero_fatura": "",
+        "valor_original": 0.00,
+        "valor_desconto": 0.00,
+        "valor_liquido": 0.00
+      },
+      "duplicatas": [
+        {
+          "numero": "",
+          "data_vencimento": "",
+          "valor": 0.00
+        }
+      ]
+    },
+    "documentos_referenciados": [
+      {
+        "tipo_documento": "NFe",
+        "chave_acesso": "53190827197888014615550110000000351612116016"
+      }
+    ],
+    "forma_de_pagamento": [
+      {
+        "tipo_de_pagamento": "90",
+        "valor_do_pagamento": 0
+      }
+    ],
+    "produtos": [
+      {
+        "codigo_produto": "9099145",
+        "descricao": "NOTA FISCAL EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL",
+        "ncm": 18063210,
+        "cnpj_fabricante_mercadoria": "99999999999999999",
+        "fabricacao": "1",
+        "aplicacao": "C",
+        "producao_escala": "S",
+        "codigo_beneficio_fiscal": "",
+        "codigo_ean": "SEM GTIN",
+        "ean_unidade_trib": "SEM GTIN",
+        "informacoes_adicionais": "",
+        "num_pedido": "",
+        "num_item_pedido": 3,
+        "unidade_comercial": "UN",
+        "quantidade_comercial": 3,
+        "valor_unitario_comercial": 4.00,
+        "unidade_tributaria": "UN",
+        "quantidade_tributaria": 3,
+        "valor_unitario_tributario": 4.00,
+        "valor_desconto": 0,
+        "valor_frete": 0,
+        "valor_seguro": 0,
+        "outras_despesas": 0,
+        "valor_total_produto": "12.00",
+        "tributacao": {
+          "icms": {
+            "codigo_origem_produto": 1
+          }
+        }
+      }
+    ],
+    "transporte": {
+      "codigo_modalidade": 9,
+      "retirada": {
+        "cpf_cnpj": "17625216004809",
+        "Nome": "DUFRY LOJAS FRANCAS LTDA",
+        "email": "fiscal.df.indiretos@br.dufry.com",
+        "IE": ""
+      }
+    },
+    "informacoes_adicionais": {
+      "informacoes_contribuinte": "",
+      "informacoes_fisco": "Os valores expressos nessa nota fiscal está na moeda dolar"
+    }
+  }
+}

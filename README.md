@@ -147,9 +147,12 @@ Para criar uma NF-e (Nota Fiscal do Consumidor), enviar uma mensagem com o ident
 Utilizar como referência os documentos a seguir:
 
 - Esquema YAML da [requisição JSON](https://github.com/myfreecomm/emites-client-api-docs/blob/master/nfe/schema/create_nfe_request_schema.yaml);
+- Esquema YAML da [requisição devolução JSON](https://github.com/myfreecomm/emites-client-api-docs/blob/master/nfe/schema/devolucao_nfe_request_schema.yaml);
 - Esquema YAML da [resposta JSON](https://github.com/myfreecomm/emites-client-api-docs/blob/master/nfe/schema/create_nfe_response_schema.yaml);
 - [Exemplo de JSON de requisição](https://github.com/myfreecomm/emites-client-api-docs/blob/master/nfe/examples/nfe_request.json);
 - [Exemplo de JSON de resposta](https://github.com/myfreecomm/emites-client-api-docs/blob/master/nfe/examples/nfe_response.json);
+- [Exemplo de JSON de requisição de devolução](https://github.com/myfreecomm/emites-client-api-docs/blob/master/nfe/examples/nfe_devolucao_request.json);
+- [Exemplo de JSON de resposta de devolução](https://github.com/myfreecomm/emites-client-api-docs/blob/master/nfe/examples/nfe_devolucao_response.json);
 
 A resposta de nota aprovada conterá os mesmos campos que foram enviados na requisição, e adicionalmente os seguintes campos exclusivos:
 - `status` com valor `sucesso`;

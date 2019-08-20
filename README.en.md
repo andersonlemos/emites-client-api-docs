@@ -47,9 +47,12 @@ To create a NFC-e, send a message with the identifier `CREATE_NFCE`. The same id
 Use as reference the following documents:
 
 - [JSON request YAML schema](https://github.com/myfreecomm/emites-client-api-docs/blob/master/nfce/schema/create_nfce_request_schema.yaml);
+- [JSON devolution request YAML schema](https://github.com/myfreecomm/emites-client-api-docs/blob/master/nfce/schema/devolucao_nfce_request_schema.yaml);
 - [JSON response YAML schema](https://github.com/myfreecomm/emites-client-api-docs/blob/master/nfce/schema/create_nfce_response_schema.yaml);
 - [Sample JSON request](https://github.com/myfreecomm/emites-client-api-docs/blob/master/nfce/examples/nfce_request.json);
 - [Sample JSON response](https://github.com/myfreecomm/emites-client-api-docs/blob/master/nfce/examples/nfce_response.json);
+- [Sample JSON devolution request](https://github.com/myfreecomm/emites-client-api-docs/blob/master/nfce/examples/nfce_devolucao_request.json);
+- [Sample JSON devolution response](https://github.com/myfreecomm/emites-client-api-docs/blob/master/nfce/examples/nfce_devolucao_response.json);
 
 The response will contain the same fields that were sent in the request, and additionally the following exclusive fields:
 - `status` with value equal to `sucesso`;
