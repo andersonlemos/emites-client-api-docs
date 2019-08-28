@@ -288,6 +288,56 @@ root:
               max_length: 3
               examples:
                 - "BRL"
+            bin:
+              type: string
+              required: if uf == CE and tipo_integracao == 1
+              description: first six card's digits
+              max_length: 6
+              examples:
+                - "545554"    
+            dono_cartao:
+              type: string
+              required: if uf == CE and tipo_integracao == 1
+              description: full name of card's owner from card's operator
+              examples:
+                - "Nome Ficticio" 
+            data_expiracao:
+              type: date
+              required: if uf == CE and tipo_integracao == 1
+              description: Card's expiration date (MM/YY)
+              max_length: 5
+              examples:
+                - "01/23"
+            instituicao_financeira:
+              type: string
+              required: if uf == CE and tipo_integracao == 1
+              description: Name of card's operator
+              examples:
+                - "Operadora do cartão" 
+            parcelas:
+              type: number
+              required: if uf == CE and tipo_integracao == 1
+              description: number of installments
+              examples:
+                - 2
+            codigo_pagamento:
+              type: number
+              required: if uf == CE and tipo_integracao == 1
+              description: number of payment
+              examples:
+                - 12345
+            valor_pagamento:
+              type: number
+              required: if uf == CE and tipo_integracao == 1
+              description: amount paied by card
+              examples:
+                - 100.00
+           ultimos_digitos :
+              type: string
+              required: if uf == CE and tipo_integracao == 1
+              description: last 4 card's digits 
+              examples:
+                - "0234"
     indicador_presenca:
       type: enum[integer]
       required: true
