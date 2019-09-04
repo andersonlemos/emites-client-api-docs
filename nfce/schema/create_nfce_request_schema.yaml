@@ -339,7 +339,7 @@ root:
               examples:
                 - "0234"
             nsu :
-              type: number
+              type: string
               required: if uf == CE
               description: NSU Number
               examples:
