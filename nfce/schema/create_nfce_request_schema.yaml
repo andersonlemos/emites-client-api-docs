@@ -332,13 +332,19 @@ root:
               description: amount paied by card
               examples:
                 - 100.00
-           ultimos_digitos :
+            ultimos_digitos :
               type: string
               required: if uf == CE and tipo_integracao == 1
               description: last 4 card's digits 
               examples:
                 - "0234"
-    indicador_presenca:
+            nsu :
+              type: number
+              required: if uf == CE
+              description: NSU Number
+              examples:
+                - "123456789"
+      indicador_presenca:
       type: enum[integer]
       required: true
       description: costumer presence in the trading house
