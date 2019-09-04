@@ -343,8 +343,8 @@ root:
               required: if uf == CE
               description: NSU Number
               examples:
-                - "123456789"
-      indicador_presenca:
+                - "123456789"    
+    indicador_presenca:
       type: enum[integer]
       required: true
       description: costumer presence in the trading house
