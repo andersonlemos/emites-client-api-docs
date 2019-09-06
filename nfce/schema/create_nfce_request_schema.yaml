@@ -253,7 +253,7 @@ root:
               description: card acreditation authority's national registration
             bandeira_operadora:
               type: enum[string]
-              required: false
+              required: if uf == CE
               description: >
                 see https://myfreecomm.github.io/emites-api-docs/#cartao-xml-card
               enum:
@@ -310,10 +310,10 @@ root:
                 - "01/23"
             instituicao_financeira:
               type: string
-              required: if uf == CE and tipo_integracao == 1
+              required: if uf == CE
               description: Name of card's operator
               examples:
-                - "Operadora do cartão" 
+                - "CIELO" 
             parcelas:
               type: number
               required: if uf == CE and tipo_integracao == 1
@@ -332,12 +332,18 @@ root:
               description: amount paied by card
               examples:
                 - 100.00
-           ultimos_digitos :
+            ultimos_digitos :
               type: string
               required: if uf == CE and tipo_integracao == 1
               description: last 4 card's digits 
               examples:
                 - "0234"
+            nsu :
+              type: string
+              required: if uf == CE
+              description: NSU Number
+              examples:
+                - "123456789"    
     indicador_presenca:
       type: enum[integer]
       required: true
