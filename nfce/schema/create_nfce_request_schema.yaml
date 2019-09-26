@@ -320,12 +320,6 @@ root:
               description: number of installments
               examples:
                 - 2
-            codigo_pagamento:
-              type: number
-              required: if uf == CE and tipo_integracao == 1
-              description: number of payment
-              examples:
-                - 12345
             valor_pagamento:
               type: number
               required: if uf == CE and tipo_integracao == 1
