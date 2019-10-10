@@ -353,7 +353,7 @@ root:
                       enum:
                         - 1 # integrado     (integrated)
                         - 2 # nao integrado (non-integrated)
-                    cpnj_credenciadora:
+                    cnpj_credenciadora:
                       <<: *t_cnpj
                       required: false
                       description: card acreditation authority's national registration
