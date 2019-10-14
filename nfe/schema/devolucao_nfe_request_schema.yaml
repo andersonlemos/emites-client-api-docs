@@ -1,7 +1,7 @@
 types:
   document_id: &t_document_id
     type: string
-    description: document ID (CPF, CPNJ or idEstrangeiro)
+    description: document ID (CPF, CNPJ or idEstrangeiro)
     pattern: /^([0-9]{11,14})|([0-9A-Z]{5,20})$/
     examples:
       - "02558352482"
