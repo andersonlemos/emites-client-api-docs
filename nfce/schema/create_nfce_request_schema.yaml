@@ -520,7 +520,7 @@ root:
             - 8
         cdu1:
           type: string
-          description: State values
+          description: Field to inform the State of last purchase. Exclusive field for TaxRules
           examples:
             - DF
             - SP
