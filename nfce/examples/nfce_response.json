@@ -67,6 +67,7 @@
       "num_item_pedido": 1,
       "num_pedido": "5100003910",
       "codigo_origem_produto": 0,
+      "cdu1": "SP",
       "quantidade_comercial": 2.00,
       "quantidade_tributavel": 2.00,
       "unidade_comercial": "UN",

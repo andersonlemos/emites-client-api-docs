@@ -24,6 +24,7 @@
       "codigo_produto": "14600",
       "descricao": "NOTA FISCAL EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL",
       "codigo_origem_produto": 0,
+      "cdu1": "SP",
       "quantidade_comercial": 2.00,
       "quantidade_tributavel": 2.00,
       "unidade_comercial": "UN",

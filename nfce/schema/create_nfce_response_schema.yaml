@@ -322,6 +322,13 @@ root:
             - 6
             - 7
             - 8
+        cdu1:
+          type: string
+          description: State values
+          examples:
+            - DF
+            - SP
+            - RJ    
         quantidade_comercial:
           type: number
           description: product trade amount
