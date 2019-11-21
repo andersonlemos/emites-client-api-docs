@@ -28,7 +28,7 @@
       "finalidade_nfe": 1,
       "indicador_presenca": 1,
       "natureza_operacao": "venda",
-      "indicador_consumidor_final": 1,
+      "indicador_consumidor_final": 0,
       "tipo_operacao": 1
     },
     "forma_de_pagamento": [
