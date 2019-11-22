@@ -322,6 +322,13 @@ root:
             - 6
             - 7
             - 8
+        cdu1:
+          type: string
+          description: Field to inform the State of last purchase. Exclusive field for TaxRules
+          examples:
+            - DF
+            - SP
+            - RJ    
         quantidade_comercial:
           type: number
           description: product trade amount
