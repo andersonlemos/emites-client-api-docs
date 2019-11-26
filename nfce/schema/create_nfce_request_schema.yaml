@@ -249,11 +249,15 @@ root:
                 - 2 # nao integrado (non-integrated)
             cnpj_credenciadora:
               <<: *t_cnpj
-              required: if uf == CE
+              required: if uf == CE or uf == PE or uf == RN or uf == AL 
+                        or uf == BA or uf == ES or uf == MS or uf == PB
+                        or uf == PR or uf == RJ or uf == TO
               description: card acreditation authority's national registration
             bandeira_operadora:
               type: enum[string]
-              required: if uf == CE
+              required: if uf == CE or uf == PE or uf == RN or uf == AL 
+                        or uf == BA or uf == ES or uf == MS or uf == PB
+                        or uf == PR or uf == RJ or uf == TO
               description: >
                 see https://myfreecomm.github.io/emites-api-docs/#cartao-xml-card
               enum:
@@ -269,7 +273,9 @@ root:
                 - "99" # OUTROS (other)
             numero_autorizacao_operacao:
               type: string
-              required: true
+              required: if uf == CE or uf == PE or uf == RN or uf == AL 
+                        or uf == BA or uf == ES or uf == MS or uf == PB
+                        or uf == PR or uf == RJ or uf == TO
               description: transation authorization ID
               max_length: 20
               examples:
