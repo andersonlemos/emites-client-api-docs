@@ -81,7 +81,8 @@
       "valor_unitario_comercial": 100.00,
       "valor_unitario_tributario": 100.00,
       "modBC": 0,
-      "modBCST": 0
+      "modBCST": 0,
+      "valor_ultima_entrada": "20.00"
     }
   ],
   "tipo_impressao": 4,
