@@ -79,7 +79,7 @@
       "valor_total_produto": 200.00,
       "valor_unitario_comercial": 100.00,
       "valor_unitario_tributario": 100.00,
-      "valor_ultima_entrada": "20.00",
+      "valor_ultima_entrada": 20.00,
       "tributacao": {
         "cofins": {
           "aliquota_cofins": 1.00,
