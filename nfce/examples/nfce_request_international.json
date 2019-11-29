@@ -61,7 +61,8 @@
       "codigo_origem_produto": 0,
       "cdu1": "SP",
       "modBC": 0,
-      "modBCST": 0
+      "modBCST": 0,
+      "valor_ultima_entrada": 20.00
     }
   ],
   "tipo_impressao": 4,

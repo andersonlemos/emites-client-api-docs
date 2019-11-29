@@ -525,6 +525,9 @@ root:
             - DF
             - SP
             - RJ
+        valor_ultima_entrada:
+          type: number
+          description: Field to inform the last entry value. Exclusive field for TaxRules
         quantidade_comercial:
           type: number
           required: true
