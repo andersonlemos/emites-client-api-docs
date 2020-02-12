@@ -179,6 +179,12 @@ root:
         - 1 # interno       (internal)
         - 2 # interestadual (interstate)
         - 3 # externo       (international)
+    engine_de_calculo:
+      type: string
+      required: true
+      description: calculation engine for sale
+      examples:
+        - "taxweb"     
     finalidade_nfe:
       type: enum[integer]
       required: true

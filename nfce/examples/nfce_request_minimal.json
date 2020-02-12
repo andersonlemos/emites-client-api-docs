@@ -1,5 +1,6 @@
 {
   "destino_operacao": 1,
+  "engine_de_calculo": "taxweb",
   "finalidade_nfe": 1,
   "indicador_consumidor_final": 1,
   "forma_de_pagamento": [
