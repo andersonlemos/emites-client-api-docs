@@ -41,7 +41,7 @@ Observações:
 
 ## Criação de NFC-e
 
-Para criar uma NFC-e (Nota Fiscal Eletrônica do Consumidor), enviar uma mensagem com o identificador `CREATE_NFCE`. O mesmo identificador será devolvido na resposta.
+Para criar uma NFC-e (Nota Fiscal Eletrônica do Consumidor), enviar uma mensagem com o identificador `CREATE_NFCE`. Na resposta é possível que o identificador seja CREATE_NFCE ou CREATE_CFE (em casos onde a emissão foi via SAT ou MFE).
 
 Utilizar como referência os documentos a seguir:
 
