@@ -42,7 +42,7 @@ Comments:
 
 ## Creating a NFC-e
 
-To create a NFC-e, send a message with the identifier `CREATE_NFCE`. The same identifier will be returned in the response.
+To create a NFC-e, send a message with the identifier `CREATE_NFCE`. In the response, it's possible that the identifier be CREATE_NFCE or CREATE_CFE (in cases where the issue was made by SAT or MFE)..
 
 Use as reference the following documents:
 
